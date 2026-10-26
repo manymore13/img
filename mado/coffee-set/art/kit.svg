@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="480" viewBox="0 0 640 480" role="img" aria-label="原创插画：俯视平铺的手冲壶、滤杯、分享壶、滤纸与咖啡豆袋">
+  <rect width="640" height="480" fill="#f2e7d5"/>
+  <rect x="24" y="24" width="592" height="432" fill="none" stroke="#d9c3a2" stroke-width="2"/>
+
+  <g fill="#d9c2a0" opacity="0.55">
+    <circle cx="181" cy="157" r="84"/>
+    <circle cx="478" cy="154" r="86"/>
+    <circle cx="166" cy="336" r="76"/>
+    <rect x="456" y="298" width="128" height="124" rx="8"/>
+  </g>
+
+  <g>
+    <circle cx="175" cy="150" r="84" fill="#b0603a"/>
+    <circle cx="175" cy="150" r="72" fill="none" stroke="#8c4526" stroke-width="2"/>
+    <circle cx="175" cy="150" r="56" fill="#a85634"/>
+    <circle cx="175" cy="150" r="16" fill="#3a2518"/>
+    <path d="M257 128C300 118 314 86 300 64" fill="none" stroke="#b0603a" stroke-width="16" stroke-linecap="round"/>
+    <path d="M257 128C300 118 314 86 300 64" fill="none" stroke="#8c4526" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+    <path d="M118 204C142 244 208 244 232 204" fill="none" stroke="#3a2518" stroke-width="10" stroke-linecap="round"/>
+  </g>
+
+  <g>
+    <circle cx="472" cy="148" r="86" fill="#fdf7ec" stroke="#33231a" stroke-width="4"/>
+    <circle cx="472" cy="148" r="64" fill="#c99a74" opacity="0.35"/>
+    <circle cx="472" cy="148" r="56" fill="#4a2b1b"/>
+    <circle cx="472" cy="148" r="56" fill="none" stroke="#5d3722" stroke-width="2"/>
+    <circle cx="472" cy="148" r="38" fill="none" stroke="#6b422c" stroke-width="2" opacity="0.6"/>
+    <circle cx="472" cy="148" r="18" fill="none" stroke="#6b422c" stroke-width="2" opacity="0.6"/>
+    <path d="M552 126C586 134 586 166 552 174" fill="none" stroke="#33231a" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <g>
+    <circle cx="160" cy="330" r="76" fill="#fdf7ec" fill-opacity="0.85" stroke="#33231a" stroke-width="4"/>
+    <circle cx="160" cy="330" r="60" fill="#4a2b1b"/>
+    <circle cx="160" cy="330" r="60" fill="none" stroke="#5d3722" stroke-width="2"/>
+    <circle cx="160" cy="330" r="42" fill="none" stroke="#6b422c" stroke-width="2" opacity="0.45"/>
+    <path d="M236 306C264 314 264 348 236 356" fill="none" stroke="#33231a" stroke-width="5" stroke-linecap="round"/>
+    <path d="M106 274L122 256L142 260L146 278Z" fill="#fdf7ec" stroke="#33231a" stroke-width="4" stroke-linejoin="round"/>
+  </g>
+
+  <g transform="rotate(-6 330 350)">
+    <rect x="286" y="308" width="92" height="92" rx="8" fill="#e8d9c0" stroke="#c9ae88" stroke-width="2"/>
+    <rect x="292" y="300" width="92" height="92" rx="8" fill="#fdf7ec" stroke="#33231a" stroke-width="3"/>
+    <path d="M302 322Q312 312 322 322T342 322T362 322T382 322" fill="none" stroke="#33231a" stroke-width="2"/>
+  </g>
+
+  <g transform="rotate(4 520 350)">
+    <rect x="450" y="286" width="128" height="124" rx="8" fill="#3a2518"/>
+    <path d="M486 286V272H542V286" fill="#2c1b12"/>
+    <path d="M450 308H578" stroke="#5c3d29" stroke-width="3"/>
+    <rect x="472" y="324" width="84" height="56" rx="3" fill="#d9a97f"/>
+    <path d="M484 344H544M484 356H532" stroke="#3a2518" stroke-width="2" opacity="0.5"/>
+    <path d="M458 394H570" stroke="#5c3d29" stroke-width="2" opacity="0.7"/>
+  </g>
+
+  <g fill="#4a2b1b">
+    <ellipse cx="292" cy="246" rx="15" ry="10" transform="rotate(-20 292 246)"/>
+    <ellipse cx="326" cy="264" rx="15" ry="10" transform="rotate(8 326 264)"/>
+    <ellipse cx="268" cy="424" rx="15" ry="10" transform="rotate(12 268 424)"/>
+    <ellipse cx="308" cy="438" rx="15" ry="10" transform="rotate(-10 308 438)"/>
+    <ellipse cx="414" cy="352" rx="15" ry="10" transform="rotate(24 414 352)"/>
+  </g>
+  <g fill="none" stroke="#d9a97f" stroke-width="1.5" opacity="0.75">
+    <path d="M279 250C287 245 297 244 305 249"/>
+    <path d="M314 268C322 263 332 262 340 267"/>
+    <path d="M255 428C263 423 273 422 281 427"/>
+    <path d="M296 442C304 437 314 436 322 441"/>
+    <path d="M402 356C410 351 420 350 428 355"/>
+  </g>
+</svg>

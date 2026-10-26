@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="670" height="760" viewBox="0 0 670 760" role="img" aria-label="原创插画：晨光下的手冲滤杯、分享壶、咖啡豆与一只杯子">
+  <rect width="670" height="760" fill="#f1e5d1"/>
+  <circle cx="335" cy="292" r="214" fill="#e9c9a3"/>
+  <circle cx="335" cy="292" r="214" fill="none" stroke="#d3ab84" stroke-width="2" stroke-dasharray="3 9" opacity="0.8"/>
+  <path d="M70 0V520M600 0V520" stroke="#ddc4a1" stroke-width="2"/>
+  <path d="M0 520H670" stroke="#c9ac84" stroke-width="3"/>
+  <rect y="521" width="670" height="239" fill="#e2cdaa"/>
+
+  <ellipse cx="335" cy="704" rx="150" ry="16" fill="#cdb188" opacity="0.55"/>
+  <ellipse cx="124" cy="716" rx="66" ry="10" fill="#cdb188" opacity="0.45"/>
+
+  <g opacity="0.5" fill="none" stroke="#a07a5c" stroke-width="3" stroke-linecap="round">
+    <path d="M300 262C284 228 306 206 292 172"/>
+    <path d="M335 250C319 216 341 194 327 160"/>
+    <path d="M370 262C354 228 376 206 362 172"/>
+  </g>
+
+  <g>
+    <rect x="512" y="352" width="118" height="236" rx="7" fill="#3a2518"/>
+    <path d="M566 352V338H594V352" fill="#2c1b12"/>
+    <path d="M512 374H630" stroke="#5c3d29" stroke-width="2"/>
+    <path d="M512 392H630" stroke="#4a3020" stroke-width="2"/>
+    <rect x="530" y="412" width="82" height="92" rx="3" fill="#d9a97f"/>
+    <ellipse cx="571" cy="444" rx="13" ry="9" fill="#3a2518" transform="rotate(-20 571 444)"/>
+    <path d="M562 448C568 444 574 444 580 440" fill="none" stroke="#d9a97f" stroke-width="1.6"/>
+    <path d="M540 472H602M540 484H586" stroke="#3a2518" stroke-width="2" opacity="0.55"/>
+    <path d="M518 566H624" stroke="#5c3d29" stroke-width="2" opacity="0.8"/>
+  </g>
+
+  <path d="M296 502C296 540 252 552 246 596C240 640 244 688 262 698L408 698C426 688 430 640 424 596C418 552 374 540 374 502Z" fill="#fdf7ec" fill-opacity="0.8" stroke="#33231a" stroke-width="4" stroke-linejoin="round"/>
+  <ellipse cx="335" cy="502" rx="39" ry="10" fill="#fdf7ec" stroke="#33231a" stroke-width="4"/>
+  <path d="M252 632C256 674 264 686 276 690L394 690C406 686 414 674 418 632Z" fill="#4a2b1b"/>
+  <ellipse cx="335" cy="632" rx="83" ry="9" fill="#5d3722"/>
+  <path d="M425 578C462 586 468 622 424 640" fill="none" stroke="#33231a" stroke-width="5" stroke-linecap="round"/>
+
+  <path d="M208 300L462 300L374 500L296 500Z" fill="#fdf7ec" fill-opacity="0.82" stroke="#33231a" stroke-width="4" stroke-linejoin="round"/>
+  <ellipse cx="335" cy="300" rx="127" ry="22" fill="#f9efdf" stroke="#33231a" stroke-width="4"/>
+  <ellipse cx="335" cy="300" rx="108" ry="15" fill="#c99a74" opacity="0.35"/>
+  <path d="M254 342C292 396 316 432 316 490" fill="none" stroke="#c99a74" stroke-width="3" opacity="0.7"/>
+  <path d="M416 342C378 396 354 432 354 490" fill="none" stroke="#c99a74" stroke-width="3" opacity="0.7"/>
+  <path d="M335 318V488" stroke="#d9b08c" stroke-width="2" opacity="0.5"/>
+  <ellipse cx="335" cy="498" rx="39" ry="9" fill="#4a2b1b"/>
+  <path d="M460 330C486 336 490 372 462 380" fill="none" stroke="#33231a" stroke-width="5" stroke-linecap="round"/>
+
+  <g>
+    <path d="M56 620H192L182 688C180 704 168 712 152 712H96C80 712 68 704 66 688Z" fill="#fffaf0" stroke="#33231a" stroke-width="4" stroke-linejoin="round"/>
+    <ellipse cx="124" cy="620" rx="68" ry="13" fill="#4a2b1b"/>
+    <ellipse cx="124" cy="620" rx="53" ry="9" fill="#5d3722"/>
+    <path d="M192 640C226 646 226 684 190 690" fill="none" stroke="#33231a" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <g fill="#4a2b1b">
+    <ellipse cx="470" cy="650" rx="17" ry="11" transform="rotate(-18 470 650)"/>
+    <ellipse cx="516" cy="668" rx="17" ry="11" transform="rotate(12 516 668)"/>
+    <ellipse cx="566" cy="644" rx="17" ry="11" transform="rotate(-8 566 644)"/>
+    <ellipse cx="606" cy="684" rx="17" ry="11" transform="rotate(20 606 684)"/>
+    <ellipse cx="492" cy="706" rx="17" ry="11" transform="rotate(4 492 706)"/>
+    <ellipse cx="552" cy="706" rx="17" ry="11" transform="rotate(-14 552 706)"/>
+  </g>
+  <g fill="none" stroke="#d9a97f" stroke-width="1.6" opacity="0.75">
+    <path d="M456 655C464 651 476 649 484 653"/>
+    <path d="M502 672C510 668 522 666 530 670"/>
+    <path d="M552 648C560 644 572 642 580 646"/>
+    <path d="M592 688C600 684 612 682 620 686"/>
+    <path d="M478 710C486 706 498 704 506 708"/>
+    <path d="M538 710C546 706 558 704 566 708"/>
+  </g>
+</svg>

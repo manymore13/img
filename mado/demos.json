@@ -1,11 +1,16 @@
 {
   "schemaVersion": 1,
-  "revision": "cae62f7ce428ca2b87d24e523bf612ac48afb9a28cc311633f2a6882515f2a97",
+  "revision": "0f134108628ed53d3f4a93269f2027ff2927c0dd1f57e80f684530fd7a017e2e",
   "demos": [
     {
       "dir": "basic",
       "label": "最小示例",
       "ready": true
+    },
+    {
+      "dir": "coffee-set",
+      "label": "coffee-set",
+      "ready": false
     },
     {
       "dir": "donglin",
@@ -26,6 +31,10 @@
   "versions": {
     "basic/page.md": "46a6441cd9a22f768e359d853ad01429d92b8b787de09bcd8dfc85491b605ebb",
     "basic/style.css": "3c81626144b38a1fa14329fa310d27da7ae349ab4c1d460cd0d7ff2170c6fe8c",
+    "coffee-set/art/cover.svg": "5de34f3cd1733ec3c0b9d2fa9059e1dad2a14c5ba2fb0a116fe8d83ae22134d1",
+    "coffee-set/art/kit.svg": "e7768d926ea9bd962ac9a332b66e2fdcd2c0f6c33fe9cc3f743be552c533a0c6",
+    "coffee-set/images/cover.png": "6f654093396b15d5ee04b392a15a99b25c4b25c9d08492f316509622a5b5940c",
+    "coffee-set/images/kit.png": "96ac11ed9881abd757c062fcdc9ff416045c394924b570e41ec6ee0bc2accfd6",
     "donglin/guide.md": "ae56a09d1f477224c73c219df6ede35f8b443ee0820bbf7e0a533d43f23b3c09",
     "donglin/images/bailian-gate.jpg": "d75b2e60300eb36ac3408456c6f5aaeb6eb34024dccb25ddf7d90d75783f6887",
     "donglin/images/buddha-gold.jpg": "95d3971de654f36d3cb24e5f3ae5d79a923deee70659bd3db86007d0b4db1c75",
