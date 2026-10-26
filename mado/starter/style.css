@@ -1,0 +1,76 @@
+:root {
+  --paper: #f8f3e9;
+  --paper-deep: #eee5d5;
+  --ink: #262c28;
+  --muted: #65675d;
+  --terracotta: #a04430;
+  --line: #c7bead;
+  --body-size: 16px;
+  --small-size: 10px;
+  --heading-size: 23px;
+  --cover-size: 68px;
+  --space-small: 8px;
+  --space-medium: 24px;
+  --space-large: 40px;
+}
+.page {
+  box-sizing: border-box;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: var(--body-size);
+  line-height: 1.85;
+  letter-spacing: 0.02em;
+}
+.journal { box-sizing: border-box; padding: 0 22px; overflow: hidden; }
+.text { display: block; }
+.paragraph { margin: 0 0 18px; font-size: var(--body-size); line-height: 1.85; }
+.strong { font-weight: 700; color: var(--terracotta); }
+.heading { margin: 0; font-size: var(--heading-size); line-height: 1.4; font-weight: 600; letter-spacing: -0.03em; }
+.masthead { display: flex; align-items: center; justify-content: space-between; gap: var(--space-small); min-height: 62px; border-bottom: 2px solid var(--ink); }
+.publication { font-size: 16px; font-weight: 700; letter-spacing: 0.18em; }
+.issue { font-size: var(--small-size); letter-spacing: 0.08em; color: var(--muted); }
+.cover { padding-top: 25px; }
+.eyebrow { font-size: var(--small-size); color: var(--terracotta); letter-spacing: 0.14em; line-height: 1.6; }
+.cover-title { margin: 21px 0 22px -3px; }
+.cover-title .heading { font-size: var(--cover-size); line-height: 1.12; font-weight: 800; letter-spacing: -0.06em; white-space: nowrap; }
+.cover-deck { display: grid; grid-template-columns: 35px 1fr; gap: 20px; align-items: start; margin-bottom: 27px; }
+.vertical-note { width: 12px; padding-top: 3px; color: var(--terracotta); font-size: 10px; line-height: 1.6; text-align: center; }
+.deck-copy { padding-top: 1px; }
+.deck-copy .paragraph { margin: 0; font-size: 18px; line-height: 1.8; white-space: pre-wrap; letter-spacing: 0.08em; }
+.cover-art { margin-left: 20px; }
+.sunrise { display: block; width: 100%; height: 281px; }
+.art-caption { display: flex; align-items: center; justify-content: space-between; gap: var(--space-small); padding: 10px 0 13px; border-bottom: 1px solid var(--line); }
+.caption { font-size: 9px; color: var(--muted); letter-spacing: 0.02em; }
+.plate { font-size: 8px; letter-spacing: 0.1em; color: var(--terracotta); }
+.cover-bottom { display: flex; justify-content: space-between; align-items: center; margin: 18px 0 0; padding-bottom: 21px; border-bottom: 1px solid var(--ink); }
+.cover-index { font-size: 10px; color: var(--terracotta); letter-spacing: 0.16em; }
+.cover-topics { font-size: 11px; letter-spacing: 0.18em; }
+.opening { padding: 29px 0 35px; }
+.section-marker { font-size: 9px; letter-spacing: 0.14em; color: var(--terracotta); line-height: 1.6; }
+.opening-copy { margin: 18px 0 0 34px; }
+.opening-copy .paragraph { color: var(--muted); }
+.chapter { padding: 26px 0 33px; border-top: 1px solid var(--line); }
+.chapter-heading { display: grid; grid-template-columns: 43px 1fr; gap: 12px; align-items: start; margin-bottom: 22px; }
+.chapter-number { font-size: 35px; line-height: 1.1; color: var(--terracotta); letter-spacing: -0.06em; font-weight: 400; }
+.chapter-titles .eyebrow { margin-bottom: 7px; font-size: 9px; }
+.chapter-body { padding-left: 12px; }
+.chapter-body .paragraph { margin-bottom: 16px; }
+.pullquote { position: relative; margin: 29px 0 0 35px; padding: 23px 0 4px 18px; border-left: 2px solid var(--terracotta); }
+.quote-mark { position: absolute; top: -18px; left: 14px; font-size: 55px; line-height: 1; color: var(--terracotta); }
+.quote-copy { font-size: 23px; line-height: 1.65; white-space: pre-wrap; letter-spacing: -0.03em; font-weight: 500; }
+.quote-source { padding-top: 14px; font-size: 9px; letter-spacing: 0.09em; color: var(--muted); }
+.forest-layout { display: grid; grid-template-columns: 74px 1fr; gap: 19px; }
+.margin-note { border-top: 1px solid var(--terracotta); padding-top: 11px; }
+.note-label { font-size: 9px; letter-spacing: 0.12em; color: var(--terracotta); }
+.note-copy { margin-top: 14px; font-size: 11px; color: var(--muted); line-height: 2; white-space: pre-wrap; }
+.forest-copy .paragraph { margin-bottom: 16px; }
+.homeward { padding-bottom: 21px; }
+.afterword { margin: 0 -22px; padding: 31px 22px 35px 56px; background: var(--ink); color: var(--paper); }
+.afterword .section-marker { color: var(--paper-deep); }
+.closing-line { margin: 26px 0 22px; font-size: 31px; line-height: 1.65; white-space: pre-wrap; letter-spacing: -0.03em; }
+.closing-note { max-width: 240px; font-size: var(--body-size); line-height: 1.85; color: var(--paper-deep); }
+.colophon { padding: 25px 0 23px; }
+.colophon-title { font-size: 12px; font-weight: 600; letter-spacing: 0.14em; }
+.colophon-copy { margin-top: 9px; font-size: 9px; color: var(--muted); line-height: 1.8; }
+.folio { margin-top: 25px; padding-top: 12px; border-top: 1px solid var(--line); text-align: right; font-size: 9px; color: var(--terracotta); letter-spacing: 0.16em; }

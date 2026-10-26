@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="620" height="560" viewBox="0 0 620 560" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">山的折痕</title>
+  <desc id="desc">原创木刻风山形日出插画。陶土红圆日、纸白天空与层叠墨色山峦，一条弯曲小径通向山谷。</desc>
+  <defs>
+    <pattern id="paper" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M1 3h1M7 9h1" stroke="#857d6b" stroke-width="0.7" opacity="0.18"/>
+    </pattern>
+    <clipPath id="frame"><path d="M0 0h620v560H0z"/></clipPath>
+    <clipPath id="sun"><circle cx="402" cy="153" r="83"/></clipPath>
+  </defs>
+  <g clip-path="url(#frame)">
+    <path fill="#eee5d5" d="M0 0h620v560H0z"/>
+    <path stroke="#b9ae99" d="M25 22h570v516H25z"/>
+    <circle cx="402" cy="153" r="83" fill="#a04430"/>
+    <g clip-path="url(#sun)" stroke="#f8f3e9" opacity="0.25">
+      <path d="M305 102h190M305 110h190M305 118h190M305 126h190M305 134h190M305 142h190M305 150h190M305 158h190M305 166h190M305 174h190M305 182h190M305 190h190M305 198h190M305 206h190M305 214h190"/>
+    </g>
+    <g stroke="#6f7566" stroke-width="1.4" stroke-linecap="round">
+      <path d="M49 95h133m-93 8h121M462 56h90m-65 8h79M45 185h81m-53 8h106"/>
+      <path d="m219 72 8-4 8 4m8 12 6-3 6 3"/>
+    </g>
+    <path d="m-20 336 98-98 44 27 89-118 76 109 47-40 86 92 66-68 56 45 94-91 46 68v316H-20Z" fill="#9c9e89"/>
+    <path d="m78 238 44 27 89-118-36 132-35-8-44 63-61 30m176-217 18 111 58-2m47-40 16 70 70 22m66-68 9 69 47-24m94-91-26 95" stroke="#eee5d5" stroke-width="2" opacity="0.72"/>
+    <path d="m-30 421 103-100 59 47 103-101 120 124 73-65 57 22 65-61 103 97v186H-30Z" fill="#586557"/>
+    <g stroke="#b1b29a" stroke-width="1.5" opacity="0.8">
+      <path d="m235 267-39 111-43 34m82-145-20 129-29 34m49-163 3 122 48 45m-51-167 25 115 62 62M73 321l-7 81-51 63m58-144 14 91 24 24m317-110-30 88-40 38m70-126-10 108 24 25m108-172-26 113-28 35m54-148 1 105 44 40"/>
+    </g>
+    <path d="M-20 498 75 426l70 31 95-43 73 37 80-22 82 32 73-70 92 45v144H-20Z" fill="#262c28"/>
+    <path d="M329 560c-42-24-93-35-86-57 5-17 59-22 67-37 5-10-18-21-32-30 33 10 52 22 46 35-7 17-55 25-51 38 4 12 53 22 94 51" fill="#f8f3e9"/>
+    <g stroke="#9c9e89" stroke-width="1.4" opacity="0.65">
+      <path d="m4 518 63-57m-49 67 62-56m21 28 32-19m12 34 53-42m-34 56 55-43m180 20 31 16m-28-34 46 24m37-4 51-46m-34 58 49-45m-18 52 33-33"/>
+    </g>
+    <g stroke="#262c28" stroke-width="2" stroke-linecap="round">
+      <path d="M45 457v-48m-12 30 12-14 12 14m-21-1 9-12 9 12M574 444v-68m-17 40 17-21 17 21m-29 11 12-16 12 16"/>
+    </g>
+    <path fill="url(#paper)" d="M0 0h620v560H0z"/>
+    <path d="M36 36h19m-19 0v19m548-19h-19m19 0v19" stroke="#a04430" stroke-width="2"/>
+  </g>
+</svg>
