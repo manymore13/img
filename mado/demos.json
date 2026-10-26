@@ -10,7 +10,7 @@
     {
       "dir": "coffee-set",
       "label": "coffee-set",
-      "ready": true
+      "ready": false
     },
     {
       "dir": "donglin",
