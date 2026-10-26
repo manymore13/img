@@ -1,0 +1,55 @@
+name: Mado catalog and Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# 所有 main 发布串行运行；运行时检出最新 main，避免旧事件覆盖新清单。
+concurrency:
+  group: mado-pages-main
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate catalog
+        run: node scripts/generate-mado-catalog.mjs
+      - name: Commit changed catalog
+        shell: bash
+        run: |
+          if ! git diff --quiet -- mado/demos.json || ! git ls-files --error-unmatch mado/demos.json >/dev/null 2>&1; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add -- mado/demos.json
+            git commit -m "Update Mado catalog"
+            git push origin HEAD:main
+          fi
+      - name: Prepare complete Pages snapshot
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/mado-pages"
+          git archive HEAD | tar -x -C "$RUNNER_TEMP/mado-pages"
+          touch "$RUNNER_TEMP/mado-pages/.nojekyll"
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ runner.temp }}/mado-pages
+      - name: Deploy Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

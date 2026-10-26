@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "revision": "cae62f7ce428ca2b87d24e523bf612ac48afb9a28cc311633f2a6882515f2a97",
+  "demos": [
+    {
+      "dir": "basic",
+      "label": "最小示例",
+      "ready": true
+    },
+    {
+      "dir": "donglin",
+      "label": "东林大佛 · 四十八米金身",
+      "ready": true
+    },
+    {
+      "dir": "showcase",
+      "label": "节气行 · 山里的朱砂先红了",
+      "ready": true
+    },
+    {
+      "dir": "山外来信",
+      "label": "山间一日",
+      "ready": true
+    }
+  ],
+  "versions": {
+    "basic/page.md": "46a6441cd9a22f768e359d853ad01429d92b8b787de09bcd8dfc85491b605ebb",
+    "basic/style.css": "3c81626144b38a1fa14329fa310d27da7ae349ab4c1d460cd0d7ff2170c6fe8c",
+    "donglin/guide.md": "ae56a09d1f477224c73c219df6ede35f8b443ee0820bbf7e0a533d43f23b3c09",
+    "donglin/images/bailian-gate.jpg": "d75b2e60300eb36ac3408456c6f5aaeb6eb34024dccb25ddf7d90d75783f6887",
+    "donglin/images/buddha-gold.jpg": "95d3971de654f36d3cb24e5f3ae5d79a923deee70659bd3db86007d0b4db1c75",
+    "donglin/images/poster-buddha.jpg": "bcf34a558be7fb2b0d37125023b49d20fc03fb9199f21ebd1f0a82e06b220fd1",
+    "donglin/images/poster-pond.jpg": "e39644b7a94f7a1e112107004be88d3c00eff176813b19f329c113e305d36051",
+    "donglin/images/tang-hall.jpg": "483e1406f070a539737a4778ed00c6cd382210d5792a744ab88fa63c334045a0",
+    "donglin/page.md": "b71cc5e3757b3dea68211cbe159fbe28fda75e6e6e03a64677e5b63dbd3301e3",
+    "donglin/style.css": "b6ff7ba8f0417e2019eac4e6e1b61308facdca38f3e7a7520bbe1e06c26e6f77",
+    "showcase/page.md": "26b53b3b14be3f97e6bd31dfc49a118d13558d4302802f20cc5cc414b8497dda",
+    "showcase/style.css": "4c0a0c61fb68bc700f2f9fee9c9bf3bbb4a17513d19ae616b795347ad6ac694d",
+    "山外来信/images/mountain-sunrise.svg": "a348b3c40f6ee637597deb66e19300c7ae405a00c811b2b6f4b2d11277897fe1",
+    "山外来信/page.md": "f4aa84578ef5760346945bac787e00cd53f428c850880dea12d1d7db77749a66",
+    "山外来信/style.css": "94b19a7f7377c5354df42c9d8d40d05ed9ed5277733b775bf7ce20368f2bca08"
+  }
+}
