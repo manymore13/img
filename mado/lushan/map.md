@@ -51,6 +51,8 @@ label: 庐山 · 山行手册
 
 <text class="ls-body">西线靠湖边，坡度缓，适合把节奏放慢；东线绕到山巅，看云与湖；三叠泉在谷底，台阶多，留足返程体力。三条线不建议同一天硬走。</text>
 
+<text class="rm-note">八处景点页每页都有一段语音讲解，点「听讲解」会浮出播放条，可暂停、继续、停止。</text>
+
 <view class="rm-video">
 
 <text class="ls-kicker">VIDEO · 播放器样例</text>

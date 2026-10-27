@@ -39,6 +39,10 @@ label: 庐山 · 山行手册
 
 </view>
 
+<button class="ls-button ls-primary" text="听讲解 建议停留 30—60 分钟" action="play-audio" url="./audio/ruqin.mp3" title="如琴湖 · 讲解" />
+
+<text class="rm-note">语音为系统合成音，用于验证播放链路；真人录音到位后替换同名文件即可。</text>
+
 <view class="rm-safety">
 
 <text class="ls-tag">安全提示</text>
