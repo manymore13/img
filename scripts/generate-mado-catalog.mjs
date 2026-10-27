@@ -12,13 +12,16 @@ const included = (entry) => !entry.name.startsWith('.') && !dependencies.has(ent
   && !['README.md', 'qrcode.png', 'qrcode.jpg', 'qrcode.json'].includes(entry.name);
 export const demoScene = (dir) => `d${hash(Buffer.from(dir, 'utf8')).slice(0, 20)}`;
 
-// 只读取 Front Matter 的单行字符串，不执行 YAML 标签或表达式。
-function pageLabel(content, fallback) {
+/**
+ * 只读取 Front Matter 的单行字符串，不执行 YAML 标签或表达式。
+ * label/title 用于显示名；minEngine/capabilities 用于客户端版本门禁。
+ */
+function pageFields(content) {
   const frontmatter = content.replace(/^\uFEFF/, '').match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/);
-  if (!frontmatter) return fallback;
+  if (!frontmatter) return new Map();
   const fields = new Map();
   for (const line of frontmatter[1].split(/\r?\n/)) {
-    const match = line.match(/^(label|title):\s*(.*?)\s*$/);
+    const match = line.match(/^(label|title|minEngine|capabilities):\s*(.*?)\s*$/);
     if (!match) continue;
     let value = match[2];
     if (value.startsWith('"')) {
@@ -35,7 +38,21 @@ function pageLabel(content, fallback) {
     }
     if (value.trim()) fields.set(match[1], value.trim());
   }
-  return fields.get('label') || fields.get('title') || fallback;
+  return fields;
+}
+
+export const defaultMinEngine = '0.1';
+const engineVersion = /^\d+\.\d+(?:\.\d+)?$/;
+// 能力名只描述平台契约，禁止伪装成可执行协议。
+const capabilityName = /^[a-z][a-z0-9-]*:[a-z0-9-]+@\d+$/;
+const capabilityBlocked = /^(?:javascript|data|vbscript|blob):/i;
+
+/** 非法或缺失的门槛回落到最宽松值，避免旧页面因手误被误判为不兼容。 */
+function pageGate(fields) {
+  const declared = fields.get('minEngine');
+  const minEngine = declared && engineVersion.test(declared) ? declared : defaultMinEngine;
+  const capabilities = (fields.get('capabilities') || '').split(/[,\s]+/).filter(Boolean);
+  return { minEngine, capabilities: [...new Set(capabilities.filter((name) => capabilityName.test(name) && !capabilityBlocked.test(name)))].sort(compare) };
 }
 
 export async function generateCatalog(root = defaultRoot) {
@@ -61,11 +78,13 @@ export async function generateCatalog(root = defaultRoot) {
   for (const entry of entries) {
     await scan(entry.name);
     const page = files.get(`${entry.name}/page.md`);
+    const fields = page ? pageFields(page.toString('utf8')) : new Map();
     demos.push({
       dir: entry.name,
       scene: demoScene(entry.name),
-      label: page ? pageLabel(page.toString('utf8'), entry.name) : entry.name,
+      label: fields.get('label') || fields.get('title') || entry.name,
       ready: files.has(`${entry.name}/page.md`) && files.has(`${entry.name}/style.css`),
+      ...pageGate(fields),
     });
   }
   const versions = Object.fromEntries([...files.keys()].sort(compare)

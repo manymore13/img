@@ -4,7 +4,7 @@ import { mkdtemp, mkdir, writeFile, readFile, readdir, rm } from 'node:fs/promis
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
-import { generateCatalog, demoScene } from './generate-mado-catalog.mjs';
+import { generateCatalog, demoScene, defaultMinEngine } from './generate-mado-catalog.mjs';
 import { generateQrcodes, matchingCode, qrMetadata, validateImage } from './generate-mado-qrcodes.mjs';
 
 const config = { appid: 'wxf872813f65e641bb', page: 'pages/index/index', env_version: 'develop', width: 430 };
@@ -36,6 +36,27 @@ test('中文目录 scene 按 UTF8 稳定且不依赖显示名', async (t) => {
   assert.equal((await generateCatalog(root)).demos.find((d) => d.dir === '中文 空格').scene, expected);
   assert.match(expected, /^d[a-f0-9]{20}$/);
   assert.notEqual(first.revision, (await generateCatalog(root)).revision);
+});
+
+test('清单按页面声明输出 minEngine 与 capabilities，非法值回落且旧页面兼容', async (t) => {
+  const root = await fixture(t);
+  const legacy = (await generateCatalog(root)).demos.find((d) => d.dir === '中文 空格');
+  assert.equal(legacy.ready, true);
+  assert.equal(legacy.minEngine, defaultMinEngine);
+  assert.deepEqual(legacy.capabilities, []);
+
+  await mkdir(path.join(root, 'v2-page'));
+  await writeFile(path.join(root, 'v2-page/page.md'),
+    "---\ntitle: 新版\nminEngine: 0.3.0\ncapabilities: wechat:input@1, wechat:button@1 wechat:input@1\n---\n正文");
+  await writeFile(path.join(root, 'v2-page/style.css'), 'page {}');
+  const gated = (await generateCatalog(root)).demos.find((d) => d.dir === 'v2-page');
+  assert.equal(gated.minEngine, '0.3.0');
+  assert.deepEqual(gated.capabilities, ['wechat:button@1', 'wechat:input@1']);
+
+  await writeFile(path.join(root, 'v2-page/page.md'), '---\nminEngine: latest\ncapabilities: javascript:exec@1 Bad@x\n---\n正文');
+  const invalid = (await generateCatalog(root)).demos.find((d) => d.dir === 'v2-page');
+  assert.equal(invalid.minEngine, defaultMinEngine);
+  assert.deepEqual(invalid.capabilities, []);
 });
 
 test('无凭据不造图；README保留说明、列所有demo且重复运行幂等', async (t) => {
