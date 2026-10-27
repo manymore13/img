@@ -21,7 +21,7 @@ function pageFields(content) {
   if (!frontmatter) return new Map();
   const fields = new Map();
   for (const line of frontmatter[1].split(/\r?\n/)) {
-    const match = line.match(/^(label|title|minEngine|capabilities):\s*(.*?)\s*$/);
+    const match = line.match(/^(label|title|minEngine|capabilities|featured):\s*(.*?)\s*$/);
     if (!match) continue;
     let value = match[2];
     if (value.startsWith('"')) {
@@ -52,7 +52,8 @@ function pageGate(fields) {
   const declared = fields.get('minEngine');
   const minEngine = declared && engineVersion.test(declared) ? declared : defaultMinEngine;
   const capabilities = (fields.get('capabilities') || '').split(/[,\s]+/).filter(Boolean);
-  return { minEngine, capabilities: [...new Set(capabilities.filter((name) => capabilityName.test(name) && !capabilityBlocked.test(name)))].sort(compare) };
+  const featured = fields.get('featured') === 'true';
+  return { ...(featured ? { featured: true } : {}), minEngine, capabilities: [...new Set(capabilities.filter((name) => capabilityName.test(name) && !capabilityBlocked.test(name)))].sort(compare) };
 }
 
 export async function generateCatalog(root = defaultRoot) {

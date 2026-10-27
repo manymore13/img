@@ -6,6 +6,7 @@ revision: "1"
 version: 2
 styleProtocol: 1
 minEngine: "0.2"
+featured: true
 capabilities: wechat:button@1, wechat:input@1, wechat:switch@1
 stylesheet: ./style.css
 ---

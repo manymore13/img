@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "revision": "c5c5e6cbf46096c8fed5f77d9019c9222b4ffaf67d2a9f1b8361bbf6d3cbf442",
+  "revision": "402e32f80ce618767a2b1e9d7eca335cde9db417508547cfec017433e05f861c",
   "demos": [
     {
       "dir": "basic",
@@ -15,6 +15,7 @@
       "scene": "d3fc0e5c4c484797a0035",
       "label": "能力总览",
       "ready": true,
+      "featured": true,
       "minEngine": "0.2",
       "capabilities": [
         "wechat:button@1",
@@ -58,7 +59,7 @@
   "versions": {
     "basic/page.md": "46a6441cd9a22f768e359d853ad01429d92b8b787de09bcd8dfc85491b605ebb",
     "basic/style.css": "3c81626144b38a1fa14329fa310d27da7ae349ab4c1d460cd0d7ff2170c6fe8c",
-    "capabilities/page.md": "7527a57aee6ab8d9c1e1e7cad627688be9e36ee639f6cf9f2ff6b3b0bbee84ef",
+    "capabilities/page.md": "903f958ba40bcfb357e6388fccab0b7ce34f9eeacce34cc4d1d71d6eb4ff64ec",
     "capabilities/style.css": "d812194480de50ed8df83ae6dbc543162151afcae3a6b05a3aa5c8ba20f28e0e",
     "coffee-set/art/cover.svg": "5de34f3cd1733ec3c0b9d2fa9059e1dad2a14c5ba2fb0a116fe8d83ae22134d1",
     "coffee-set/art/kit.svg": "e7768d926ea9bd962ac9a332b66e2fdcd2c0f6c33fe9cc3f743be552c533a0c6",
