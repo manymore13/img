@@ -1,0 +1,6 @@
+.idea/
+.DS_Store
+node_modules/
+project.private.config.json
+test.m3u
+.codex-*.txt

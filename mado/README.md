@@ -71,7 +71,7 @@ git push origin main
 | Demo | 目录 | scene | 小程序码 |
 | --- | --- | --- | --- |
 | [最小示例](basic/) | basic | dfbb7b5bf4ca348eeeebf | 待授权生成 |
-| [coach-cert](coach-cert/) | coach-cert | dfc1ab1721707c396d98e | 素材未就绪 |
+| [能力总览](capabilities/) | capabilities | d3fc0e5c4c484797a0035 | 待授权生成 |
 | [晨雾手冲套装](coffee-set/) | coffee-set | db79b97c5b35142a960ea | 待授权生成 |
 | [东林大佛 · 四十八米金身](donglin/) | donglin | dc808d1e31bb5fc1842ef | 待授权生成 |
 | [节气行 · 山里的朱砂先红了](showcase/) | showcase | d9877f886f03e5e1c5200 | 待授权生成 |

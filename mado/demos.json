@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "revision": "8af2e78d00fb7b6b5c2db3e5698bec69c6cb6df870ea4d35d243d902b40e7a49",
+  "revision": "cfd5524d629ec95f72022d9c56cd5f58119f23550742a93f46698001122c6018",
   "demos": [
     {
       "dir": "basic",
@@ -21,14 +21,6 @@
         "wechat:input@1",
         "wechat:switch@1"
       ]
-    },
-    {
-      "dir": "coach-cert",
-      "scene": "dfc1ab1721707c396d98e",
-      "label": "coach-cert",
-      "ready": false,
-      "minEngine": "0.1",
-      "capabilities": []
     },
     {
       "dir": "coffee-set",
@@ -68,9 +60,6 @@
     "basic/style.css": "3c81626144b38a1fa14329fa310d27da7ae349ab4c1d460cd0d7ff2170c6fe8c",
     "capabilities/page.md": "a10468d9b707c4514f91ae6ea01476d87710489783a16c3224677917518eaf45",
     "capabilities/style.css": "d812194480de50ed8df83ae6dbc543162151afcae3a6b05a3aa5c8ba20f28e0e",
-    "coach-cert/images/assess.png": "82496a5c8eb0a12d0f09f31ac3c8bb1198db31c599b2cb513a5730d4c1607bc6",
-    "coach-cert/images/hero.png": "5ea39656260e4fe4637bf7f0785b36d6784cc4e0f74f323a3ccedee7cedc69b7",
-    "coach-cert/images/teaching.png": "902d70d835e53f46e166adf39167b20fd32ef51e3c0b8016f1841b0ae5b4cc8e",
     "coffee-set/art/cover.svg": "5de34f3cd1733ec3c0b9d2fa9059e1dad2a14c5ba2fb0a116fe8d83ae22134d1",
     "coffee-set/art/kit.svg": "e7768d926ea9bd962ac9a332b66e2fdcd2c0f6c33fe9cc3f743be552c533a0c6",
     "coffee-set/guide.md": "8819f9f77fa98365c62cb6394979ef30ff814847f8f93f644dcd0267765cab07",
