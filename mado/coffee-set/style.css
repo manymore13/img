@@ -1,0 +1,567 @@
+:root {
+  --paper: #f6efe2;
+  --paper-deep: #ece0cb;
+  --card: #fdf8ee;
+  --ink: #241a14;
+  --ink-soft: #4a3a2e;
+  --muted: #7d6a58;
+  --copper: #b0603a;
+  --copper-deep: #8c4526;
+  --sand: #d9c2a1;
+  --line: #d8c8b0;
+  --body: 16px;
+}
+
+.page {
+  box-sizing: border-box;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: var(--body);
+  line-height: 1.85;
+}
+
+.sheet {
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px 14px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.brand {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: var(--ink);
+}
+
+.edition {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+}
+
+.hero {
+  box-sizing: border-box;
+  padding: 26px 22px 0;
+}
+
+.kicker {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--copper);
+}
+
+.title-wrap {
+  display: flex;
+  flex-direction: column;
+  margin: 12px 0 14px;
+}
+
+.title-cn {
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+}
+
+.title-en {
+  margin-top: 6px;
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  color: var(--muted);
+}
+
+.hero-lede {
+  display: block;
+  margin: 0 0 22px;
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--ink-soft);
+}
+
+/* 主图：卡片纸托 + 细线框，固定高度按 670×760 源图比例换算 */
+.art-mat {
+  box-sizing: border-box;
+  margin: 0 -6px;
+  padding: 7px;
+  background: var(--card);
+  border: 1px solid var(--line);
+}
+
+.cover {
+  display: block;
+  width: 100%;
+  height: 371px;
+}
+
+.art-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 9px 2px 0;
+}
+
+.art-note {
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.art-note-right {
+  text-align: right;
+}
+
+.price-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 18px -22px 0;
+  padding: 15px 22px 16px;
+  background: var(--ink);
+}
+
+.price-main {
+  display: flex;
+  align-items: baseline;
+}
+
+.currency {
+  font-size: 15px;
+  color: var(--sand);
+}
+
+.price {
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--paper);
+}
+
+.price-unit {
+  margin-left: 4px;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--sand);
+}
+
+.price-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.price-line {
+  font-size: 10px;
+  line-height: 1.8;
+  color: var(--sand);
+}
+
+/* 参数条：四格等分，首格不画分隔线 */
+.ribbon {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 15px 8px 16px;
+  background: var(--paper-deep);
+}
+
+.ribbon-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 4px;
+  border-left: 1px solid var(--sand);
+}
+
+.ribbon-cell-start {
+  border-left: none;
+}
+
+.ribbon-value {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.ribbon-label {
+  margin-top: 4px;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+/* 章节：编号在左，标题与章节英文在右 */
+.section {
+  box-sizing: border-box;
+  padding: 30px 22px 4px;
+  border-top: 1px solid var(--line);
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 10px;
+  align-items: start;
+  margin-bottom: 18px;
+}
+
+.section-no {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+  color: var(--copper);
+}
+
+.section-kicker {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: var(--muted);
+}
+
+.section-titles .heading {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.42;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+
+.paragraph {
+  margin: 0 0 16px;
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--ink-soft);
+}
+
+.strong {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.pullquote {
+  margin: 22px 0 6px;
+  padding: 4px 0 4px 15px;
+  border-left: 2px solid var(--copper);
+}
+
+.quote-copy {
+  display: block;
+  font-size: 20px;
+  line-height: 1.6;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--copper-deep);
+}
+
+/* 风味卡：固定标签行 + 百分比长条 */
+.flavor {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.flavor-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.flavor-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.flavor-name {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+}
+
+.flavor-score {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--copper);
+}
+
+.bar {
+  height: 6px;
+  margin-top: 9px;
+  border-radius: 3px;
+  background: var(--paper-deep);
+}
+
+.bar-fill {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--copper);
+}
+
+.fill-72 {
+  width: 72%;
+}
+
+.fill-58 {
+  width: 58%;
+}
+
+.fill-44 {
+  width: 44%;
+}
+
+.flavor-note {
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.bean-note {
+  box-sizing: border-box;
+  margin-top: 24px;
+  padding: 14px 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+}
+
+.bean-label {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--copper);
+}
+
+.bean-copy {
+  display: block;
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+/* 规格表：固定标签列，避免中文被挤成单字 */
+.specs {
+  border-top: 1px solid var(--ink);
+}
+
+.spec-row {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 12px;
+  align-items: baseline;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.spec-key {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.spec-value {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+/* 冲煮节奏 */
+.steps {
+  border-top: 1px solid var(--ink);
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: 12px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.step-no {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+  color: var(--copper);
+}
+
+.step-time {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--copper);
+}
+
+.step-title {
+  display: block;
+  margin: 5px 0 4px;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.step-text {
+  display: block;
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--ink-soft);
+}
+
+/* 平铺图与清单 */
+.kit {
+  display: block;
+  width: 100%;
+  height: 248px;
+}
+
+.kit-caption {
+  display: block;
+  margin: 8px 0 18px;
+  font-size: 10px;
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.pack {
+  border-top: 1px solid var(--ink);
+}
+
+.pack-row {
+  display: grid;
+  grid-template-columns: 22px 1fr 86px;
+  gap: 8px;
+  align-items: baseline;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.pack-no {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--copper);
+}
+
+.pack-name {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.pack-note {
+  font-size: 10px;
+  line-height: 1.6;
+  text-align: right;
+  color: var(--muted);
+}
+
+/* 参数卡下载 */
+.cta {
+  box-sizing: border-box;
+  margin-top: 34px;
+  padding: 28px 22px 30px;
+  background: var(--ink);
+}
+
+.cta-kicker {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: var(--sand);
+}
+
+.cta .heading {
+  margin: 8px 0 10px;
+  font-size: 26px;
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--paper);
+}
+
+.cta-text {
+  display: block;
+  margin: 0 0 18px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #d7c4ab;
+}
+
+.cta-button {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 16px;
+  text-align: center;
+  line-height: 1.5;
+  border: 1px solid var(--paper);
+  border-radius: 6px;
+  background: var(--paper);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+
+.cta-note {
+  display: block;
+  margin-top: 12px;
+  font-size: 10px;
+  line-height: 1.7;
+  color: #b9a68f;
+}
+
+.footer {
+  box-sizing: border-box;
+  padding: 22px 22px 40px;
+}
+
+.footer-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.footer-brand {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--ink);
+}
+
+.footer-code {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--copper);
+}
+
+.footer-line {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 10px;
+  line-height: 1.75;
+  color: var(--muted);
+}

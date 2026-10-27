@@ -1,0 +1,13 @@
+D:\dev\github-img\mado\coach-cert\images\hero.png
+
+```text
+Use case: photorealistic-natural.
+Asset type: fitness-coach certification landing page hero photo. Generate exactly ONE image.
+Primary request: A candid documentary photograph inside a working strength-training gym. A male East Asian strength coach in his early 30s, short black hair, wearing a plain black coaching T-shirt, is crouched beside a female East Asian client in her early 30s as she sets up for a barbell back squat. He is calmly pointing at her hip crease and giving a technique cue; she listens, with both hands gripping the bar in a realistic back-squat setup. The moment feels like a real coaching session, not a staged advertisement.
+Scene/backdrop: Real industrial gym, black power racks, rubber floor, subtle chalk dust, a few weight plates and kettlebells slightly out of focus behind them, large window on the left.
+Style/medium: Photorealistic editorial sports photography, 50mm lens, f/2.8, shallow depth of field, natural skin texture, slight film grain.
+Composition/framing: Vertical 4:5 portrait. Medium-wide shot, coach on the right and client on the left, both fully visible from head to shoes, with clean negative space above their heads for page copy. Keep the barbell and rack geometry physically plausible and the coaching gesture clearly readable.
+Lighting/mood: Soft directional overcast daylight from the left window, honest and focused, no glamour lighting.
+Color palette: Muted warm earth tones with a single safety-orange accent in the gym equipment.
+Constraints: Ordinary realistic bodies, no exaggerated muscles, no perfect influencer faces, no smiling at the camera. Correct anatomy, natural undistorted hands and fingers, no extra limbs. No text, no logos, no watermark.
+```

@@ -1,40 +1,83 @@
 {
   "schemaVersion": 1,
-  "revision": "0f134108628ed53d3f4a93269f2027ff2927c0dd1f57e80f684530fd7a017e2e",
+  "revision": "8af2e78d00fb7b6b5c2db3e5698bec69c6cb6df870ea4d35d243d902b40e7a49",
   "demos": [
     {
       "dir": "basic",
+      "scene": "dfbb7b5bf4ca348eeeebf",
       "label": "最小示例",
-      "ready": true
+      "ready": true,
+      "minEngine": "0.1",
+      "capabilities": []
+    },
+    {
+      "dir": "capabilities",
+      "scene": "d3fc0e5c4c484797a0035",
+      "label": "能力总览",
+      "ready": true,
+      "minEngine": "0.2",
+      "capabilities": [
+        "wechat:button@1",
+        "wechat:input@1",
+        "wechat:switch@1"
+      ]
+    },
+    {
+      "dir": "coach-cert",
+      "scene": "dfc1ab1721707c396d98e",
+      "label": "coach-cert",
+      "ready": false,
+      "minEngine": "0.1",
+      "capabilities": []
     },
     {
       "dir": "coffee-set",
-      "label": "coffee-set",
-      "ready": false
+      "scene": "db79b97c5b35142a960ea",
+      "label": "晨雾手冲套装",
+      "ready": true,
+      "minEngine": "0.1",
+      "capabilities": []
     },
     {
       "dir": "donglin",
+      "scene": "dc808d1e31bb5fc1842ef",
       "label": "东林大佛 · 四十八米金身",
-      "ready": true
+      "ready": true,
+      "minEngine": "0.1",
+      "capabilities": []
     },
     {
       "dir": "showcase",
+      "scene": "d9877f886f03e5e1c5200",
       "label": "节气行 · 山里的朱砂先红了",
-      "ready": true
+      "ready": true,
+      "minEngine": "0.1",
+      "capabilities": []
     },
     {
       "dir": "山外来信",
+      "scene": "d08e6a55d901d3a83cbff",
       "label": "山间一日",
-      "ready": true
+      "ready": true,
+      "minEngine": "0.1",
+      "capabilities": []
     }
   ],
   "versions": {
     "basic/page.md": "46a6441cd9a22f768e359d853ad01429d92b8b787de09bcd8dfc85491b605ebb",
     "basic/style.css": "3c81626144b38a1fa14329fa310d27da7ae349ab4c1d460cd0d7ff2170c6fe8c",
+    "capabilities/page.md": "a10468d9b707c4514f91ae6ea01476d87710489783a16c3224677917518eaf45",
+    "capabilities/style.css": "d812194480de50ed8df83ae6dbc543162151afcae3a6b05a3aa5c8ba20f28e0e",
+    "coach-cert/images/assess.png": "82496a5c8eb0a12d0f09f31ac3c8bb1198db31c599b2cb513a5730d4c1607bc6",
+    "coach-cert/images/hero.png": "5ea39656260e4fe4637bf7f0785b36d6784cc4e0f74f323a3ccedee7cedc69b7",
+    "coach-cert/images/teaching.png": "902d70d835e53f46e166adf39167b20fd32ef51e3c0b8016f1841b0ae5b4cc8e",
     "coffee-set/art/cover.svg": "5de34f3cd1733ec3c0b9d2fa9059e1dad2a14c5ba2fb0a116fe8d83ae22134d1",
     "coffee-set/art/kit.svg": "e7768d926ea9bd962ac9a332b66e2fdcd2c0f6c33fe9cc3f743be552c533a0c6",
+    "coffee-set/guide.md": "8819f9f77fa98365c62cb6394979ef30ff814847f8f93f644dcd0267765cab07",
     "coffee-set/images/cover.png": "6f654093396b15d5ee04b392a15a99b25c4b25c9d08492f316509622a5b5940c",
-    "coffee-set/images/kit.png": "96ac11ed9881abd757c062fcdc9ff416045c394924b570e41ec6ee0bc2accfd6",
+    "coffee-set/images/kit.png": "b1bc05b7a2d590f1aa1de9c0d9b5a94d4cfe035deb3490fa2f23e87b1d44af0c",
+    "coffee-set/page.md": "0ddd35f9fc20cd3e149a185e89980cded91cc5def8c20eb5770c56b51d35a543",
+    "coffee-set/style.css": "3eeefb8e30a5d3cd4fd671cfb78739051b3e179d6a2439a2679708c744570063",
     "donglin/guide.md": "ae56a09d1f477224c73c219df6ede35f8b443ee0820bbf7e0a533d43f23b3c09",
     "donglin/images/bailian-gate.jpg": "d75b2e60300eb36ac3408456c6f5aaeb6eb34024dccb25ddf7d90d75783f6887",
     "donglin/images/buddha-gold.jpg": "95d3971de654f36d3cb24e5f3ae5d79a923deee70659bd3db86007d0b4db1c75",

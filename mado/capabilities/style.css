@@ -1,0 +1,148 @@
+.page {
+  padding: 24px;
+  color: #24211d;
+  background: #f6f3ec;
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 22px;
+  margin-bottom: 20px;
+  background: #fffaf0;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(70, 52, 24, 0.08);
+}
+
+.eyebrow {
+  color: #9a8a6b;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.title {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.primary {
+  padding: 12px 18px;
+  color: #ffffff;
+  background: #2f6b5e;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+}
+
+.ghost {
+  padding: 10px 16px;
+  color: #2f6b5e;
+  background: transparent;
+  border: 1px solid #2f6b5e;
+  border-radius: 12px;
+  font-size: 15px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px;
+  margin: 16px 0;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(70, 52, 24, 0.06);
+}
+
+.card-title {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.field {
+  padding: 10px 12px;
+  background: #f6f3ec;
+  border: 1px solid #e2dacb;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+.hint {
+  color: #8a7f6c;
+  font-size: 13px;
+}
+
+.grid {
+  display: flex;
+  gap: 10px;
+}
+
+.tile {
+  flex: 1;
+  padding: 18px 12px;
+  border-radius: 14px;
+}
+
+.tile-a {
+  background: #e8efe9;
+}
+
+.tile-b {
+  background: #f0e7da;
+  box-shadow: inset 0 0 0 1px #ddd0bb;
+}
+
+.tile-c {
+  background: linear-gradient(160deg, #f3e6d2, #e6d8f0);
+}
+
+.tile-text {
+  font-size: 13px;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.bar {
+  height: 8px;
+  border-radius: 999px;
+  background: #2f6b5e;
+}
+
+.bar-1 {
+  width: 92%;
+}
+
+.bar-2 {
+  width: 68%;
+  background: #7f9a8d;
+}
+
+.bar-3 {
+  width: 44%;
+  background: #c9b998;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.footnote {
+  padding: 14px 16px;
+  margin-top: 18px;
+  color: #7a6f5d;
+  background: #efe9dd;
+  border-radius: 12px;
+  font-size: 13px;
+}
