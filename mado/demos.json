@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "revision": "cfd5524d629ec95f72022d9c56cd5f58119f23550742a93f46698001122c6018",
+  "revision": "98582c1990e9bbe4f15b4669d826564ccd2aea2fc1bc41bfd400cab43b4b1c15",
   "demos": [
     {
       "dir": "basic",
@@ -58,7 +58,7 @@
   "versions": {
     "basic/page.md": "46a6441cd9a22f768e359d853ad01429d92b8b787de09bcd8dfc85491b605ebb",
     "basic/style.css": "3c81626144b38a1fa14329fa310d27da7ae349ab4c1d460cd0d7ff2170c6fe8c",
-    "capabilities/page.md": "a10468d9b707c4514f91ae6ea01476d87710489783a16c3224677917518eaf45",
+    "capabilities/page.md": "4a1218373123ad50328f1fc94cf38c8f82f5abb0d0886bd09b34c9d3a68f9a3c",
     "capabilities/style.css": "d812194480de50ed8df83ae6dbc543162151afcae3a6b05a3aa5c8ba20f28e0e",
     "coffee-set/art/cover.svg": "5de34f3cd1733ec3c0b9d2fa9059e1dad2a14c5ba2fb0a116fe8d83ae22134d1",
     "coffee-set/art/kit.svg": "e7768d926ea9bd962ac9a332b66e2fdcd2c0f6c33fe9cc3f743be552c533a0c6",

@@ -75,9 +75,17 @@ stylesheet: ./style.css
 ## 四 · 布局与视觉
 
 <view class="grid">
-<view class="tile tile-a"><text class="tile-text">Flex 布局</text></view>
-<view class="tile tile-b"><text class="tile-text">圆角与阴影</text></view>
-<view class="tile tile-c"><text class="tile-text">渐变底色</text></view>
+<view class="tile tile-a">
+<text class="tile-text">Flex 布局</text>
+</view>
+
+<view class="tile tile-b">
+<text class="tile-text">圆角与阴影</text>
+</view>
+
+<view class="tile tile-c">
+<text class="tile-text">渐变底色</text>
+</view>
 </view>
 
 <view class="stack">
