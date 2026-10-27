@@ -8,7 +8,9 @@ const dependencies = new Set(['node_modules', 'bower_components', 'jspm_packages
 const collator = new Intl.Collator('en', { usage: 'sort', sensitivity: 'variant', numeric: false });
 const compare = (a, b) => collator.compare(a, b) || (a < b ? -1 : a > b ? 1 : 0);
 const hash = (content) => createHash('sha256').update(content).digest('hex');
-const included = (entry) => !entry.name.startsWith('.') && !dependencies.has(entry.name);
+const included = (entry) => !entry.name.startsWith('.') && !dependencies.has(entry.name)
+  && !['README.md', 'qrcode.png', 'qrcode.jpg', 'qrcode.json'].includes(entry.name);
+export const demoScene = (dir) => `d${hash(Buffer.from(dir, 'utf8')).slice(0, 20)}`;
 
 // 只读取 Front Matter 的单行字符串，不执行 YAML 标签或表达式。
 function pageLabel(content, fallback) {
@@ -61,6 +63,7 @@ export async function generateCatalog(root = defaultRoot) {
     const page = files.get(`${entry.name}/page.md`);
     demos.push({
       dir: entry.name,
+      scene: demoScene(entry.name),
       label: page ? pageLabel(page.toString('utf8'), entry.name) : entry.name,
       ready: files.has(`${entry.name}/page.md`) && files.has(`${entry.name}/style.css`),
     });

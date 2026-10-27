@@ -29,16 +29,34 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Generate catalog
-        run: node scripts/generate-mado-catalog.mjs
-      - name: Commit changed catalog
+      - name: Test generators without network
+        run: node --test scripts/mado-generators.test.mjs
+      - name: Generate catalog, optional official codes and READMEs
+        env:
+          MADO_WECHAT_APPID: ${{ vars.MADO_WECHAT_APPID }}
+          MADO_WECHAT_ENV_VERSION: ${{ vars.MADO_WECHAT_ENV_VERSION }}
+          MADO_WECHAT_SECRET: ${{ secrets.MADO_WECHAT_SECRET }}
+          MADO_WECHAT_ACCESS_TOKEN: ${{ secrets.MADO_WECHAT_ACCESS_TOKEN }}
+        run: |
+          node --input-type=module <<'NODE'
+          import { writeFile } from 'node:fs/promises';
+          import { generateQrcodes } from './scripts/generate-mado-qrcodes.mjs';
+          const result = await generateQrcodes({ env: process.env });
+          const files = ['mado/demos.json', 'README.md', 'mado/README.md', ...result.generatedFiles];
+          await writeFile(`${process.env.RUNNER_TEMP}/mado-generated-paths`, files.join('\0') + '\0');
+          console.log(`官方码 ${result.generatedFiles.length / 2} 个；待生成：${result.pending.join('、') || '无'}`);
+          if (!result.credentials) console.log('未配置凭据，待授权生成；继续正常部署。');
+          for (const error of result.errors) console.error(`${error.dir}：${error.message}`);
+          if (result.errors.length) process.exitCode = 1;
+          NODE
+      - name: Commit only changed generated files
         shell: bash
         run: |
-          if ! git diff --quiet -- mado/demos.json || ! git ls-files --error-unmatch mado/demos.json >/dev/null 2>&1; then
+          git add --pathspec-from-file="$RUNNER_TEMP/mado-generated-paths" --pathspec-file-nul
+          if ! git diff --cached --quiet; then
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git add -- mado/demos.json
-            git commit -m "Update Mado catalog"
+            git commit -m "Update Mado catalog and official codes"
             git push origin HEAD:main
           fi
       - name: Prepare complete Pages snapshot
