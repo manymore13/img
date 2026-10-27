@@ -103,6 +103,16 @@ stylesheet: ./style.css
 <button class="ghost" action="copy" text="复制这段说明" />
 </view>
 
+## 六 · 加载与恢复
+
+页面加载失败时，容器不会清空已经显示的内容。下面这个按钮会让宿主主动请求一个不存在的地址：
+
+<view class="actions">
+<button class="ghost" action="load-broken">加载损坏页面</button>
+</view>
+
+<view class="hint">预期结果：底部出现错误码提示，当前这一页保持不变。这就是「失败保留旧页」的可观察证据。</view>
+
 <view class="footnote">
 未实现的能力不会在这里出现：媒体播放、表单作用域、catch/capture 传播、任意结构局部更新。
 </view>
