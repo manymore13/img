@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "revision": "402e32f80ce618767a2b1e9d7eca335cde9db417508547cfec017433e05f861c",
+  "revision": "ed397b15187a2009207f03ec1e2662b3dc293e31b4186d4eef8f4ad422918a6a",
   "demos": [
     {
       "dir": "basic",
@@ -35,6 +35,14 @@
       "dir": "donglin",
       "scene": "dc808d1e31bb5fc1842ef",
       "label": "东林大佛 · 四十八米金身",
+      "ready": true,
+      "minEngine": "0.1",
+      "capabilities": []
+    },
+    {
+      "dir": "lushan",
+      "scene": "d13659f896f78df541cd1",
+      "label": "庐山 · 山行手册",
       "ready": true,
       "minEngine": "0.1",
       "capabilities": []
@@ -76,6 +84,10 @@
     "donglin/images/tang-hall.jpg": "483e1406f070a539737a4778ed00c6cd382210d5792a744ab88fa63c334045a0",
     "donglin/page.md": "b71cc5e3757b3dea68211cbe159fbe28fda75e6e6e03a64677e5b63dbd3301e3",
     "donglin/style.css": "b6ff7ba8f0417e2019eac4e6e1b61308facdca38f3e7a7520bbe1e06c26e6f77",
+    "lushan/images/hero.webp": "ff1497d938c6d96cfbfc95f13d313d139817ed7471b107b7725c8a0180e15c59",
+    "lushan/lushan-guide.md": "9f890feffd1456a9712594044627cf98e64ae53cebbd5c19b4a81db2dd27760c",
+    "lushan/page.md": "05228eb20c0ffc570ad9b2d7dcd165d59de50a3ae2a6a1abd64f03d8b2fe7c60",
+    "lushan/style.css": "1a181f751c393221be9c18b6579737a592cb81d8723b279aecabbe0d616ce993",
     "showcase/page.md": "26b53b3b14be3f97e6bd31dfc49a118d13558d4302802f20cc5cc414b8497dda",
     "showcase/style.css": "4c0a0c61fb68bc700f2f9fee9c9bf3bbb4a17513d19ae616b795347ad6ac694d",
     "山外来信/images/mountain-sunrise.svg": "a348b3c40f6ee637597deb66e19300c7ae405a00c811b2b6f4b2d11277897fe1",

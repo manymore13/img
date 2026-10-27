@@ -1,0 +1,947 @@
+/* 庐山 · 山行手册 —— Mado 内容样式
+ * 只使用 Mado 支持的 CSS 子集：class / 复合类 / 后代选择器，
+ * 长度仅 px 与 %，无 @media、伪类、transition、url()。
+ * 设计基准 375px，Web 端按 width/375 整体换算。
+ */
+
+:root {
+  --paper: #f3eee2;
+  --paper-deep: #e8e0cf;
+  --card: #fbf8f0;
+  --ink: #1f2b24;
+  --body: #44524a;
+  --muted: #6d786e;
+  --moss: #3d5847;
+  --moss-deep: #22362b;
+  --line: rgba(31, 43, 36, 0.14);
+  --line-soft: rgba(31, 43, 36, 0.08);
+  --accent: #a8452c;
+  --white: #fbf8f0;
+  /* 字体属于内容表达：衬线负责叙事，无衬线只服务标签与数据 */
+  --font-body: "Songti SC", "Noto Serif SC", "Source Han Serif SC", "STSong", serif;
+  --font-ui: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+.ls-guide {
+  padding-bottom: 28px;
+  color: var(--ink);
+  background-color: var(--paper);
+  
+}
+
+.ls-kicker,
+.ls-meta,
+.ls-number,
+.ls-tag,
+.ls-button,
+.ls-filter,
+.ls-route-option,
+.ls-quick-button,
+.ls-check,
+.ls-hero-eyebrow,
+.ls-hero-meta,
+.ls-hero-caption,
+.ls-stat-label,
+.ls-search-status,
+.ls-badge,
+.ls-seal-text {
+  
+}
+
+/* ---------- 首屏 ---------- */
+
+.ls-hero {
+  position: relative;
+  width: 100%;
+  height: 468px;
+  overflow: hidden;
+  border-bottom-left-radius: 26px;
+  border-bottom-right-radius: 26px;
+  background-color: var(--moss-deep);
+}
+
+.ls-hero-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ls-hero-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20, 30, 25, 0.28) 0%, rgba(20, 30, 25, 0) 30%, rgba(18, 28, 23, 0.28) 58%, rgba(14, 24, 19, 0.88) 100%);
+}
+
+/* 朱砂印：整页唯一的高饱和色块，作为记忆点 */
+.ls-seal {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(251, 248, 240, 0.45);
+  border-radius: 3px;
+  background-color: var(--accent);
+  transform: rotate(-4deg);
+  z-index: 3;
+}
+
+.ls-seal-text {
+  display: block;
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.ls-hero-copy {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 30px;
+  z-index: 2;
+}
+
+.ls-hero-eyebrow {
+  display: block;
+  margin-bottom: 16px;
+  color: rgba(251, 248, 240, 0.72);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+}
+
+.ls-hero-title {
+  display: block;
+  color: var(--white);
+  font-size: 64px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.14em;
+}
+
+.ls-hero-subtitle {
+  display: block;
+  margin-top: 14px;
+  color: rgba(251, 248, 240, 0.94);
+  font-size: 15px;
+  letter-spacing: 0.16em;
+}
+
+.ls-hero-meta {
+  display: block;
+  margin-top: 22px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(251, 248, 240, 0.28);
+  color: rgba(251, 248, 240, 0.8);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+}
+
+.ls-hero-caption {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  z-index: 3;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background-color: rgba(20, 30, 25, 0.32);
+  color: rgba(251, 248, 240, 0.88);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+}
+
+/* ---------- 快捷入口 ---------- */
+
+.ls-quick {
+  display: flex;
+  gap: 8px;
+  margin: 18px 20px 0;
+}
+
+.ls-quick-button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 62px;
+  padding: 0 6px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background-color: var(--card);
+  color: var(--ink);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- 标题与筛选 ---------- */
+
+.ls-section-heading {
+  margin: 0 20px 16px;
+  padding-top: 34px;
+}
+
+.ls-kicker {
+  display: block;
+  color: var(--accent);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+}
+
+.ls-heading {
+  display: block;
+  margin-top: 6px;
+  color: var(--ink);
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+}
+
+.ls-muted {
+  display: block;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+}
+
+.ls-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 20px 4px;
+}
+
+.ls-filter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 15px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background-color: transparent;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+
+.ls-filter.ls-active {
+  border-color: var(--ink);
+  background-color: var(--ink);
+  color: var(--white);
+}
+
+.ls-search-status {
+  display: block;
+  margin: 12px 20px 0;
+  color: var(--accent);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- 景点列表 ---------- */
+
+.ls-spot-list {
+  margin: 0 20px;
+}
+
+.ls-spot {
+  display: flex;
+  padding: 24px 0 22px;
+  border-bottom: 1px solid var(--line);
+}
+
+.ls-number {
+  display: block;
+  width: 30px;
+  padding-top: 2px;
+  color: var(--moss);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+}
+
+.ls-spot-body {
+  flex: 1;
+}
+
+.ls-tag {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--accent);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+}
+
+.ls-spot-name {
+  display: block;
+  color: var(--ink);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+}
+
+.ls-summary {
+  display: block;
+  margin-top: 9px;
+  color: var(--body);
+  font-size: 13px;
+  line-height: 1.78;
+  letter-spacing: 0.01em;
+}
+
+.ls-meta {
+  display: block;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 10.5px;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+}
+
+.ls-badge {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background-color: #dfe7da;
+  color: #2b4634;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+
+.ls-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.ls-actions-wide {
+  margin-top: 22px;
+}
+
+.ls-actions-wide .ls-button {
+  flex: 1;
+}
+
+.ls-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background-color: transparent;
+  color: var(--ink);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.ls-button.ls-primary {
+  border-color: var(--moss-deep);
+  background-color: var(--moss-deep);
+  color: var(--white);
+}
+
+.ls-button.ls-listen {
+  border-color: rgba(168, 69, 44, 0.34);
+  color: var(--accent);
+}
+
+.ls-button.ls-primary.ls-listen {
+  border-color: var(--moss-deep);
+  color: var(--white);
+}
+
+.ls-actions .ls-button.ls-active {
+  border-color: #c3d0bd;
+  background-color: #dfe7da;
+  color: #2b4634;
+}
+
+.ls-button.ls-quiet {
+  width: 100%;
+  margin-top: 18px;
+  border: none;
+  color: var(--muted);
+  font-size: 11.5px;
+}
+
+.ls-foot {
+  display: block;
+  margin: 26px 20px 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 10.5px;
+  line-height: 1.8;
+}
+
+.ls-empty {
+  margin-top: 18px;
+  padding: 26px 22px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background-color: var(--card);
+}
+
+.ls-empty .ls-button {
+  margin-top: 16px;
+}
+
+/* ---------- 路线 ---------- */
+
+.ls-route-options {
+  display: flex;
+  gap: 6px;
+  margin: 0 20px 16px;
+}
+
+.ls-route-option {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 6px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background-color: transparent;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+.ls-route-option.ls-active {
+  border-color: var(--ink);
+  background-color: var(--ink);
+  color: var(--white);
+}
+
+.ls-route-info {
+  margin: 0 20px;
+  padding: 26px 22px 24px;
+  border-radius: 22px;
+  background: linear-gradient(155deg, #2c4436 0%, #1e3127 100%);
+}
+
+.ls-route-info .ls-heading {
+  margin-top: 10px;
+  color: var(--white);
+  font-size: 30px;
+  letter-spacing: 0.04em;
+}
+
+.ls-route-info .ls-kicker {
+  color: #d99a79;
+}
+
+.ls-route-info .ls-meta {
+  color: rgba(251, 248, 240, 0.62);
+}
+
+.ls-route-info .ls-summary {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(251, 248, 240, 0.18);
+  color: rgba(251, 248, 240, 0.86);
+  font-size: 13px;
+}
+
+.ls-notice {
+  margin: 14px 20px 0;
+  padding: 18px;
+  border-left: 2px solid var(--accent);
+  border-radius: 4px 14px 14px 4px;
+  background-color: var(--paper-deep);
+}
+
+.ls-notice .ls-body {
+  margin-top: 6px;
+}
+
+.ls-route-stops {
+  margin: 8px 20px 0;
+}
+
+.ls-route-stop {
+  display: flex;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.ls-step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  margin-right: 14px;
+  border-radius: 999px;
+  background-color: var(--ink);
+  color: var(--white);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+}
+
+.ls-stop-body {
+  flex: 1;
+}
+
+.ls-stop-body .ls-button {
+  margin-top: 14px;
+}
+
+/* ---------- 收藏与清单 ---------- */
+
+.ls-stats {
+  display: flex;
+  gap: 10px;
+  margin: 0 20px;
+}
+
+.ls-stat {
+  flex: 1;
+  padding: 18px;
+  border-radius: 16px;
+  background-color: var(--card);
+}
+
+.ls-stat-value {
+  display: block;
+  color: var(--ink);
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.ls-stat-label {
+  display: block;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+
+.ls-visited-line {
+  margin: 14px 20px 0;
+}
+
+.ls-checklist {
+  margin: 0 20px;
+  padding: 20px 18px;
+  border-radius: 18px;
+  background-color: var(--card);
+}
+
+.ls-check {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 48px;
+  margin-top: 8px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 12px;
+  background-color: var(--paper);
+  color: var(--body);
+  font-size: 12.5px;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.ls-check.ls-checked {
+  background-color: #dfe7da;
+  color: #2b4634;
+}
+
+.ls-tip-card {
+  margin: 12px 20px 0;
+  padding: 20px 18px;
+  border: 1px solid var(--line-soft);
+  border-radius: 18px;
+  background-color: var(--card);
+}
+
+.ls-body {
+  display: block;
+  margin-top: 8px;
+  color: var(--body);
+  font-size: 13px;
+  line-height: 1.85;
+  letter-spacing: 0.01em;
+}
+
+.ls-sources {
+  margin: 24px 20px 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.ls-sources .ls-section-heading {
+  margin: 0 0 8px;
+  padding-top: 0;
+}
+
+.ls-sources .link {
+  display: block;
+  margin-top: 8px;
+  color: var(--moss);
+  font-size: 11.5px;
+  line-height: 1.7;
+  text-decoration: underline;
+}
+
+/* ---------- 景点详情 ---------- */
+
+.ls-detail {
+  padding: 0 20px 24px;
+}
+
+.ls-back {
+  width: 92px;
+  min-height: 44px;
+  margin: 8px 0 10px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  color: var(--muted);
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  justify-content: flex-start;
+}
+
+.ls-detail-header {
+  padding-bottom: 8px;
+}
+
+.ls-detail-header .ls-tag {
+  margin-top: 18px;
+}
+
+.ls-detail-title {
+  display: block;
+  margin-top: 8px;
+  color: var(--ink);
+  font-size: 42px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: 0.03em;
+}
+
+.ls-detail-header .ls-summary {
+  margin-top: 14px;
+  font-size: 14px;
+}
+
+.ls-story {
+  margin-top: 24px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.ls-story-paragraph {
+  display: block;
+  margin-bottom: 18px;
+  color: #35443b;
+  font-size: 15.5px;
+  line-height: 1.95;
+  letter-spacing: 0.012em;
+}
+
+.ls-safety {
+  margin-top: 26px;
+  padding: 20px 18px;
+  border-left: 2px solid var(--accent);
+  border-radius: 4px 16px 16px 4px;
+  background-color: var(--paper-deep);
+}
+
+.ls-safety .ls-body {
+  font-size: 12.5px;
+}
+
+.ls-next {
+  margin-top: 20px;
+  padding: 20px 18px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+
+.ls-next .ls-button {
+  margin-top: 14px;
+}
+
+.ls-error {
+  padding-top: 12px;
+}
+
+
+/* ---------- 小程序远程读本覆盖 ---------- */
+/* 小程序远程读本覆盖层。
+ * 只做两件事：把 Web 首屏改成小程序比例，并为静态读本补几个块。
+ * 导出时 style.css 中的 font-family 会被移除，兼容尚未升级的旧客户端。
+ */
+
+.ls-guide-remote {
+  padding-bottom: 48px;
+}
+
+/* custom 导航下状态栏与胶囊浮在页面上方，纸面页眉把它让开 */
+.rm-masthead {
+  padding: 54px 22px 12px;
+  background-color: var(--paper);
+}
+
+.rm-mast-name {
+  display: block;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+/* 首屏：图片与容器同高，小程序固定 aspectFit 也不会出现上下留白 */
+.ls-hero {
+  height: 274px;
+}
+
+.ls-hero-image {
+  height: 274px;
+}
+
+.ls-hero-scrim {
+  background: linear-gradient(180deg, rgba(18, 28, 23, 0.28) 0%, rgba(18, 28, 23, 0) 26%, rgba(16, 26, 21, 0.56) 60%, rgba(14, 24, 19, 0.92) 100%);
+}
+
+.ls-hero-copy {
+  bottom: 22px;
+  left: 22px;
+  right: 22px;
+}
+
+.ls-hero-title {
+  font-size: 56px;
+  letter-spacing: 0.12em;
+}
+
+.ls-hero-subtitle {
+  margin-top: 12px;
+}
+
+/* ---------- 序言 ---------- */
+
+.rm-intro {
+  position: relative;
+  margin: 0 20px;
+  padding: 26px 0 4px;
+}
+
+.rm-intro .ls-heading {
+  padding-right: 54px;
+}
+
+.rm-seal {
+  position: absolute;
+  top: 22px;
+  right: 0;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(251, 248, 240, 0.5);
+  border-radius: 3px;
+  background-color: var(--accent);
+  transform: rotate(-4deg);
+}
+
+.rm-seal .ls-seal-text {
+  color: var(--white);
+}
+
+.rm-facts {
+  display: flex;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.rm-fact {
+  flex: 1;
+  padding: 14px 12px;
+  border-radius: 14px;
+  background-color: var(--card);
+}
+
+.rm-value {
+  display: block;
+  color: var(--ink);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.rm-label {
+  display: block;
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 9.5px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- 路线 ---------- */
+
+.rm-route {
+  margin: 0 20px 28px;
+}
+
+.rm-route .ls-route-info {
+  margin: 0;
+}
+
+.rm-route .ls-notice {
+  margin: 14px 0 0;
+}
+
+.rm-chain {
+  display: block;
+  margin-top: 12px;
+  color: var(--moss);
+  font-size: 12px;
+  line-height: 1.8;
+  letter-spacing: 0.03em;
+}
+
+/* ---------- 景点 ---------- */
+
+.rm-spot {
+  margin: 0;
+  padding: 26px 0 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.rm-spot-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.rm-spot-head .ls-number {
+  width: auto;
+  padding-top: 0;
+}
+
+.rm-spot-head .ls-tag {
+  margin-bottom: 0;
+}
+
+.rm-story {
+  margin-top: 14px;
+}
+
+.rm-story .ls-story-paragraph {
+  margin-bottom: 14px;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.rm-safety {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-left: 2px solid var(--accent);
+  border-radius: 4px 12px 12px 4px;
+  background-color: var(--paper-deep);
+}
+
+.rm-safety .ls-tag {
+  margin-bottom: 6px;
+}
+
+.rm-tip {
+  display: block;
+  margin-top: 4px;
+  color: var(--body);
+  font-size: 12.5px;
+  line-height: 1.75;
+}
+
+/* ---------- 清单 ---------- */
+
+.rm-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 11px 0;
+  border-top: 1px solid var(--line-soft);
+}
+
+.rm-box {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  margin-top: 4px;
+  border: 1px solid var(--muted);
+  border-radius: 3px;
+}
+
+.rm-item-text {
+  display: block;
+  flex: 1;
+  color: var(--body);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* ---------- 下载与来源 ---------- */
+
+.rm-download {
+  margin: 16px 20px 0;
+  padding: 22px 20px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background-color: var(--card);
+}
+
+.rm-download .ls-heading {
+  margin-top: 8px;
+}
+
+.rm-download .ls-body {
+  margin-top: 10px;
+}
+
+.rm-download .ls-button {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.rm-note {
+  display: block;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.ls-guide-remote .ls-sources {
+  margin-top: 28px;
+}
+
+.ls-guide-remote .ls-sources .link {
+  margin-top: 10px;
+}
