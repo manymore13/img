@@ -702,7 +702,8 @@
 
 /* custom 导航下状态栏与胶囊浮在页面上方，纸面页眉把它让开 */
 .rm-masthead {
-  padding: 54px 22px 12px;
+  /* 左上角可能浮着宿主的返回按钮，页眉整体下移让开 */
+  padding: 92px 22px 12px;
   background-color: var(--paper);
 }
 
@@ -944,4 +945,60 @@
 
 .ls-guide-remote .ls-sources .link {
   margin-top: 10px;
+}
+
+
+/* ---------- 多页远程版新增 ---------- */
+
+.rm-links {
+  margin-top: 6px;
+  padding: 4px 0;
+}
+
+.rm-video {
+  margin-top: 26px;
+  padding: 22px 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background-color: var(--card);
+}
+
+.rm-video .ls-button {
+  margin-top: 16px;
+  width: 100%;
+}
+
+.rm-route-chain {
+  padding: 16px 0 18px;
+  border-top: 1px solid var(--line-soft);
+}
+
+.rm-chain {
+  display: block;
+  margin-top: 8px;
+  color: var(--body);
+  font-size: 13.5px;
+  line-height: 1.9;
+}
+
+/* 行前清单：开关代替静态方块 */
+.rm-switch {
+  flex: none;
+  margin-top: 2px;
+  transform: scale(0.78);
+  transform-origin: left center;
+}
+
+.back-here {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 44px;
+  margin-top: 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background-color: transparent;
+  color: var(--muted);
+  font-size: 13px;
 }

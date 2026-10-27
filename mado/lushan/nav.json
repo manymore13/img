@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "title": "庐山 · 山行手册",
+  "home": "page.md",
+  "pages": [
+    "page.md",
+    "routes.md",
+    "map.md",
+    "before.md",
+    "spot-ruqin.md",
+    "spot-huajing.md",
+    "spot-jinxiu.md",
+    "spot-xianren.md",
+    "spot-hanpo.md",
+    "spot-wulao.md",
+    "spot-sandie.md",
+    "spot-lulin.md"
+  ],
+  "tabs": [
+    {
+      "id": "explore",
+      "label": "发现",
+      "page": "page.md"
+    },
+    {
+      "id": "routes",
+      "label": "路线",
+      "page": "routes.md"
+    },
+    {
+      "id": "order",
+      "label": "顺序",
+      "page": "map.md"
+    },
+    {
+      "id": "before",
+      "label": "准备",
+      "page": "before.md"
+    }
+  ]
+}

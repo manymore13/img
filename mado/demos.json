@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "revision": "ed397b15187a2009207f03ec1e2662b3dc293e31b4186d4eef8f4ad422918a6a",
+  "revision": "c525defaa857ca4c17ffc5cd98d1fb91d99e16a26a1140d1aefee3a062944d57",
   "demos": [
     {
       "dir": "basic",
@@ -44,7 +44,7 @@
       "scene": "d13659f896f78df541cd1",
       "label": "庐山 · 山行手册",
       "ready": true,
-      "minEngine": "0.1",
+      "minEngine": "0.2",
       "capabilities": []
     },
     {
@@ -84,10 +84,22 @@
     "donglin/images/tang-hall.jpg": "483e1406f070a539737a4778ed00c6cd382210d5792a744ab88fa63c334045a0",
     "donglin/page.md": "b71cc5e3757b3dea68211cbe159fbe28fda75e6e6e03a64677e5b63dbd3301e3",
     "donglin/style.css": "b6ff7ba8f0417e2019eac4e6e1b61308facdca38f3e7a7520bbe1e06c26e6f77",
+    "lushan/before.md": "7af5a38b15e0681734f20f6a704fdb781f0debf89093771793ffce10d62f9c57",
     "lushan/images/hero.webp": "ff1497d938c6d96cfbfc95f13d313d139817ed7471b107b7725c8a0180e15c59",
     "lushan/lushan-guide.md": "9f890feffd1456a9712594044627cf98e64ae53cebbd5c19b4a81db2dd27760c",
-    "lushan/page.md": "05228eb20c0ffc570ad9b2d7dcd165d59de50a3ae2a6a1abd64f03d8b2fe7c60",
-    "lushan/style.css": "1a181f751c393221be9c18b6579737a592cb81d8723b279aecabbe0d616ce993",
+    "lushan/map.md": "f71769568067253314e1a3550531caeae3118e8252e81f687fd9620145433b0d",
+    "lushan/nav.json": "5597faa27f25486bd5bdaf3cb3198c51ab6327644fd5bd1179bef35530d4a321",
+    "lushan/page.md": "6eaae3265695c0de2ac1ca2c24a76cff88152c9e6a03eeca974fec47196d209d",
+    "lushan/routes.md": "1c279998d9eaac285259a5a48935ff106760238da47cf8a664d87e4bfe71fecc",
+    "lushan/spot-hanpo.md": "cbe997e4c5d8418687cba56ce2e653f45ec5fff7262095d1c8dcddb7e689dab1",
+    "lushan/spot-huajing.md": "c7351bf1c927c40107655264790bb388822547ad148119c4b91068620bac8a4e",
+    "lushan/spot-jinxiu.md": "5f9708fe4b08dd9dc77b9aa1cf6a83f19ed8991e5a0066074b51dae7d6112ef3",
+    "lushan/spot-lulin.md": "3a80ddff4d9ea574014a8c62bb9646c155a54f9a8cf22f9b356b76499779abe7",
+    "lushan/spot-ruqin.md": "530e6ef33a1c9d20cc5551400d5b430f3bd05243c97c91fd28851e38c871a516",
+    "lushan/spot-sandie.md": "9f119d9273affd1e5a96447dde8a8d9d1a01c2be95438bc1b7e9c52b3cef8008",
+    "lushan/spot-wulao.md": "bad982b1497bb87be55172273bacd8ba7ea19bc90935cdd705496199fc782ac1",
+    "lushan/spot-xianren.md": "253bc1841904ed902446953da616426c56b0ad11d51ab3d5122e0ab6bc1c76ef",
+    "lushan/style.css": "3dff7c2ce12be2c631049f5978f2587cf4ec6c959ed00d8d2ba7ebf27b76bf61",
     "showcase/page.md": "26b53b3b14be3f97e6bd31dfc49a118d13558d4302802f20cc5cc414b8497dda",
     "showcase/style.css": "4c0a0c61fb68bc700f2f9fee9c9bf3bbb4a17513d19ae616b795347ad6ac694d",
     "山外来信/images/mountain-sunrise.svg": "a348b3c40f6ee637597deb66e19300c7ae405a00c811b2b6f4b2d11277897fe1",
