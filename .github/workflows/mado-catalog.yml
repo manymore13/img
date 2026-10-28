@@ -23,7 +23,9 @@ concurrency:
 
 jobs:
   publish:
-    if: github.ref == 'refs/heads/main'
+    # 工作流自己会把 demos.json / 扫码页 / 码提交回来，那次 push 不该再跑一遍：
+    # 本次运行在提交之后才打包部署，内容已经包含 bot 的改动。
+    if: github.ref == 'refs/heads/main' && github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
