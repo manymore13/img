@@ -1,0 +1,27 @@
+#!/bin/sh
+# 拦截本地提交 CI 生成物。
+#
+# mado/demos.json、mado/index.html、mado/README.md、根 README.md 由
+# .github/workflows/mado-catalog.yml 在每次 push 后重新生成并自动提交。
+# 本地再改一遍（包括 revision / 文件哈希 / 扫码表这类派生字段），
+# 下一个人 pull --rebase 时两边改同一批行，必然冲突。
+#
+# 确实要手改时用 git commit --no-verify 绕过。
+blocked="mado/demos.json mado/index.html mado/README.md README.md"
+staged=$(git diff --cached --name-only --diff-filter=ACM)
+hit=""
+for f in $blocked; do
+  if printf '%s\n' "$staged" | grep -qx "$f"; then
+    hit="$hit $f"
+  fi
+done
+if [ -n "$hit" ]; then
+  echo "" >&2
+  echo "✗ 这些文件由 GitHub Actions 生成，本地不要提交：$hit" >&2
+  echo "  内容改动只提交 mado/<目录>/ 下的 page.md、style.css、images/。" >&2
+  echo "  push 后工作流会重算清单与哈希、生成小程序码，并自己提交这几个文件。" >&2
+  echo "  确实要手改：git commit --no-verify" >&2
+  echo "" >&2
+  exit 1
+fi
+exit 0
