@@ -138,10 +138,7 @@ stylesheet: ./style.css
           <text class="phone-mark">☎</text>
           <text class="contact-text">18800008888</text>
         </view>
-        <view class="act">
-          <text class="act-text">打电话</text>
-          <button class="act-hit" text=" " action="call" number="18800008888" />
-        </view>
+        <button class="act-text" text="打电话" action="call" number="18800008888" />
       </view>
 
       <view class="contact-row">
@@ -149,10 +146,7 @@ stylesheet: ./style.css
           <view class="pin"></view>
           <text class="contact-text">世纪茶城</text>
         </view>
-        <view class="act">
-          <text class="act-text">去导航</text>
-          <button class="act-hit" text=" " action="open-location" name="世纪茶城" />
-        </view>
+        <button class="act-text" text="去导航" action="open-location" name="世纪茶城" />
       </view>
     </view>
   </view>

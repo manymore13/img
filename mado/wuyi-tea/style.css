@@ -116,6 +116,7 @@
   top: 0;
   right: 0;
   bottom: 0;
+  min-height: 44px;
   margin: 0;
   padding: 0;
   border-radius: 0;
@@ -123,7 +124,7 @@
   color: transparent;
   font-size: 1px;
   line-height: 1px;
-  opacity: 0;
+  opacity: 0.01;
 }
 
 .spec-key {
@@ -174,7 +175,7 @@
   color: transparent;
   font-size: 1px;
   line-height: 1px;
-  opacity: 0;
+  opacity: 0.01;
 }
 
 /* ---------- 章节横幅 ---------- */
@@ -246,6 +247,7 @@
   top: 0;
   right: 0;
   bottom: 0;
+  min-height: 120px;
   margin: 0;
   padding: 0;
   border-radius: 0;
@@ -253,7 +255,7 @@
   color: transparent;
   font-size: 1px;
   line-height: 1px;
-  opacity: 0;
+  opacity: 0.01;
 }
 
 .photo-garden {
@@ -296,6 +298,7 @@
   top: 0;
   right: 0;
   bottom: 0;
+  min-height: 100px;
   margin: 0;
   padding: 0;
   border-radius: 0;
@@ -303,7 +306,7 @@
   color: transparent;
   font-size: 1px;
   line-height: 1px;
-  opacity: 0;
+  opacity: 0.01;
 }
 
 .craft-cap {
@@ -402,37 +405,20 @@
   line-height: 24px;
 }
 
-/* 行内动作：文字用 text 显示，button 只做透明命中层，
-   避免微信 button 自带 ::after 边框（页面 CSS 无法去掉伪元素）。 */
-.act {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 2px 0;
-}
-
+/* 行内动作直接用带文字的 button：透明命中层在原生 button 上未必吃得到点击，
+   而这里有现成文字，就不绕那一层。::after 的 1px 半透明黑边在深绿卡片上几乎不可见。 */
 .act-text {
-  display: block;
+  margin: 0;
+  padding: 2px 0;
+  min-width: 64px;
+  height: 28px;
+  border-radius: 0;
+  background-color: transparent;
   color: #ffffff;
   font-size: 17px;
+  font-weight: 400;
   line-height: 24px;
-}
-
-.act-hit {
-  position: absolute;
-  left: 0;
-  top: 0;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 6px;
-  background-color: transparent;
-  color: transparent;
-  font-size: 1px;
-  line-height: 1px;
-  opacity: 0;
+  text-align: right;
 }
 
 /* ---------- 底部固定操作栏 ---------- */
@@ -482,15 +468,17 @@
   position: absolute;
   left: 0;
   top: 0;
+  right: 0;
+  bottom: 0;
+  min-width: 100px;
+  min-height: 44px;
   margin: 0;
   padding: 0;
-  width: 100%;
-  height: 100%;
   border-radius: 8px;
   background-color: transparent;
   color: transparent;
   font-size: 1px;
   line-height: 1px;
-  opacity: 0;
+  opacity: 0.01;
 }
 
