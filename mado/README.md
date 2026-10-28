@@ -127,6 +127,7 @@ Gitee 上有一份镜像 `https://gitee.com/manymore13/img.git`。工作流在�
 | [东林大佛 · 四十八米金身](donglin/) | donglin | dc808d1e31bb5fc1842ef | <img src="donglin/qrcode.jpg" width="160" alt="官方小程序码"> |
 | [庐山 · 山行手册](lushan/) | lushan | d13659f896f78df541cd1 | <img src="lushan/qrcode.jpg" width="160" alt="官方小程序码"> |
 | [节气行 · 山里的朱砂先红了](showcase/) | showcase | d9877f886f03e5e1c5200 | <img src="showcase/qrcode.jpg" width="160" alt="官方小程序码"> |
+| [奔富BIN389红酒](wine-bin389/) | wine-bin389 | d6d1eb2993984f80db1ce | <img src="wine-bin389/qrcode.jpg" width="160" alt="官方小程序码"> |
 | [武夷山金骏眉](wuyi-tea/) | wuyi-tea | d450e5a0e9429bf266d56 | <img src="wuyi-tea/qrcode.jpg" width="160" alt="官方小程序码"> |
 | [山间一日](%E5%B1%B1%E5%A4%96%E6%9D%A5%E4%BF%A1/) | 山外来信 | d08e6a55d901d3a83cbff | <img src="%E5%B1%B1%E5%A4%96%E6%9D%A5%E4%BF%A1/qrcode.jpg" width="160" alt="官方小程序码"> |
 <!-- MADO-DEMOS:END -->

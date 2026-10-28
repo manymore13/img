@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "revision": "79245139e77c26cdfceb6907be5ea19ce56bdb76fe2482ec3592be3f5418d47b",
+  "revision": "0c8afc707866c3c89df4dcc066c1ca480cf18a1911be9083ed3b06bb3a1954d1",
   "demos": [
     {
       "dir": "basic",
@@ -51,6 +51,14 @@
       "dir": "showcase",
       "scene": "d9877f886f03e5e1c5200",
       "label": "节气行 · 山里的朱砂先红了",
+      "ready": true,
+      "minEngine": "0.1",
+      "capabilities": []
+    },
+    {
+      "dir": "wine-bin389",
+      "scene": "d6d1eb2993984f80db1ce",
+      "label": "奔富BIN389红酒",
       "ready": true,
       "minEngine": "0.1",
       "capabilities": []
@@ -118,6 +126,14 @@
     "lushan/style.css": "dce733bff3b180db5e9ea77d3dfee023594f6b9ea4ebce9f1311a9010e0d079c",
     "showcase/page.md": "4e71b01e4ea1b0c7885e692c109dd750c9a3875787e21b81dc135bfa555b9d9e",
     "showcase/style.css": "4c0a0c61fb68bc700f2f9fee9c9bf3bbb4a17513d19ae616b795347ad6ac694d",
+    "wine-bin389/images/bg.jpg": "0b82aa637f2aeb912e428de44fa7ba9efd83a3a6d74e67263f50a9d359bda8ad",
+    "wine-bin389/images/brand.jpg": "c5e3c536624a88cf18ef5fdcfa0e601c5ed01682584d8bdb06624eab0a054a03",
+    "wine-bin389/images/logo.png": "2589c9440a263dde3025b87fea8d5722a1518c88091b3c7058f97ec0452f1417",
+    "wine-bin389/images/product.jpg": "bcd209b7d3043426190a74f229378b1a82604ab2b30a29f2fb2fa3c428546174",
+    "wine-bin389/images/video.jpg": "b89df7f00f483b0939e61b6a0a35029f17987bf829f22b9a8b46a9ea85f14355",
+    "wine-bin389/images/video.mp4": "356254c0624acb8457e8209e52a4669590f122e7ddf2373df9595a6def76f0c6",
+    "wine-bin389/page.md": "704a9d48f55b61d9b4f3d437a728fa015d61fb46f110ad2321c8f282dd527d2c",
+    "wine-bin389/style.css": "100e669afc5d6b50c5ee6c4e06a354f470780b5d679c4468c4b0884e1d5bd062",
     "wuyi-tea/images/bg.jpg": "252756f8be0092c47d9634e4908c6c912b15519f4ac0db7497ff2b061cde6eb6",
     "wuyi-tea/images/garden.jpg": "8011c3a32b169e965d996d8e6cb858c13e444c21d426b0e1658edc88db090724",
     "wuyi-tea/images/leaves.jpg": "ff00673da9760eb89794271b16f6e51f8a6339b16affa4278597eef8d3a9e36b",
