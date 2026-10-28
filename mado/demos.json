@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "revision": "10287d17ec1094dc00340b32b2d20d0b19ff6566a21c59e1ac7160b0a200cdca",
+  "revision": "3a9843b6f585269eaade4af39e6dffa990f6ee48e197e0da6a373452affc0419",
   "demos": [
     {
       "dir": "basic",
@@ -65,16 +65,16 @@
     }
   ],
   "versions": {
-    "basic/page.md": "bbe0f63ce3ea8a1f44f8ee59c09c25cdaedd6731fef16d466ea6b452a7cd2e36",
+    "basic/page.md": "e8141f52ed1643cbe192142047d72f69ef1184c060a913f404b56bfe549b264f",
     "basic/style.css": "3c81626144b38a1fa14329fa310d27da7ae349ab4c1d460cd0d7ff2170c6fe8c",
-    "capabilities/page.md": "070bced6869ed0a4bd1a75c2b94f86e742c0e7537a085e986b3203a6c4d0b730",
+    "capabilities/page.md": "a5a52943472064d6e2f2d713eb603f83f9fb5f649c1cd1c3126e1f93d282a876",
     "capabilities/style.css": "d812194480de50ed8df83ae6dbc543162151afcae3a6b05a3aa5c8ba20f28e0e",
     "coffee-set/art/cover.svg": "5de34f3cd1733ec3c0b9d2fa9059e1dad2a14c5ba2fb0a116fe8d83ae22134d1",
     "coffee-set/art/kit.svg": "e7768d926ea9bd962ac9a332b66e2fdcd2c0f6c33fe9cc3f743be552c533a0c6",
     "coffee-set/guide.md": "8819f9f77fa98365c62cb6394979ef30ff814847f8f93f644dcd0267765cab07",
     "coffee-set/images/cover.png": "6f654093396b15d5ee04b392a15a99b25c4b25c9d08492f316509622a5b5940c",
     "coffee-set/images/kit.png": "b1bc05b7a2d590f1aa1de9c0d9b5a94d4cfe035deb3490fa2f23e87b1d44af0c",
-    "coffee-set/page.md": "a8d26f0c9e3e3e554aaeb69a1306d9b64b498379a2e5f6669fd7c39a7c9fd9f5",
+    "coffee-set/page.md": "fa896287968573835e8b063802e9e52cb428db99460ef3e09f98e1f4bf53549e",
     "coffee-set/style.css": "3eeefb8e30a5d3cd4fd671cfb78739051b3e179d6a2439a2679708c744570063",
     "donglin/guide.md": "ae56a09d1f477224c73c219df6ede35f8b443ee0820bbf7e0a533d43f23b3c09",
     "donglin/images/bailian-gate.jpg": "d75b2e60300eb36ac3408456c6f5aaeb6eb34024dccb25ddf7d90d75783f6887",
@@ -82,7 +82,7 @@
     "donglin/images/poster-buddha.jpg": "bcf34a558be7fb2b0d37125023b49d20fc03fb9199f21ebd1f0a82e06b220fd1",
     "donglin/images/poster-pond.jpg": "e39644b7a94f7a1e112107004be88d3c00eff176813b19f329c113e305d36051",
     "donglin/images/tang-hall.jpg": "483e1406f070a539737a4778ed00c6cd382210d5792a744ab88fa63c334045a0",
-    "donglin/page.md": "5790239ee6c3c5637b9d2e826d8220f9aec3470d7adcbd63afb062b7edf96d01",
+    "donglin/page.md": "b804179d478ceaab2295f8934489eb3d39e3c1e0cdf75f89d2b22fef85861dc5",
     "donglin/style.css": "b6ff7ba8f0417e2019eac4e6e1b61308facdca38f3e7a7520bbe1e06c26e6f77",
     "lushan/audio/hanpo.mp3": "b7957ea77476bc2e0256cdd9fe523da78802e8184d075973d51728d8db28e494",
     "lushan/audio/huajing.mp3": "98cf8dc5823bb732c0202c992c4c10b90af007b0e39f5ec6b697adbb8e79b226",
@@ -107,11 +107,11 @@
     "lushan/spot-sandie.md": "d61a96dc5b432df7ae5bcdc0b6756aebd3129978f5d3e45299e6c0b07d56a611",
     "lushan/spot-wulao.md": "d9be7e7914e66ae1da299a867b7014316e2f1516e07567b4185c8d3efda7156d",
     "lushan/spot-xianren.md": "c4c8b9735d06ad4e0cb2e2e5c4f6a3fb42573fd93bbf46fe5a08aad9b5519fb7",
-    "lushan/style.css": "f0483c5c681f66c1605b26d93d0a1aaf42f122a03d8473e64fc83918b3c38a02",
-    "showcase/page.md": "4e71b01e4ea1b0c7885e692c109dd750c9a3875787e21b81dc135bfa555b9d9e",
+    "lushan/style.css": "dce733bff3b180db5e9ea77d3dfee023594f6b9ea4ebce9f1311a9010e0d079c",
+    "showcase/page.md": "0cc8c7ce6330311ae0fcbdcbf9278b163f093c0925a40d31d3a4d411bcfe0c17",
     "showcase/style.css": "4c0a0c61fb68bc700f2f9fee9c9bf3bbb4a17513d19ae616b795347ad6ac694d",
     "山外来信/images/mountain-sunrise.svg": "a348b3c40f6ee637597deb66e19300c7ae405a00c811b2b6f4b2d11277897fe1",
-    "山外来信/page.md": "368780b7f310055f317d9c0c71dc6f5fb740798abbf205eedafe8c82fa09aabd",
+    "山外来信/page.md": "94e344790ca8f9684ec7697dfe13b7f1fcf0ab63032a5902255b65468f970ec6",
     "山外来信/style.css": "94b19a7f7377c5354df42c9d8d40d05ed9ed5277733b775bf7ce20368f2bca08"
   }
 }

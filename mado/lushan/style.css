@@ -700,10 +700,10 @@
   padding-bottom: 48px;
 }
 
-/* custom 导航下状态栏与胶囊浮在页面上方，纸面页眉把它让开 */
+/* 状态栏与胶囊由宿主按实测高度统一让开（--safe-top），页眉只留文字呼吸空间，
+   不再写死 92px，否则换机型就会双重留白。 */
 .rm-masthead {
-  /* 左上角可能浮着宿主的返回按钮，页眉整体下移让开 */
-  padding: 92px 22px 12px;
+  padding: 14px 22px 12px;
   background-color: var(--paper);
 }
 
