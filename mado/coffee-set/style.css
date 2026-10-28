@@ -29,8 +29,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* 首行右侧有文字，留出右上角胶囊的高度。 */
-  padding: 34px 22px 14px;
+  padding: 18px 22px 14px;
   border-bottom: 1px solid var(--ink);
 }
 
