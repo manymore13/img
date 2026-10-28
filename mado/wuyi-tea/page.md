@@ -63,9 +63,10 @@ stylesheet: ./style.css
         <text class="spec-key">委托生产</text>
         <text class="spec-val">福建省武夷山市常青茶叶有限公司</text>
       </view>
-      <view class="spec-row">
+      <view class="spec-row spec-row-link">
         <text class="spec-key">生产地址</text>
         <text class="spec-val">武夷山市仙店工业园区</text>
+        <button class="spec-hit" text=" " action="open-location" name="武夷山市仙店工业园区" address="福建省南平市武夷山市仙店工业园区" lat="27.7565" lng="118.0353" />
       </view>
       <view class="spec-row spec-row-end">
         <text class="spec-key">贮存方式</text>

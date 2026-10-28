@@ -105,6 +105,27 @@
   border-bottom-width: 0;
 }
 
+/* 可点的参数行：命中层铺满整行，视觉与普通行一致 */
+.spec-row-link {
+  position: relative;
+}
+
+.spec-hit {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  background-color: transparent;
+  color: transparent;
+  font-size: 1px;
+  line-height: 1px;
+  opacity: 0;
+}
+
 .spec-key {
   color: rgba(255, 255, 255, 0.85);
   font-size: 18px;
