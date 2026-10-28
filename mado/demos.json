@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "revision": "f7358e59d1771c8e8bc5a87024d606c915bcecdf6c20f975d5cd07e22942a747",
+  "revision": "faa3e4d69caf81622d236e9ca6ad49e8b65296de58eddae893397bef0db08f66",
   "demos": [
     {
       "dir": "basic",
@@ -51,6 +51,14 @@
       "dir": "showcase",
       "scene": "d9877f886f03e5e1c5200",
       "label": "节气行 · 山里的朱砂先红了",
+      "ready": true,
+      "minEngine": "0.1",
+      "capabilities": []
+    },
+    {
+      "dir": "wuyi-tea",
+      "scene": "d450e5a0e9429bf266d56",
+      "label": "武夷山金骏眉",
       "ready": true,
       "minEngine": "0.1",
       "capabilities": []
@@ -110,6 +118,19 @@
     "lushan/style.css": "dce733bff3b180db5e9ea77d3dfee023594f6b9ea4ebce9f1311a9010e0d079c",
     "showcase/page.md": "4e71b01e4ea1b0c7885e692c109dd750c9a3875787e21b81dc135bfa555b9d9e",
     "showcase/style.css": "4c0a0c61fb68bc700f2f9fee9c9bf3bbb4a17513d19ae616b795347ad6ac694d",
+    "wuyi-tea/images/band1.jpg": "75a61ecafe62ab0aca032272a3d184d4cd2d925c7d2763cb51840aa03fbbcfa7",
+    "wuyi-tea/images/band2.jpg": "47667d79abe6b04c875b05db88337b28ca40cc041bc104c476ae4aba9beb6796",
+    "wuyi-tea/images/band3.jpg": "17c05d22a6e85726a176e02861afa9e60bf0a9947ca0103253251a4f70c7701f",
+    "wuyi-tea/images/bg.jpg": "300918f87452f037a5b0919cde0e82cc4d448fd2b2a50d3cebbc5615eb6510f4",
+    "wuyi-tea/images/garden.jpg": "8011c3a32b169e965d996d8e6cb858c13e444c21d426b0e1658edc88db090724",
+    "wuyi-tea/images/leaves.jpg": "ff00673da9760eb89794271b16f6e51f8a6339b16affa4278597eef8d3a9e36b",
+    "wuyi-tea/images/pick.jpg": "27e9709fc3d270e9cf1f02b9fdb06a1bd9913020d4546db81e6585663090c9b9",
+    "wuyi-tea/images/poster.jpg": "5827f1e73402c3f79d057b03e6af1297f0cb1369a098eea989e3564eb61a10f5",
+    "wuyi-tea/images/roast.jpg": "76ff1e43ecd2398d902373b676195e8c800e8128816ff66032b05341538fb699",
+    "wuyi-tea/images/store.jpg": "0d2e999fced256a713dc93724626ce95e9a9cbfcbe4b7f87cd2c6aa735aea514",
+    "wuyi-tea/images/tea.mp4": "b6f1163b79e54a3b0e47fefbccfecb7256488d0cc022c899e1de0a3381f355f5",
+    "wuyi-tea/page.md": "b836ab64fb6ee736cb4ed38c025eefbab69b7308b34e192c465c60bff41b6736",
+    "wuyi-tea/style.css": "5100b11517e2ef1800fbff2d5bdf14815f057cbb4a6f6d8a13f1d4b6bf12976e",
     "山外来信/images/mountain-sunrise.svg": "a348b3c40f6ee637597deb66e19300c7ae405a00c811b2b6f4b2d11277897fe1",
     "山外来信/page.md": "368780b7f310055f317d9c0c71dc6f5fb740798abbf205eedafe8c82fa09aabd",
     "山外来信/style.css": "94b19a7f7377c5354df42c9d8d40d05ed9ed5277733b775bf7ce20368f2bca08"
