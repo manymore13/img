@@ -1,0 +1,301 @@
+/* 奔富 BIN389 产品页 · 设计基准 375（引擎按 width/375 换算，小程序侧 1px = 2rpx）。
+   底图是深红丝绸照片，用 image 固定铺一屏；CSS 子集不支持 url() 背景图。
+   小程序 image 固定 aspectFit 且百分比高度会塌，所以每张图都写死宽高。 */
+
+.page {
+  position: relative;
+  display: block;
+  background-color: #4a1114;
+  padding-bottom: 96px;
+}
+
+.bg {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 375px;
+  height: 812px;
+  z-index: 0;
+}
+
+.body {
+  position: relative;
+  z-index: 2;
+}
+
+/* ---------- 标题 ---------- */
+
+.hero {
+  display: block;
+  padding: 28px 16px 0;
+  text-align: center;
+}
+
+.title {
+  display: block;
+  color: #ffffff;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 36px;
+}
+
+.sub {
+  display: block;
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 14px;
+  letter-spacing: 2px;
+  line-height: 22px;
+}
+
+/* ---------- 三段页签 ---------- */
+
+.tabs {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-top: 36px;
+  padding: 0 13px;
+}
+
+.tab {
+  flex: 1;
+  display: block;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 14px;
+  letter-spacing: 1px;
+  line-height: 20px;
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 2px solid transparent;
+}
+
+.tab-on {
+  font-weight: 700;
+  border-bottom: 2px solid #ffffff;
+}
+
+/* ---------- 区块标题 ---------- */
+
+.h1 {
+  display: block;
+  margin: 26px 16px 0;
+  color: #ffffff;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 30px;
+}
+
+.h2 {
+  display: block;
+  margin: 28px 16px 0;
+  color: #ffffff;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 30px;
+}
+
+.en {
+  display: block;
+  margin: 4px 16px 0;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 13px;
+  letter-spacing: 2px;
+  line-height: 20px;
+}
+
+/* ---------- 参数表 ---------- */
+
+.spec {
+  margin: 14px 13px 0;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  height: 36px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.row-last {
+  border-bottom-width: 0;
+}
+
+.key {
+  display: block;
+  width: 112px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 36px;
+  text-align: center;
+}
+
+.val {
+  flex: 1;
+  display: block;
+  color: #ffffff;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  line-height: 36px;
+  text-align: center;
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* ---------- 图片 ---------- */
+
+.fig {
+  display: block;
+  margin-top: 18px;
+  text-align: center;
+}
+
+.shot {
+  display: block;
+  width: 330px;
+  margin: 0 auto;
+}
+
+.shot-product {
+  height: 356px;
+}
+
+.shot-brand {
+  height: 239px;
+}
+
+/* ---------- 正文 ---------- */
+
+.para {
+  display: block;
+  margin: 0 16px;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  line-height: 26px;
+}
+
+.para-gap {
+  margin-top: 16px;
+}
+
+/* ---------- 视频卡 ---------- */
+
+.video {
+  position: relative;
+  display: block;
+  margin: 18px 13px 0;
+  width: 349px;
+  height: 174px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.video-poster {
+  display: block;
+  width: 349px;
+  height: 174px;
+}
+
+/* 封面里已经有播放键与 00:24，这里只铺一层透明命中区 */
+.video-hit {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  background-color: transparent;
+  color: transparent;
+  font-size: 1px;
+  line-height: 1px;
+  opacity: 0.01;
+}
+
+/* ---------- 温馨提示 ---------- */
+
+.notice {
+  margin: 26px 13px 0;
+  padding: 4px 14px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+.notice-title {
+  display: block;
+  margin: -16px auto 0;
+  width: 84px;
+  background-color: #4d1216;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 24px;
+  text-align: center;
+}
+
+.notice-line {
+  display: block;
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  line-height: 24px;
+}
+
+.notice-line-gap {
+  margin-top: 6px;
+}
+
+/* ---------- 底部悬浮条 ---------- */
+
+.bar {
+  position: fixed;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  z-index: 9;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.16);
+}
+
+.bar-logo {
+  display: block;
+  width: 26px;
+  height: 26px;
+  border-radius: 13px;
+}
+
+.bar-name {
+  display: block;
+  flex: 1;
+  margin-left: 10px;
+  color: #ffffff;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  line-height: 18px;
+}
+
+.bar-icon {
+  display: block;
+  margin-left: 18px;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+/* 组件内容为空时 Markdown 会补一个空段落，别让它占位 */
+.paragraph {
+  display: none;
+}
