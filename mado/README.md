@@ -2,11 +2,14 @@
 
 `mado/` 每个直接一级非隐藏目录都是一个 demo，目录名可含中文和空格。添加 `page.md`、`style.css`，按需添加图片、指南等相对引用资源。`page.md` Front Matter 的单行 `label` 优先作为显示名，其次 `title`，最后使用真实目录名。
 
-小程序从以下 Pages 目录读取 `demos.json` 和资源：
+资源有两个可访问入口，内容同源：
 
 ```text
-https://manymore13.github.io/img/mado/
+GitHub Pages（扫码页、给人看）  https://manymore13.github.io/img/mado/
+Gitee raw（小程序取数）        https://gitee.com/manymore13/img/raw/main/mado/
 ```
+
+小程序侧默认读 Gitee raw：`gitee.com` 是备案域名，能进服务器域名白名单；GitHub Pages 的 `github.io` 个人无法备案，体验版必被拦。注意 Gitee raw 会 302 跳到 `raw.giteeusercontent.com`（签名地址），小程序跟随跳转时**跳转后的域名也要在白名单**，所以后台要同时加 `https://gitee.com` 与 `https://raw.giteeusercontent.com`（`request` 与 `downloadFile` 各一组）。`v` 版本参数会在跳转里被丢掉，实际靠 Gitee 自己的 60 秒缓存，内容更新最多滞后一分钟。
 
 ## 加一个 demo：只准备文件，其余自动
 
