@@ -170,6 +170,11 @@ footer ol { margin: 0; padding-left: 22px; }
  */
 export function renderScanPage(catalog, config, rows) {
   const ready = catalog.demos.filter((demo) => demo.ready).length;
+  // 文件链接给绝对地址：这页可能被本地预览、被 fetch 下来单独打开，
+  // 相对路径一旦离开部署目录就指错地方（预览面板会把 HTML 扁平化）。
+  const absolute = (demo, name) => (config.site
+    ? `${config.site}${encoded(demo.dir)}/${name}`
+    : `./${encoded(demo.dir)}/${name}`);
   const cards = rows.map(({ demo, code, missing }) => {
     const base = `./${encoded(demo.dir)}/`;
     const figure = demo.ready && code
@@ -177,8 +182,8 @@ export function renderScanPage(catalog, config, rows) {
       : `<div class="placeholder">${demo.ready
         ? '待生成小程序码<br>配置凭据后自动补齐'
         : `素材未就绪<br>缺 ${missing.map(escapeHtml).join('、')}`}</div>`;
-    const links = [`<a href="${base}page.md">page.md</a>`];
-    if (demo.ready) links.push(`<a href="${base}style.css">style.css</a>`);
+    const links = [`<a href="${absolute(demo, 'page.md')}">page.md</a>`];
+    if (demo.ready) links.push(`<a href="${absolute(demo, 'style.css')}">style.css</a>`);
     return [
       '<article class="card">',
       figure,

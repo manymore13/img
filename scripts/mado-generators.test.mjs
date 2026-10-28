@@ -332,3 +332,21 @@ test('force 会忽略元数据匹配重新申领，且仍校验图片后落盘',
   assert.deepEqual(forced.errors, []);
   assert.deepEqual(forced.pending, []);
 });
+
+test('配了 site 时文件链接给绝对地址，本地预览也不会指错地方', async (t) => {
+  const root = await fixture(t);
+  const config = JSON.parse(await readFile(path.join(root, 'qrcode.config.json'), 'utf8'));
+  await writeFile(path.join(root, 'qrcode.config.json'),
+    JSON.stringify({ ...config, site: 'https://example.github.io/img/mado/' }));
+  await generateQrcodes({ root, env: { MADO_WECHAT_ACCESS_TOKEN: '测试token' }, fetchImpl: imageResponse });
+  const page = await readFile(path.join(root, 'index.html'), 'utf8');
+  // 绝对地址：预览面板、单独下载的 HTML 都能点开原文。
+  assert.ok(page.includes('href="https://example.github.io/img/mado/%E4%B8%AD%E6%96%87%20%E7%A9%BA%E6%A0%BC/page.md"'));
+  assert.ok(page.includes('href="https://example.github.io/img/mado/%E4%B8%AD%E6%96%87%20%E7%A9%BA%E6%A0%BC/style.css"'));
+  assert.doesNotMatch(page, /href="\.\//);
+  // 没有 site 时退回相对地址，保持单目录可移植。
+  await writeFile(path.join(root, 'qrcode.config.json'), JSON.stringify(config));
+  await generateQrcodes({ root, env: { MADO_WECHAT_ACCESS_TOKEN: '测试token' }, fetchImpl: noNetwork });
+  const relative = await readFile(path.join(root, 'index.html'), 'utf8');
+  assert.ok(relative.includes('href="./%E4%B8%AD%E6%96%87%20%E7%A9%BA%E6%A0%BC/page.md"'));
+});

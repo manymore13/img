@@ -29,7 +29,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 22px 14px;
+  /* 首行要避开右上角胶囊：宿主下发 --capsule-gap，Web 上没有这个值。 */
+  padding: calc(18px + var(--capsule-gap, 0px)) 22px 14px;
   border-bottom: 1px solid var(--ink);
 }
 
