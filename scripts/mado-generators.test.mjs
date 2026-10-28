@@ -316,3 +316,19 @@ test('token 失效类生码错误不逐个重试', async (t) => {
   assert.doesNotMatch(JSON.stringify(result), /测试token/);
   assert.equal(result.generatedFiles.length, 0);
 });
+
+test('force 会忽略元数据匹配重新申领，且仍校验图片后落盘', async (t) => {
+  const root = await fixture(t);
+  const first = await generateQrcodes({ root, env: { MADO_WECHAT_ACCESS_TOKEN: '测试token' }, fetchImpl: imageResponse });
+  assert.equal(first.generatedFiles.length, 2);
+  // 不 force：命中元数据就复用，不发请求。
+  const reused = await generateQrcodes({ root, env: { MADO_WECHAT_ACCESS_TOKEN: '测试token' }, fetchImpl: noNetwork });
+  assert.deepEqual(reused.generatedFiles, []);
+  // force：微信侧的码可能已失效，元数据匹配不代表还能扫，必须重领。
+  const forced = await generateQrcodes({ root, env: { MADO_WECHAT_ACCESS_TOKEN: '测试token' }, fetchImpl: imageResponse, force: true });
+  assert.equal(forced.generatedFiles.length, 2);
+  assert.equal(forced.envVersion, 'develop');
+  assert.equal(forced.force, true);
+  assert.deepEqual(forced.errors, []);
+  assert.deepEqual(forced.pending, []);
+});

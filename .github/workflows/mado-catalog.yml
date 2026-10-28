@@ -4,6 +4,12 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    # 微信侧的码可能已失效（尤其 develop 版随会话过期），手工触发时可选强制重算。
+    inputs:
+      force_codes:
+        description: 强制重新申领全部小程序码（忽略已有码的元数据匹配）
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -37,11 +43,13 @@ jobs:
           MADO_WECHAT_ENV_VERSION: ${{ vars.MADO_WECHAT_ENV_VERSION }}
           MADO_WECHAT_SECRET: ${{ secrets.MADO_WECHAT_SECRET }}
           MADO_WECHAT_ACCESS_TOKEN: ${{ secrets.MADO_WECHAT_ACCESS_TOKEN }}
+          MADO_FORCE_CODES: ${{ inputs.force_codes }}
         run: |
           node --input-type=module <<'NODE'
           import { writeFile } from 'node:fs/promises';
           import { generateQrcodes } from './scripts/generate-mado-qrcodes.mjs';
-          const result = await generateQrcodes({ env: process.env });
+          const force = process.env.MADO_FORCE_CODES === 'true';
+          const result = await generateQrcodes({ env: process.env, force });
           const files = ['mado/demos.json', 'mado/index.html', 'README.md', 'mado/README.md', ...result.generatedFiles];
           await writeFile(`${process.env.RUNNER_TEMP}/mado-generated-paths`, files.join('\0') + '\0');
           await writeFile(`${process.env.RUNNER_TEMP}/mado-result.json`, JSON.stringify(result));
@@ -84,6 +92,7 @@ jobs:
           if (process.env.PAGE_URL) lines.push(`扫码目录：${process.env.PAGE_URL}mado/`, '');
           try {
             const result = JSON.parse(await readFile(`${process.env.RUNNER_TEMP}/mado-result.json`, 'utf8'));
+            lines.push(`- 码绑定版本：\`${result.envVersion}\`${result.force ? '（强制重算）' : ''}`);
             lines.push(`- 新生成小程序码：${result.generatedFiles.length / 2} 个`);
             lines.push(`- 待生成：${result.pending.join('、') || '无'}`);
             lines.push(`- 凭据：${result.credentials ? '已配置' : '未配置（在 Actions Secrets 加 MADO_WECHAT_SECRET 后自动补齐）'}`);

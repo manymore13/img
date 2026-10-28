@@ -42,9 +42,25 @@ https://manymore13.github.io/img/mado/
 
 ## 官方小程序码与一次性配置
 
-公开配置位于 `qrcode.config.json`，默认 appid 为 `wxf872813f65e641bb`，页面为 `pages/index/index`，版本为 `develop`，宽度为 430。scene 固定为 `d + sha256(UTF8目录名).slice(0, 20)`；改显示名或素材不会改变 scene，改目录名会改变。小程序在页面 `onLoad(query)` 中对 `query.scene` 执行一次 `decodeURIComponent`，用 `catalog.demos.find(demo => demo.scene === scene && demo.ready)` 查找 demo，再按清单加载资源；需由宿主实现该查询逻辑，本仓库不修改宿主。
+公开配置位于 `qrcode.config.json`，默认 appid 为 `wxf872813f65e641bb`，页面为 `pages/index/index`，版本为 `trial`（体验版），宽度为 430。scene 固定为 `d + sha256(UTF8目录名).slice(0, 20)`；改显示名或素材不会改变 scene，改目录名会改变。小程序在页面 `onLoad(query)` 中对 `query.scene` 执行一次 `decodeURIComponent`，用 `catalog.demos.find(demo => demo.scene === scene && demo.ready)` 查找 demo，再按清单加载资源；需由宿主实现该查询逻辑，本仓库不修改宿主。
 
-`node scripts/generate-mado-qrcodes.mjs` 从环境读取 `MADO_WECHAT_APPID`（可选覆盖公开配置）、`MADO_WECHAT_SECRET`，或已有的 `MADO_WECHAT_ACCESS_TOKEN`（不读取通用 `ACCESS_TOKEN`，避免误用其他服务凭据）。无凭据时不请求网络、不生成占位图片，只更新清单和带自动标记的两份 README。`--offline` 强制忽略所有环境凭据。仅 ready demo 可生成；参数及图片 hash、格式、尺寸与元数据全部匹配才复用旧码。微信 JSON 错误、MIME／签名不符、超过 5 MiB 或 1280 像素上限均拒绝，不以错误响应覆盖旧码。按真实格式保留官方原始字节：PNG 保存为 `qrcode.png`，JPEG 保存为 `qrcode.jpg`；`qrcode.json` 记录 `filename`、真实 MIME、尺寸及 hash。匹配时按 MIME 校验文件名（缺少 `filename` 时由 MIME 推导），两份 README 使用实际图片路径，旧格式文件不会自动删除；误将 JPEG 保存为 `.png` 的旧码不会复用，无凭据时保留旧文件并显示待授权生成。`generateQrcodes()` 返回本次成功生成的图片及元数据路径 `generatedFiles`，并通过 `changedPaths` 明确返回本次内容实际变化的图片、元数据、清单、README 与扫码页路径；重复运行无变化时返回空数组。
+### 码的有效期：为什么用体验版
+
+三种 `env_version` 的差别不只是「打开哪个版本」，还决定了码能活多久：
+
+| env_version | 扫码打开 | 有效期 | 扫码者限制 |
+| --- | --- | --- | --- |
+| `develop` | 开发版 | **绑当次开发版会话，约 24–48 小时失效**，过期提示「码已过期」，重新上传后需重新申领 | 开发者／体验者 |
+| `trial` | 体验版 | 长期有效，不随会话过期 | 体验成员 |
+| `release` | 线上版 | 永久 | 无（需已通过审核发布） |
+
+所以默认用 `trial`：上传一次、在后台「选为体验版」、把自己的微信号加进体验成员，之后加 demo 只管 push，扫码一直有效。
+
+**码失效在微信侧，元数据匹配看不出来**——文件名、hash、参数全都对得上，码却已经过期。需要重领时用 `--force`（本地 `node scripts/generate-mado-qrcodes.mjs --force`），或在 Actions 里手动运行工作流并勾选 `force_codes`。普通 push 不会强制重算，避免每次改动都白刷 7 次接口。
+
+体验版一次性设置：开发者工具「上传」→ 后台 管理 → 版本管理 → 开发版本「选为体验版」→ 成员管理添加体验成员。未上线也能设体验版；`develop` 的码只适合临时看一眼，不适合长期挂着扫码。
+
+`node scripts/generate-mado-qrcodes.mjs` 从环境读取 `MADO_WECHAT_APPID`（可选覆盖公开配置）、`MADO_WECHAT_SECRET`，或已有的 `MADO_WECHAT_ACCESS_TOKEN`（不读取通用 `ACCESS_TOKEN`，避免误用其他服务凭据）。无凭据时不请求网络、不生成占位图片，只更新清单和带自动标记的两份 README。`--offline` 强制忽略所有环境凭据。仅 ready demo 可生成；参数及图片 hash、格式、尺寸与元数据全部匹配才复用旧码。微信 JSON 错误、MIME／签名不符、超过 5 MiB 或 1280 像素上限均拒绝，不以错误响应覆盖旧码。按真实格式保留官方原始字节：PNG 保存为 `qrcode.png`，JPEG 保存为 `qrcode.jpg`；`qrcode.json` 记录 `filename`、真实 MIME、尺寸及 hash。匹配时按 MIME 校验文件名（缺少 `filename` 时由 MIME 推导），两份 README 使用实际图片路径，旧格式文件不会自动删除；误将 JPEG 保存为 `.png` 的旧码不会复用，无凭据时保留旧文件并显示待授权生成。`generateQrcodes()` 返回本次成功生成的图片及元数据路径 `generatedFiles`，并通过 `changedPaths` 明确返回本次内容实际变化的图片、元数据、清单、README 与扫码页路径，同时带回 `envVersion` 与 `force` 供工作流摘要使用；重复运行无变化时返回空数组。
 
 同一个脚本还会写 `mado/index.html`（Pages 上的扫码目录页）：每个 ready demo 一张码、显示名、目录、scene 与 `page.md`／`style.css` 入口；还没有码的显示「待生成」，缺 `page.md` 或 `style.css` 的显示缺哪个文件。页面内容只由清单推导，不含时间戳，重复生成不产生噪声。工作流把生码失败降级为警告：内容照常提交和部署，码等下次成功后自动补齐，不会因为一个码卡住整站发布；发布结束会在 Actions 摘要里列出新生成数量、待生成列表与失败原因。
 

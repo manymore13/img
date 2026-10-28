@@ -244,7 +244,7 @@ export async function updateReadmes(root, catalog, config, statuses) {
   return changedPaths;
 }
 
-export async function generateQrcodes({ root = defaultRoot, env = {}, fetchImpl = globalThis.fetch } = {}) {
+export async function generateQrcodes({ root = defaultRoot, env = {}, fetchImpl = globalThis.fetch, force = false } = {}) {
   const config = JSON.parse(await readFile(path.join(root, 'qrcode.config.json'), 'utf8'));
   config.appid = env.MADO_WECHAT_APPID || config.appid;
   config.env_version = env.MADO_WECHAT_ENV_VERSION || config.env_version;
@@ -264,7 +264,8 @@ export async function generateQrcodes({ root = defaultRoot, env = {}, fetchImpl 
   for (const demo of catalog.demos.filter((item) => item.ready)) {
     const directory = path.join(root, demo.dir);
     const expected = qrMetadata(config, demo);
-    if (await matchingCode(directory, expected)) continue;
+    // force：微信侧的码可能已失效（develop 版随会话过期），光看元数据匹配不出来。
+    if (!force && await matchingCode(directory, expected)) continue;
     pending.push(demo.dir);
     if (!credentials || tokenFailed) continue;
     try {
@@ -326,14 +327,19 @@ export async function generateQrcodes({ root = defaultRoot, env = {}, fetchImpl 
   }
   const scanPath = path.join(root, 'index.html');
   if (await writeChanged(scanPath, renderScanPage(catalog, config, rows))) changedPaths.push(scanPath);
-  return { generatedFiles, changedPaths, pending, errors, credentials };
+  return { generatedFiles, changedPaths, pending, errors, credentials, envVersion: config.env_version, force };
 }
 
 async function main() {
   const args = process.argv.slice(2);
-  if (args.some((arg) => arg !== '--offline')) throw new Error('用法：node scripts/generate-mado-qrcodes.mjs [--offline]');
-  const result = await generateQrcodes({ env: args.includes('--offline') ? {} : process.env });
+  const known = new Set(['--offline', '--force']);
+  if (args.some((arg) => !known.has(arg))) {
+    throw new Error('用法：node scripts/generate-mado-qrcodes.mjs [--offline] [--force]');
+  }
+  const force = args.includes('--force');
+  const result = await generateQrcodes({ env: args.includes('--offline') ? {} : process.env, force });
   console.log(`生成 ${result.generatedFiles.length / 2} 个官方码；待生成：${result.pending.join('、') || '无'}`);
+  if (force) console.log('已强制重算：旧码即使元数据匹配也会重新申领。');
   if (!result.credentials) console.log('未配置凭据，README 已标记待授权生成。');
   for (const error of result.errors) console.error(`${error.dir}：${error.message}`);
   if (result.errors.length) process.exitCode = 1;
