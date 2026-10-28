@@ -99,7 +99,7 @@ git push origin main
 <!-- MADO-DEMOS:START -->
 ## Mado demo 扫码目录
 
-当前目标：`wxf872813f65e641bb` · `develop` · `pages/index/index`。开发版／体验版需要对应微信成员权限。
+当前目标：`wxf872813f65e641bb` · `trial` · `pages/index/index`。开发版／体验版需要对应微信成员权限。
 
 扫码页（每次发布自动重写）：<https://manymore13.github.io/img/mado/>
 

@@ -3,7 +3,7 @@
   "appid": "wxf872813f65e641bb",
   "page": "pages/index/index",
   "scene": "d13659f896f78df541cd1",
-  "env_version": "develop",
+  "env_version": "trial",
   "check_path": false,
   "width": 430,
   "auto_color": false,
@@ -12,5 +12,5 @@
   "image_width": 430,
   "image_height": 430,
   "filename": "qrcode.jpg",
-  "sha256": "a38d6747336e4a90cdd2a29b4cf14df7c62cc2aebb7ed7275533916b36b93694"
+  "sha256": "183b86b2509a07c70d421ffd85b713f232c6c023b198a3d06ecee101529596e9"
 }
