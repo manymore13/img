@@ -333,20 +333,26 @@ test('force 会忽略元数据匹配重新申领，且仍校验图片后落盘',
   assert.deepEqual(forced.pending, []);
 });
 
-test('配了 site 时文件链接给绝对地址，本地预览也不会指错地方', async (t) => {
+test('配了 site 时同时给相对与线上地址，按打开位置二选一', async (t) => {
   const root = await fixture(t);
   const config = JSON.parse(await readFile(path.join(root, 'qrcode.config.json'), 'utf8'));
   await writeFile(path.join(root, 'qrcode.config.json'),
     JSON.stringify({ ...config, site: 'https://example.github.io/img/mado/' }));
   await generateQrcodes({ root, env: { MADO_WECHAT_ACCESS_TOKEN: '测试token' }, fetchImpl: imageResponse });
   const page = await readFile(path.join(root, 'index.html'), 'utf8');
-  // 绝对地址：预览面板、单独下载的 HTML 都能点开原文。
-  assert.ok(page.includes('href="https://example.github.io/img/mado/%E4%B8%AD%E6%96%87%20%E7%A9%BA%E6%A0%BC/page.md"'));
-  assert.ok(page.includes('href="https://example.github.io/img/mado/%E4%B8%AD%E6%96%87%20%E7%A9%BA%E6%A0%BC/style.css"'));
-  assert.doesNotMatch(page, /href="\.\//);
-  // 没有 site 时退回相对地址，保持单目录可移植。
+  const dir = '%E4%B8%AD%E6%96%87%20%E7%A9%BA%E6%A0%BC';
+  // 本地打开：相对地址，读同目录文件。
+  assert.ok(page.includes(`href="./${dir}/page.md"`));
+  assert.ok(page.includes(`src="./${dir}/qrcode.png"`));
+  // 线上打开：脚本把地址换成 site 绝对地址，图片同样跟着换。
+  assert.ok(page.includes(`data-abs="https://example.github.io/img/mado/${dir}/page.md"`));
+  assert.ok(page.includes(`data-abs="https://example.github.io/img/mado/${dir}/qrcode.png"`));
+  assert.match(page, /location\.protocol === 'file:'/);
+  assert.match(page, /localhost\|127/);
+  // 没有 site 时不写 data-abs，页面保持单目录可移植。
   await writeFile(path.join(root, 'qrcode.config.json'), JSON.stringify(config));
   await generateQrcodes({ root, env: { MADO_WECHAT_ACCESS_TOKEN: '测试token' }, fetchImpl: noNetwork });
   const relative = await readFile(path.join(root, 'index.html'), 'utf8');
-  assert.ok(relative.includes('href="./%E4%B8%AD%E6%96%87%20%E7%A9%BA%E6%A0%BC/page.md"'));
+  assert.doesNotMatch(relative, /data-abs=/);
+  assert.ok(relative.includes(`href="./${dir}/page.md"`));
 });

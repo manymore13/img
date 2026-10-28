@@ -170,20 +170,24 @@ footer ol { margin: 0; padding-left: 22px; }
  */
 export function renderScanPage(catalog, config, rows) {
   const ready = catalog.demos.filter((demo) => demo.ready).length;
-  // 文件链接给绝对地址：这页可能被本地预览、被 fetch 下来单独打开，
-  // 相对路径一旦离开部署目录就指错地方（预览面板会把 HTML 扁平化）。
-  const absolute = (demo, name) => (config.site
-    ? `${config.site}${encoded(demo.dir)}/${name}`
-    : `./${encoded(demo.dir)}/${name}`);
+  // 同时给相对地址和线上绝对地址：本地打开（file:// 或 localhost）读同目录的文件，
+  // 线上打开才走 site；不写死一种，免得本地预览点开就跑到外网或 404。
+  const local = (demo, name) => `./${encoded(demo.dir)}/${name}`;
+  const remote = (demo, name) => (config.site ? `${config.site}${encoded(demo.dir)}/${name}` : '');
+  const fileLink = (demo, name, label) => {
+    const abs = remote(demo, name);
+    return `<a href="${local(demo, name)}"${abs ? ` data-abs="${abs}"` : ''}>${label}</a>`;
+  };
   const cards = rows.map(({ demo, code, missing }) => {
-    const base = `./${encoded(demo.dir)}/`;
+    const base = local(demo, '');
+    const remoteCode = remote(demo, code || '');
     const figure = demo.ready && code
-      ? `<img class="qr" src="${base}${code}" alt="${escapeHtml(demo.label)} 的小程序码" loading="lazy">`
+      ? `<img class="qr" src="${base}${code}"${remoteCode ? ` data-abs="${remoteCode}"` : ''} alt="${escapeHtml(demo.label)} 的小程序码" loading="lazy">`
       : `<div class="placeholder">${demo.ready
         ? '待生成小程序码<br>配置凭据后自动补齐'
         : `素材未就绪<br>缺 ${missing.map(escapeHtml).join('、')}`}</div>`;
-    const links = [`<a href="${absolute(demo, 'page.md')}">page.md</a>`];
-    if (demo.ready) links.push(`<a href="${absolute(demo, 'style.css')}">style.css</a>`);
+    const links = [fileLink(demo, 'page.md', 'page.md')];
+    if (demo.ready) links.push(fileLink(demo, 'style.css', 'style.css'));
     return [
       '<article class="card">',
       figure,
@@ -221,6 +225,19 @@ export function renderScanPage(catalog, config, rows) {
     '</ol>',
     '<p>生码需要仓库 Secrets 里有 <code>MADO_WECHAT_SECRET</code>（或临时用 <code>MADO_WECHAT_ACCESS_TOKEN</code>）；缺凭据时本页显示「待生成」，内容照常发布，补上凭据后自动补齐。开发版／体验版的码要求扫码者是该小程序成员。</p>',
     '</footer>',
+    // 本地打开读同目录文件，线上打开换成 site；file:// 与 localhost 都算本地。
+    '<script>',
+    '(function () {',
+    "  if (!document.querySelector('[data-abs]')) return;",
+    "  var local = location.protocol === 'file:' || /^(localhost|127\\.0\\.0\\.1|\\[::1\\])$/.test(location.hostname);",
+    '  if (local) return;',
+    "  document.querySelectorAll('[data-abs]').forEach(function (el) {",
+    "    var abs = el.getAttribute('data-abs');",
+    "    if (!abs) return;",
+    "    if (el.tagName === 'IMG') el.src = abs; else el.href = abs;",
+    '  });',
+    '})();',
+    '</script>',
     '</body>',
     '</html>',
     '',
