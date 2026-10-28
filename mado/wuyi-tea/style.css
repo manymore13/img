@@ -1,0 +1,430 @@
+/* 武夷山金骏眉 · 商品详情
+   设计基准 375（引擎按 width/375 换算，小程序侧 1px = 2rpx）。
+   背景固定层用 image 承载：CSS 子集不支持 url() 背景图，且小程序 image 固定 aspectFit，
+   所以底图/横幅图都按目标容器比例预裁，避免出现留白。 */
+
+.page {
+  display: block;
+  background-color: #0f2418;
+}
+
+/* 固定底图 + 压暗层：滚动时不动，卡片浮在其上 */
+.bg {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 375px;
+  height: 875px;
+  z-index: 0;
+}
+
+.body {
+  position: relative;
+  z-index: 2;
+}
+
+/* ---------- 标题 / 价格 ---------- */
+
+.hero {
+  display: block;
+  padding: 112px 20px 0;
+  text-align: center;
+}
+
+.hero-title {
+  display: block;
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  line-height: 40px;
+}
+
+.hero-sub {
+  display: block;
+  margin-top: 14px;
+  color: rgba(255, 255, 255, 0.93);
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  line-height: 29px;
+}
+
+.hero-price {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.price-label {
+  color: #ffffff;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+.price-num {
+  margin-left: 6px;
+  color: #ffffff;
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.price-unit {
+  margin-left: 6px;
+  color: #ffffff;
+  font-size: 18px;
+}
+
+/* ---------- 参数表 ---------- */
+
+.spec {
+  margin: 22px 18px 0;
+  padding: 2px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.07);
+}
+
+.spec-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 13px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.spec-row-end {
+  border-bottom-width: 0;
+}
+
+.spec-key {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 18px;
+  line-height: 26px;
+}
+
+.spec-val {
+  flex: 1;
+  margin-left: 20px;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 26px;
+  text-align: right;
+}
+
+/* ---------- 视频卡 ---------- */
+
+.video {
+  position: relative;
+  display: block;
+  margin: 16px 18px 0;
+  width: 339px;
+  height: 194px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.video-poster {
+  display: block;
+  width: 339px;
+  height: 194px;
+}
+
+/* 透明命中层：整张封面可点，交给宿主弹层播放 */
+.video-hit {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  width: 339px;
+  height: 194px;
+  border-radius: 10px;
+  background-color: transparent;
+  color: transparent;
+  font-size: 1px;
+  line-height: 1px;
+  opacity: 0;
+}
+
+/* ---------- 章节横幅 ---------- */
+
+.band {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+}
+
+.band-a {
+  height: 82px;
+}
+
+.band-b {
+  height: 151px;
+}
+
+.band-c {
+  height: 196px;
+}
+
+.band-img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 375px;
+  height: 100%;
+  z-index: 0;
+}
+
+.band-title {
+  position: relative;
+  z-index: 2;
+  display: block;
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  line-height: 36px;
+}
+
+.band-sub {
+  position: relative;
+  z-index: 2;
+  display: block;
+  margin-top: 6px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+  letter-spacing: 2px;
+  line-height: 28px;
+}
+
+/* ---------- 全幅照片 ---------- */
+
+.photo {
+  display: block;
+  width: 375px;
+}
+
+.photo-garden {
+  height: 360px;
+}
+
+.photo-leaves {
+  height: 446px;
+}
+
+/* ---------- 三大标准 ---------- */
+
+.craft {
+  display: grid;
+  grid-template-columns: repeat(3, 107px);
+  justify-content: space-between;
+  padding: 0 21px;
+}
+
+.craft-item {
+  display: block;
+}
+
+.craft-img {
+  display: block;
+  width: 107px;
+  height: 149px;
+}
+
+.craft-cap {
+  display: block;
+  margin-top: 12px;
+  color: #ffffff;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 26px;
+  text-align: center;
+}
+
+/* ---------- 客户服务 ---------- */
+
+.contact {
+  margin: 47px 18px 163px;
+  padding: 22px 17px 19px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.10);
+}
+
+.contact-title {
+  display: block;
+  color: #ffffff;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 28px;
+}
+
+.contact-desc {
+  display: block;
+  margin-top: 8px;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.contact-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.contact-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* 电话：字符图标比绘图更稳，中文字体都有 */
+.phone-mark {
+  display: block;
+  width: 18px;
+  color: #ffffff;
+  font-size: 15px;
+  line-height: 20px;
+  text-align: center;
+}
+
+/* 组件内容为空时 Markdown 会补一个空段落：让它不参与布局，也不占校验节点样式。 */
+.paragraph {
+  display: none;
+}
+
+/* 定位针：圆角 + 45° 旋转做出水滴形 */
+.pin {
+  position: relative;
+  display: block;
+  width: 10px;
+  height: 10px;
+  margin-left: 4px;
+  border-radius: 6px 6px 6px 1px;
+  background-color: #ffffff;
+  transform: rotate(-45deg);
+}
+
+.pin-dot {
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 4px;
+  height: 4px;
+  border-radius: 2px;
+  background-color: rgba(28, 48, 34, 1);
+}
+
+.contact-text {
+  margin-left: 12px;
+  color: #ffffff;
+  font-size: 17px;
+  line-height: 24px;
+}
+
+/* 行内动作：文字用 text 显示，button 只做透明命中层，
+   避免微信 button 自带 ::after 边框（页面 CSS 无法去掉伪元素）。 */
+.act {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 2px 0;
+}
+
+.act-text {
+  display: block;
+  color: #ffffff;
+  font-size: 17px;
+  line-height: 24px;
+}
+
+.act-hit {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  background-color: transparent;
+  color: transparent;
+  font-size: 1px;
+  line-height: 1px;
+  opacity: 0;
+}
+
+/* ---------- 底部固定操作栏 ---------- */
+
+.bar {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 9;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 375px;
+  height: 92px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  background-color: rgba(13, 33, 22, 0.93);
+}
+
+.bar-item {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 125px;
+  height: 44px;
+}
+
+.bar-icon {
+  display: block;
+  color: rgba(255, 255, 255, 0.94);
+  font-size: 19px;
+  line-height: 22px;
+}
+
+.bar-label {
+  display: block;
+  margin-left: 8px;
+  color: rgba(255, 255, 255, 0.94);
+  font-size: 16px;
+  letter-spacing: 1px;
+  line-height: 22px;
+}
+
+.bar-hit {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  background-color: transparent;
+  color: transparent;
+  font-size: 1px;
+  line-height: 1px;
+  opacity: 0;
+}
+
