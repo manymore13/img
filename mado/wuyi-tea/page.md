@@ -83,7 +83,10 @@ stylesheet: ./style.css
       <text class="band-title">高山生态茶园</text>
       <text class="band-sub">核心原产地 绝对纯正</text>
     </view>
-    <image class="photo photo-garden" src="./images/garden.jpg" alt="武夷山高山生态茶园" />
+    <view class="photo-wrap">
+      <image class="photo photo-garden" src="./images/garden.jpg" alt="武夷山高山生态茶园" />
+      <button class="photo-hit" text=" " action="preview-image" src="./images/garden.jpg" />
+    </view>
 
     <view class="band band-b">
       <image class="band-img" src="./images/band2.jpg" alt="" />
@@ -91,7 +94,10 @@ stylesheet: ./style.css
       <text class="band-title">出好茶</text>
       <text class="band-sub">细心甄选 给您最好的体验</text>
     </view>
-    <image class="photo photo-leaves" src="./images/leaves.jpg" alt="甄选的茶鲜叶" />
+    <view class="photo-wrap">
+      <image class="photo photo-leaves" src="./images/leaves.jpg" alt="甄选的茶鲜叶" />
+      <button class="photo-hit" text=" " action="preview-image" src="./images/leaves.jpg" />
+    </view>
 
     <view class="band band-c">
       <image class="band-img" src="./images/band3.jpg" alt="" />
@@ -103,15 +109,24 @@ stylesheet: ./style.css
 
     <view class="craft">
       <view class="craft-item">
-        <image class="craft-img" src="./images/pick.jpg" alt="人工采摘" />
+        <view class="craft-shot">
+          <image class="craft-img" src="./images/pick.jpg" alt="人工采摘" />
+          <button class="craft-hit" text=" " action="preview-image" src="./images/pick.jpg" />
+        </view>
         <text class="craft-cap">人工采摘</text>
       </view>
       <view class="craft-item">
-        <image class="craft-img" src="./images/roast.jpg" alt="匠心炒制" />
+        <view class="craft-shot">
+          <image class="craft-img" src="./images/roast.jpg" alt="匠心炒制" />
+          <button class="craft-hit" text=" " action="preview-image" src="./images/roast.jpg" />
+        </view>
         <text class="craft-cap">匠心炒制</text>
       </view>
       <view class="craft-item">
-        <image class="craft-img" src="./images/store.jpg" alt="保鲜封存" />
+        <view class="craft-shot">
+          <image class="craft-img" src="./images/store.jpg" alt="保鲜封存" />
+          <button class="craft-hit" text=" " action="preview-image" src="./images/store.jpg" />
+        </view>
         <text class="craft-cap">保鲜封存</text>
       </view>
     </view>

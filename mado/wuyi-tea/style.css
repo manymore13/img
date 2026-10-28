@@ -1,21 +1,27 @@
 /* 武夷山金骏眉 · 商品详情
    设计基准 375（引擎按 width/375 换算，小程序侧 1px = 2rpx）。
-   背景固定层用 image 承载：CSS 子集不支持 url() 背景图，且小程序 image 固定 aspectFit，
-   所以底图/横幅图都按目标容器比例预裁，避免出现留白。 */
+   CSS 子集不支持 url() 背景图，照片一律用 image 承载；小程序 image 固定 aspectFit，
+   所以底图/横幅图都按目标容器比例预裁。
+   放在容器里的图片全部写死宽高、不用百分比：小程序 image 是原生组件，百分比高度会塌。 */
 
 .page {
+  position: relative;
   display: block;
-  background-color: #0f2418;
+  background: linear-gradient(180deg, #1d3a28 0%, #16301f 24%, #12291b 58%, #0e2115 100%);
 }
 
-/* 固定底图 + 压暗层：滚动时不动，卡片浮在其上 */
+/* 首屏底图跟着内容走，不用 fixed：fixed 的原生 image 在滚动时位置同步不稳定，
+   观感像背景一直在动；这里让它随页面滚出视口，下方交给渐变底色。 */
 .bg {
-  position: fixed;
+  position: absolute;
   left: 0;
   top: 0;
   width: 375px;
   height: 875px;
   z-index: 0;
+  /* 照片只提供一层质感，主色由 .page 的深绿渐变决定：
+     压到 0.62 后不会出现大片灰白高光，也不会和下方的纯色断层。 */
+  opacity: 0.62;
 }
 
 .body {
@@ -180,8 +186,19 @@
   left: 0;
   top: 0;
   width: 375px;
-  height: 100%;
   z-index: 0;
+}
+
+.band-a .band-img {
+  height: 82px;
+}
+
+.band-b .band-img {
+  height: 151px;
+}
+
+.band-c .band-img {
+  height: 196px;
 }
 
 .band-title {
@@ -208,9 +225,32 @@
 
 /* ---------- 全幅照片 ---------- */
 
+.photo-wrap {
+  position: relative;
+  display: block;
+  width: 375px;
+}
+
 .photo {
   display: block;
   width: 375px;
+}
+
+/* 透明命中层：点整张图调宿主的 preview-image */
+.photo-hit {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  background-color: transparent;
+  color: transparent;
+  font-size: 1px;
+  line-height: 1px;
+  opacity: 0;
 }
 
 .photo-garden {
@@ -234,10 +274,33 @@
   display: block;
 }
 
+.craft-shot {
+  position: relative;
+  display: block;
+  width: 107px;
+  height: 149px;
+}
+
 .craft-img {
   display: block;
   width: 107px;
   height: 149px;
+}
+
+.craft-hit {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  background-color: transparent;
+  color: transparent;
+  font-size: 1px;
+  line-height: 1px;
+  opacity: 0;
 }
 
 .craft-cap {
