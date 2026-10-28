@@ -51,29 +51,47 @@
 
 /* ---------- 三段页签 ---------- */
 
+/* 页签吸顶：往上滑时停在容器顶部，随时可以点回某一段。
+   底色取自主视觉的深红，压得够实才挡得住下面滑过的正文。 */
 .tabs {
+  position: sticky;
+  top: 0;
+  z-index: 5;
   display: flex;
   flex-direction: row;
   align-items: flex-end;
-  margin-top: 36px;
-  padding: 0 13px;
+  margin-top: 30px;
+  padding: 8px 13px 0;
+  background-color: #6d1f1c;
 }
 
+/* 页签是按钮（要接 action），把微信 button 的默认外观全部抹掉，
+   只留文字与下划线；::after 的 1px 描边在深红底上几乎看不见。 */
 .tab {
   flex: 1;
   display: block;
+  margin: 0;
+  padding: 0;
+  height: 30px;
+  border-radius: 0;
+  background-color: transparent;
   color: rgba(255, 255, 255, 0.95);
   font-size: 14px;
+  font-weight: 400;
   letter-spacing: 1px;
-  line-height: 20px;
+  line-height: 30px;
   text-align: center;
-  padding-bottom: 10px;
-  border-bottom: 2px solid transparent;
+  /* 按钮自带的边框要逐边清掉：浏览器里是 UA 边框，小程序里是 button::after，
+     只用 border-bottom 声明的话另外三边仍会画出来，页签会变成三个方框。 */
+  border-width: 0;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: transparent;
 }
 
 .tab-on {
   font-weight: 700;
-  border-bottom: 2px solid #ffffff;
+  border-bottom-color: #ffffff;
 }
 
 /* ---------- 区块标题 ---------- */
