@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "revision": "94674c71e483e18b1d738ab39a4c5e9732ef4a47c553ed02640b13dddc836db0",
+  "revision": "4545139c759fab6959b4d561903deb123b6efb8ff512f3f05c817d75437e4af8",
   "demos": [
     {
       "dir": "basic",
@@ -75,7 +75,7 @@
     "coffee-set/images/cover.png": "6f654093396b15d5ee04b392a15a99b25c4b25c9d08492f316509622a5b5940c",
     "coffee-set/images/kit.png": "b1bc05b7a2d590f1aa1de9c0d9b5a94d4cfe035deb3490fa2f23e87b1d44af0c",
     "coffee-set/page.md": "fa896287968573835e8b063802e9e52cb428db99460ef3e09f98e1f4bf53549e",
-    "coffee-set/style.css": "fcd1fb6fa880ce34158d9fd55582ea016cab75d98e898052a28eca6e0e80111a",
+    "coffee-set/style.css": "910e3438dcbef86cc5888c539bbd88cb2e376855ea370b39672ab355ee874f44",
     "donglin/guide.md": "ae56a09d1f477224c73c219df6ede35f8b443ee0820bbf7e0a533d43f23b3c09",
     "donglin/images/bailian-gate.jpg": "d75b2e60300eb36ac3408456c6f5aaeb6eb34024dccb25ddf7d90d75783f6887",
     "donglin/images/buddha-gold.jpg": "95d3971de654f36d3cb24e5f3ae5d79a923deee70659bd3db86007d0b4db1c75",
@@ -112,6 +112,6 @@
     "showcase/style.css": "4c0a0c61fb68bc700f2f9fee9c9bf3bbb4a17513d19ae616b795347ad6ac694d",
     "山外来信/images/mountain-sunrise.svg": "a348b3c40f6ee637597deb66e19300c7ae405a00c811b2b6f4b2d11277897fe1",
     "山外来信/page.md": "94e344790ca8f9684ec7697dfe13b7f1fcf0ab63032a5902255b65468f970ec6",
-    "山外来信/style.css": "6837d115c551a96aa55b524532ef8a9fc159ef0d7ea66e620675730802d654a2"
+    "山外来信/style.css": "ff098495718ba5a772339c91e997d2e6d3a8cd2ae4b7dd4d121e3934b6cbc077"
   }
 }

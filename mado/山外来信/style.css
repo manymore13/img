@@ -27,8 +27,8 @@
 .paragraph { margin: 0 0 18px; font-size: var(--body-size); line-height: 1.85; }
 .strong { font-weight: 700; color: var(--terracotta); }
 .heading { margin: 0; font-size: var(--heading-size); line-height: 1.4; font-weight: 600; letter-spacing: -0.03em; }
-/* 宿主给了胶囊高度（--capsule-gap）就让首行下移，背景仍由 .journal 铺满。 */
-.masthead { display: flex; align-items: center; justify-content: space-between; gap: var(--space-small); min-height: 62px; padding-top: var(--capsule-gap, 0px); border-bottom: 2px solid var(--ink); }
+/* 首行右侧有文字，留出右上角胶囊的高度；背景仍由 .journal 铺满。 */
+.masthead { display: flex; align-items: center; justify-content: space-between; gap: var(--space-small); min-height: 62px; padding-top: 18px; border-bottom: 2px solid var(--ink); }
 .publication { font-size: 16px; font-weight: 700; letter-spacing: 0.18em; }
 .issue { font-size: var(--small-size); letter-spacing: 0.08em; color: var(--muted); }
 .cover { padding-top: 25px; }
