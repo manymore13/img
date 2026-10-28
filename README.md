@@ -6,6 +6,8 @@
 
 当前目标：`wxf872813f65e641bb` · `develop` · `pages/index/index`。开发版／体验版需要对应微信成员权限。
 
+扫码页（每次发布自动重写）：<https://manymore13.github.io/img/mado/>
+
 | Demo | 目录 | scene | 小程序码 |
 | --- | --- | --- | --- |
 | [最小示例](mado/basic/) | basic | dfbb7b5bf4ca348eeeebf | 待授权生成 |

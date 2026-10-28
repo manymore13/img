@@ -109,21 +109,134 @@ const escapeCell = (text) => String(text).replace(/&/g, '&amp;').replace(/</g, '
   .replace(/>/g, '&gt;').replace(/\|/g, '&#124;').replace(/[\r\n]/g, ' ');
 const encoded = (dir) => encodeURIComponent(dir).replace(/[!'()*]/g, (c) => `%${c.charCodeAt(0).toString(16).toUpperCase()}`);
 
-export async function updateReadmes(root, catalog, config) {
+/** 每个 demo 的扫码状态：文件名表示可用，false 表示还没有码。 */
+async function demoStatuses(root, catalog, config) {
   const statuses = new Map();
+  for (const demo of catalog.demos) {
+    statuses.set(demo.dir, demo.ready
+      ? await matchingFilename(path.join(root, demo.dir), qrMetadata(config, demo))
+      : false);
+  }
+  return statuses;
+}
+
+/** 缺哪些文件，直接写在页面上，省得去微信里猜为什么打不开。 */
+async function missingFiles(root, demo) {
+  const missing = [];
+  for (const name of ['page.md', 'style.css']) {
+    try { await stat(path.join(root, demo.dir, name)); } catch { missing.push(name); }
+  }
+  return missing;
+}
+
+const escapeHtml = (text) => String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+const SCAN_PAGE_CSS = `:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f3eee2; color: #1f2b24;
+  font: 16px/1.7 -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; }
+header, main, footer { max-width: 1100px; margin: 0 auto; }
+header { padding: 40px 24px 0; }
+h1 { margin: 0 0 10px; font-size: 28px; letter-spacing: 0.02em; }
+.lede { margin: 0; color: #44524a; }
+.meta { margin: 14px 0 0; font-size: 13px; color: #6d786e; }
+code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.92em;
+  background: rgba(31, 43, 36, 0.07); padding: 1px 5px; border-radius: 4px;
+  overflow-wrap: anywhere; }
+main { padding: 24px; display: grid; gap: 18px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.card { display: flex; flex-direction: column; gap: 10px; padding: 18px;
+  background: #fbf8f0; border: 1px solid rgba(31, 43, 36, 0.12); border-radius: 14px; }
+.card h2 { margin: 0; font-size: 17px; line-height: 1.4; }
+.qr { width: 100%; max-width: 220px; aspect-ratio: 1 / 1; background: #fff;
+  border-radius: 10px; image-rendering: pixelated; }
+.placeholder { width: 100%; max-width: 220px; aspect-ratio: 1 / 1; display: grid;
+  place-items: center; padding: 12px; text-align: center; font-size: 13px; color: #6d786e;
+  border: 1px dashed rgba(31, 43, 36, 0.3); border-radius: 10px; }
+.scene { font-size: 12px; color: #6d786e; word-break: break-all; }
+.links { display: flex; flex-wrap: wrap; gap: 10px; font-size: 13px; }
+.links a { color: #a8452c; text-decoration: none; border-bottom: 1px solid rgba(168, 69, 44, 0.3); }
+.links a + a { color: #6d786e; border-bottom-color: rgba(109, 120, 110, 0.4); }
+.warn { color: #a8452c; }
+footer { padding: 0 24px 56px; font-size: 13px; color: #44524a; }
+footer h2 { margin: 24px 0 8px; font-size: 15px; }
+footer ol { margin: 0; padding-left: 22px; }
+@media print { body { background: #fff; } .card { break-inside: avoid; } }`;
+
+/**
+ * 扫码目录页：打开一个网址就能看到全部 demo 的小程序码。
+ * 内容完全由清单推导，不含时间戳，重复生成不产生噪声。
+ */
+export function renderScanPage(catalog, config, rows) {
+  const ready = catalog.demos.filter((demo) => demo.ready).length;
+  const cards = rows.map(({ demo, code, missing }) => {
+    const base = `./${encoded(demo.dir)}/`;
+    const figure = demo.ready && code
+      ? `<img class="qr" src="${base}${code}" alt="${escapeHtml(demo.label)} 的小程序码" loading="lazy">`
+      : `<div class="placeholder">${demo.ready
+        ? '待生成小程序码<br>配置凭据后自动补齐'
+        : `素材未就绪<br>缺 ${missing.map(escapeHtml).join('、')}`}</div>`;
+    const links = [`<a href="${base}page.md">page.md</a>`];
+    if (demo.ready) links.push(`<a href="${base}style.css">style.css</a>`);
+    return [
+      '<article class="card">',
+      figure,
+      `<h2>${escapeHtml(demo.label)}</h2>`,
+      `<p class="scene">${escapeHtml(demo.dir)} · scene ${demo.scene}</p>`,
+      `<div class="links">${links.join('')}</div>`,
+      '</article>',
+    ].join('\n');
+  });
+  return [
+    '<!doctype html>',
+    '<html lang="zh-CN">',
+    '<head>',
+    '<meta charset="utf-8">',
+    '<meta name="viewport" content="width=device-width, initial-scale=1">',
+    '<link rel="icon" href="data:,">',
+    '<title>Mado 扫码目录</title>',
+    `<style>${SCAN_PAGE_CSS}</style>`,
+    '</head>',
+    '<body>',
+    '<header>',
+    '<h1>Mado 扫码目录</h1>',
+    '<p class="lede">推送到 <code>main</code> 之后自动重算文件版本号，并给每个 demo 补生成官方小程序码。用微信扫卡片里的码，直接进对应页面。</p>',
+    `<p class="meta">目标 <code>${escapeHtml(config.appid)}</code> · <code>${escapeHtml(config.env_version)}</code> · <code>${escapeHtml(config.page)}</code> · 共 ${catalog.demos.length} 个 demo（${ready} 个可加载） · 清单 revision <code title="${catalog.revision}">${catalog.revision.slice(0, 12)}</code></p>`,
+    '</header>',
+    '<main>',
+    ...cards,
+    '</main>',
+    '<footer>',
+    '<h2>加一个 demo</h2>',
+    '<ol>',
+    '<li>新建 <code>mado/&lt;目录名&gt;/</code>，放入 <code>page.md</code> 与 <code>style.css</code>，图片指南等相对引用放在同目录。</li>',
+    '<li>提交并推送到 <code>main</code>。清单 revision、每个文件的 SHA-256 版本号、小程序码都由 Actions 生成并回填。</li>',
+    '<li>等 Pages 部署完成，回到这一页扫码即可。改了内容只会更新版本号，<code>scene</code> 与码不变，不用重新扫码。</li>',
+    '</ol>',
+    '<p>生码需要仓库 Secrets 里有 <code>MADO_WECHAT_SECRET</code>（或临时用 <code>MADO_WECHAT_ACCESS_TOKEN</code>）；缺凭据时本页显示「待生成」，内容照常发布，补上凭据后自动补齐。开发版／体验版的码要求扫码者是该小程序成员。</p>',
+    '</footer>',
+    '</body>',
+    '</html>',
+    '',
+  ].join('\n');
+}
+
+export async function updateReadmes(root, catalog, config, statuses) {
   const changedPaths = [];
-  for (const demo of catalog.demos) statuses.set(demo.dir, demo.ready && await matchingFilename(path.join(root, demo.dir), qrMetadata(config, demo)));
+  const state = statuses || await demoStatuses(root, catalog, config);
   for (const [filename, prefix] of [[path.join(root, '..', 'README.md'), 'mado/'], [path.join(root, 'README.md'), '']]) {
     const content = await readFile(filename, 'utf8');
     const rows = catalog.demos.map((demo) => {
       const base = `${prefix}${encoded(demo.dir)}/`;
-      const status = !demo.ready ? '素材未就绪' : statuses.get(demo.dir)
-        ? `<img src="${base}${statuses.get(demo.dir)}" width="160" alt="官方小程序码">`
+      const status = !demo.ready ? '素材未就绪' : state.get(demo.dir)
+        ? `<img src="${base}${state.get(demo.dir)}" width="160" alt="官方小程序码">`
         : '待授权生成';
       return `| [${escapeCell(demo.label)}](${base}) | ${escapeCell(demo.dir)} | ${demo.scene} | ${status} |`;
     });
     const block = ['<!-- MADO-DEMOS:START -->', '## Mado demo 扫码目录', '',
       `当前目标：\`${config.appid}\` · \`${config.env_version}\` · \`${config.page}\`。开发版／体验版需要对应微信成员权限。`, '',
+      ...(config.site ? [`扫码页（每次发布自动重写）：<${config.site}>`, ''] : []),
       '| Demo | 目录 | scene | 小程序码 |', '| --- | --- | --- | --- |', ...rows, '<!-- MADO-DEMOS:END -->'].join('\n');
     const pattern = /<!-- MADO-DEMOS:START -->[\s\S]*?<!-- MADO-DEMOS:END -->/;
     if (await writeChanged(filename, pattern.test(content) ? content.replace(pattern, () => block) : `${content.trimEnd()}\n\n${block}\n`)) changedPaths.push(filename);
@@ -138,6 +251,11 @@ export async function generateQrcodes({ root = defaultRoot, env = {}, fetchImpl 
   if (!/^wx[a-f0-9]{16}$/.test(config.appid) || config.page !== 'pages/index/index'
       || !['develop', 'trial', 'release'].includes(config.env_version)
       || !Number.isInteger(config.width) || config.width < 280 || config.width > 1280) throw new Error('扫码公开配置无效');
+  // site 只是给人点的扫码页地址；写错不影响生码，直接忽略。
+  if (config.site !== undefined) {
+    if (typeof config.site !== 'string' || !/^https:\/\/[^\s]+$/.test(config.site)) delete config.site;
+    else if (!config.site.endsWith('/')) config.site += '/';
+  }
   const catalog = await generateCatalog(root);
   const generatedFiles = []; const pending = []; const errors = []; const changedPaths = [];
   let token = env.MADO_WECHAT_ACCESS_TOKEN;
@@ -186,7 +304,16 @@ export async function generateQrcodes({ root = defaultRoot, env = {}, fetchImpl 
   }
   const catalogPath = path.join(root, 'demos.json');
   if (await writeChanged(catalogPath, json(catalog))) changedPaths.push(catalogPath);
-  changedPaths.push(...await updateReadmes(root, catalog, config));
+  const statuses = await demoStatuses(root, catalog, config);
+  changedPaths.push(...await updateReadmes(root, catalog, config, statuses));
+
+  // 扫码目录页：内容和清单同源，方便在电脑上打开一次、逐个扫码。
+  const rows = [];
+  for (const demo of catalog.demos) {
+    rows.push({ demo, code: statuses.get(demo.dir) || null, missing: demo.ready ? [] : await missingFiles(root, demo) });
+  }
+  const scanPath = path.join(root, 'index.html');
+  if (await writeChanged(scanPath, renderScanPage(catalog, config, rows))) changedPaths.push(scanPath);
   return { generatedFiles, changedPaths, pending, errors, credentials };
 }
 

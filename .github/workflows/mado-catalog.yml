@@ -42,12 +42,13 @@ jobs:
           import { writeFile } from 'node:fs/promises';
           import { generateQrcodes } from './scripts/generate-mado-qrcodes.mjs';
           const result = await generateQrcodes({ env: process.env });
-          const files = ['mado/demos.json', 'README.md', 'mado/README.md', ...result.generatedFiles];
+          const files = ['mado/demos.json', 'mado/index.html', 'README.md', 'mado/README.md', ...result.generatedFiles];
           await writeFile(`${process.env.RUNNER_TEMP}/mado-generated-paths`, files.join('\0') + '\0');
+          await writeFile(`${process.env.RUNNER_TEMP}/mado-result.json`, JSON.stringify(result));
           console.log(`官方码 ${result.generatedFiles.length / 2} 个；待生成：${result.pending.join('、') || '无'}`);
           if (!result.credentials) console.log('未配置凭据，待授权生成；继续正常部署。');
-          for (const error of result.errors) console.error(`${error.dir}：${error.message}`);
-          if (result.errors.length) process.exitCode = 1;
+          // 生码失败只警告：内容必须先上线，码等下次成功后自动补齐，不能因为码卡住整站。
+          for (const error of result.errors) console.warn(`::warning title=小程序码未生成::${error.dir}：${error.message}`);
           NODE
       - name: Commit only changed generated files
         shell: bash
@@ -71,3 +72,24 @@ jobs:
       - name: Deploy Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Summarize demos and codes
+        if: always()
+        shell: bash
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          node --input-type=module <<'NODE' >> "$GITHUB_STEP_SUMMARY"
+          import { readFile } from 'node:fs/promises';
+          const lines = ['## Mado demo 发布结果', ''];
+          if (process.env.PAGE_URL) lines.push(`扫码目录：${process.env.PAGE_URL}mado/`, '');
+          try {
+            const result = JSON.parse(await readFile(`${process.env.RUNNER_TEMP}/mado-result.json`, 'utf8'));
+            lines.push(`- 新生成小程序码：${result.generatedFiles.length / 2} 个`);
+            lines.push(`- 待生成：${result.pending.join('、') || '无'}`);
+            lines.push(`- 凭据：${result.credentials ? '已配置' : '未配置（在 Actions Secrets 加 MADO_WECHAT_SECRET 后自动补齐）'}`);
+            for (const error of result.errors) lines.push(`- ⚠️ ${error.dir}：${error.message}`);
+          } catch {
+            lines.push('- 未能读取生成结果，请查看上一步日志。');
+          }
+          console.log(lines.join('\n'));
+          NODE

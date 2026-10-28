@@ -8,6 +8,21 @@
 https://manymore13.github.io/img/mado/
 ```
 
+## 加一个 demo：只准备文件，其余自动
+
+1. 新建 `mado/<目录名>/`，放入 `page.md` 与 `style.css`（图片、指南等同目录相对引用）。
+2. 提交并推送到 `main`。
+3. 等 Actions 跑完，打开 `https://manymore13.github.io/img/mado/` 扫码。这个页面就是扫码目录，每次发布自动重写。
+
+推上去之后这些都由 Actions 自动完成，不需要在本地跑脚本、不需要手写版本号、也不需要单独生码：
+
+- `demos.json` 的 `revision`、每个文件的 SHA-256 版本号（小程序用它做 `v` 缓存参数）。
+- 新 demo 的官方小程序码 `qrcode.png`／`qrcode.jpg` 与 `qrcode.json` 元数据，已有 demo 的码原样复用。
+- 两份 README 的扫码表与 `mado/index.html` 扫码页。
+- Pages 部署。
+
+`page.md` 里的 `revision` 字段是可选的业务标识，引擎不会校验它，也不会用它做缓存键；版本号由内容 hash 自动算。
+
 ## 清单契约
 
 `node scripts/generate-mado-catalog.mjs` 无第三方依赖，默认生成 `mado/demos.json`；`--root <目录>` 可用于独立测试。
@@ -23,13 +38,15 @@ https://manymore13.github.io/img/mado/
 
 所有一级 demo 目录（包括空目录）均列入清单；只有普通文件 `page.md` 和 `style.css` 都存在才有 `ready: true`。小程序应将 `ready: false` 显示为不可加载。资源递归扫描普通文件，跳过符号链接、隐藏项及依赖目录 `node_modules`、`bower_components`、`jspm_packages`、`vendor`；一级同名依赖目录也跳过。`versions` 的键使用真实名称和 `/`，小程序拼接相对 URL 时逐段 `encodeURIComponent`，并以对应 hash 作为 `v` 参数。
 
-使用固定 `en` locale 排序并以原始字符串打破排序平局；没有时间戳。`revision` 对排序后的全部 demo 目录名和文件路径／内容 hash 计算摘要，新增、删除、重命名目录或修改单张图片均可改变摘要。各级 README.md、各级 qrcode.png／qrcode.jpg／qrcode.json、生成清单本身、根扫码配置和忽略项不参与计算，避免扫码元数据与展示表更新循环影响 revision。Front Matter 支持单行普通、单引号及 JSON 双引号字符串，不解析完整 YAML 或多行字段。
+使用固定 `en` locale 排序并以原始字符串打破排序平局；没有时间戳。`revision` 对排序后的全部 demo 目录名和文件路径／内容 hash 计算摘要，新增、删除、重命名目录或修改单张图片均可改变摘要。各级 README.md、各级 qrcode.png／qrcode.jpg／qrcode.json、生成清单本身、根扫码配置和忽略项不参与计算，避免扫码元数据与展示表更新循环影响 revision；扫码页 `mado/index.html` 在一级目录之外，同样不参与。Front Matter 支持单行普通、单引号及 JSON 双引号字符串，不解析完整 YAML 或多行字段。
 
 ## 官方小程序码与一次性配置
 
 公开配置位于 `qrcode.config.json`，默认 appid 为 `wxf872813f65e641bb`，页面为 `pages/index/index`，版本为 `develop`，宽度为 430。scene 固定为 `d + sha256(UTF8目录名).slice(0, 20)`；改显示名或素材不会改变 scene，改目录名会改变。小程序在页面 `onLoad(query)` 中对 `query.scene` 执行一次 `decodeURIComponent`，用 `catalog.demos.find(demo => demo.scene === scene && demo.ready)` 查找 demo，再按清单加载资源；需由宿主实现该查询逻辑，本仓库不修改宿主。
 
-`node scripts/generate-mado-qrcodes.mjs` 从环境读取 `MADO_WECHAT_APPID`（可选覆盖公开配置）、`MADO_WECHAT_SECRET`，或已有的 `MADO_WECHAT_ACCESS_TOKEN`（不读取通用 `ACCESS_TOKEN`，避免误用其他服务凭据）。无凭据时不请求网络、不生成占位图片，只更新清单和带自动标记的两份 README。`--offline` 强制忽略所有环境凭据。仅 ready demo 可生成；参数及图片 hash、格式、尺寸与元数据全部匹配才复用旧码。微信 JSON 错误、MIME／签名不符、超过 5 MiB 或 1280 像素上限均拒绝，不以错误响应覆盖旧码。按真实格式保留官方原始字节：PNG 保存为 `qrcode.png`，JPEG 保存为 `qrcode.jpg`；`qrcode.json` 记录 `filename`、真实 MIME、尺寸及 hash。匹配时按 MIME 校验文件名（缺少 `filename` 时由 MIME 推导），两份 README 使用实际图片路径，旧格式文件不会自动删除；误将 JPEG 保存为 `.png` 的旧码不会复用，无凭据时保留旧文件并显示待授权生成。`generateQrcodes()` 返回本次成功生成的图片及元数据路径 `generatedFiles`，并通过 `changedPaths` 明确返回本次内容实际变化的图片、元数据、清单及 README 路径；重复运行无变化时返回空数组。
+`node scripts/generate-mado-qrcodes.mjs` 从环境读取 `MADO_WECHAT_APPID`（可选覆盖公开配置）、`MADO_WECHAT_SECRET`，或已有的 `MADO_WECHAT_ACCESS_TOKEN`（不读取通用 `ACCESS_TOKEN`，避免误用其他服务凭据）。无凭据时不请求网络、不生成占位图片，只更新清单和带自动标记的两份 README。`--offline` 强制忽略所有环境凭据。仅 ready demo 可生成；参数及图片 hash、格式、尺寸与元数据全部匹配才复用旧码。微信 JSON 错误、MIME／签名不符、超过 5 MiB 或 1280 像素上限均拒绝，不以错误响应覆盖旧码。按真实格式保留官方原始字节：PNG 保存为 `qrcode.png`，JPEG 保存为 `qrcode.jpg`；`qrcode.json` 记录 `filename`、真实 MIME、尺寸及 hash。匹配时按 MIME 校验文件名（缺少 `filename` 时由 MIME 推导），两份 README 使用实际图片路径，旧格式文件不会自动删除；误将 JPEG 保存为 `.png` 的旧码不会复用，无凭据时保留旧文件并显示待授权生成。`generateQrcodes()` 返回本次成功生成的图片及元数据路径 `generatedFiles`，并通过 `changedPaths` 明确返回本次内容实际变化的图片、元数据、清单、README 与扫码页路径；重复运行无变化时返回空数组。
+
+同一个脚本还会写 `mado/index.html`（Pages 上的扫码目录页）：每个 ready demo 一张码、显示名、目录、scene 与 `page.md`／`style.css` 入口；还没有码的显示「待生成」，缺 `page.md` 或 `style.css` 的显示缺哪个文件。页面内容只由清单推导，不含时间戳，重复生成不产生噪声。工作流把生码失败降级为警告：内容照常提交和部署，码等下次成功后自动补齐，不会因为一个码卡住整站发布；发布结束会在 Actions 摘要里列出新生成数量、待生成列表与失败原因。
 
 一次性在仓库 Actions Secrets 配置 `MADO_WECHAT_SECRET`，或短期使用 `MADO_WECHAT_ACCESS_TOKEN`；不要将凭据写入配置文件。需要覆盖时在 Actions Variables 配置 `MADO_WECHAT_APPID` 和 `MADO_WECHAT_ENV_VERSION`（`develop`／`trial`／`release`）。脚本先取得官方 token，再调用 `/wxa/getwxacodeunlimit`，不输出 token、secret 或原始错误响应。非 release 使用 `check_path: false`，release 使用 `true`；开发／体验版本仍需上传对应版本，扫码者需有相应成员权限，凭据也必须具备接口权限。配置完成后手动运行 Actions 即可生成真实官方码。
 
@@ -45,13 +62,13 @@ https://manymore13.github.io/img/mado/
 node scripts/generate-mado-catalog.mjs
 node scripts/generate-mado-qrcodes.mjs --offline
 # 明确列出本次要提交的素材路径，检查后自行提交
-git add -- mado/demos.json README.md mado/README.md
+git add -- mado/demos.json mado/index.html README.md mado/README.md
 git diff --cached
 git commit -m "Update Mado demos"
 git push origin main
 ```
 
-每次 `main` push 或在 Actions 手动运行工作流都会重新生成清单；每次更新两份 README；有变化时机器人只提交 `mado/demos.json`、根 README、此 README 和本次成功生成的 `qrcode.png` 或 `qrcode.jpg` 及 `qrcode.json`，正常 push 到 `main`，不会将其他素材顺带提交。无凭据时正常部署并列出待生成项。同一发布组串行执行，每次检出最新 `main`。若运行期间有人继续推送，普通 push 会安全失败，不会强推覆盖；后续 push 触发的运行会再次生成，也可手动重跑。Git 不跟踪空目录，需放入一个非隐藏普通文件才能将该目录同步到远端。
+每次 `main` push 或在 Actions 手动运行工作流都会重新生成清单；每次更新两份 README 与扫码页；有变化时机器人只提交 `mado/demos.json`、`mado/index.html`、根 README、此 README 和本次成功生成的 `qrcode.png` 或 `qrcode.jpg` 及 `qrcode.json`，正常 push 到 `main`，不会将其他素材顺带提交。无凭据时正常部署并列出待生成项。同一发布组串行执行，每次检出最新 `main`。若运行期间有人继续推送，普通 push 会安全失败，不会强推覆盖；后续 push 触发的运行会再次生成，也可手动重跑。Git 不跟踪空目录，需放入一个非隐藏普通文件才能将该目录同步到远端。
 
 ## 首次 Pages 配置与权限
 
@@ -67,6 +84,8 @@ git push origin main
 ## Mado demo 扫码目录
 
 当前目标：`wxf872813f65e641bb` · `develop` · `pages/index/index`。开发版／体验版需要对应微信成员权限。
+
+扫码页（每次发布自动重写）：<https://manymore13.github.io/img/mado/>
 
 | Demo | 目录 | scene | 小程序码 |
 | --- | --- | --- | --- |

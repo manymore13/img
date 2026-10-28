@@ -71,7 +71,7 @@ test('无凭据不造图；README保留说明、列所有demo且重复运行幂�
   assert.match(readme, /测试 &#124; 展示/);
   assert.doesNotMatch(readme, /<img/);
   const catalog = await readFile(path.join(root, 'demos.json'), 'utf8');
-  assert.deepEqual(first.changedPaths, [path.join(root, 'demos.json'), path.join(root, '..', 'README.md'), path.join(root, 'README.md')]);
+  assert.deepEqual(first.changedPaths, [path.join(root, 'demos.json'), path.join(root, '..', 'README.md'), path.join(root, 'README.md'), path.join(root, 'index.html')]);
   const second = await generateQrcodes({ root, fetchImpl: noNetwork });
   assert.deepEqual(second.changedPaths, []);
   assert.equal(await readFile(path.join(root, 'README.md'), 'utf8'), readme);
@@ -170,7 +170,7 @@ test('JPEG按jpg持久化、两份README引用实际路径、复用且保留旧P
   assert.deepEqual(result.errors, []);
   assert.deepEqual(result.pending, []);
   assert.deepEqual(result.generatedFiles, [imagePath, metadataPath]);
-  assert.deepEqual(result.changedPaths, [imagePath, metadataPath, path.join(root, '..', 'README.md'), path.join(root, 'README.md')]);
+  assert.deepEqual(result.changedPaths, [imagePath, metadataPath, path.join(root, '..', 'README.md'), path.join(root, 'README.md'), path.join(root, 'index.html')]);
   assert.deepEqual(await readFile(imagePath), jpeg);
   assert.deepEqual(await readFile(path.join(directory, 'qrcode.png')), png);
   const metadata = JSON.parse(await readFile(metadataPath, 'utf8'));
@@ -224,4 +224,62 @@ test('图片MIME、签名、字节及像素上限校验', () => {
   assert.throws(() => validateImage(large, 'image/png'));
   assert.equal(validateImage(jpeg, 'image/jpeg').image_height, 1);
   assert.throws(() => validateImage(Buffer.from('JSON错误'), 'image/png'));
+});
+
+test('扫码页列出全部 demo，缺码与缺素材分状态显示且可重复生成', async (t) => {
+  const root = await fixture(t);
+  await mkdir(path.join(root, '待补样式'));
+  await writeFile(path.join(root, '待补样式/page.md'), '---\nlabel: <b>未完成</b>\n---\n正文');
+
+  const offline = await generateQrcodes({ root, fetchImpl: noNetwork });
+  const page = await readFile(path.join(root, 'index.html'), 'utf8');
+  assert.ok(offline.changedPaths.includes(path.join(root, 'index.html')));
+  // 三个目录都在页面上，编码后的目录名可用作相对路径。
+  assert.match(page, /<h2>测试 \| 展示<\/h2>/);
+  assert.ok(page.includes('href="./%E4%B8%AD%E6%96%87%20%E7%A9%BA%E6%A0%BC/page.md"'));
+  assert.match(page, /待生成小程序码/);
+  assert.match(page, /缺 style\.css/);
+  // 标签名里的尖括号必须转义，不能把页面结构写坏。
+  assert.match(page, /<h2>&lt;b&gt;未完成&lt;\/b&gt;<\/h2>/);
+  assert.doesNotMatch(page, /<h2><b>/);
+  assert.match(page, /scene d[a-f0-9]{20}/);
+
+  // 同一份清单重复生成不产生改动。
+  const again = await generateQrcodes({ root, fetchImpl: noNetwork });
+  assert.deepEqual(again.changedPaths, []);
+  assert.equal(await readFile(path.join(root, 'index.html'), 'utf8'), page);
+
+  // 有了码之后页面引用真实图片文件，而不是占位。
+  await generateQrcodes({ root, env: { MADO_WECHAT_ACCESS_TOKEN: '测试token' }, fetchImpl: imageResponse });
+  const withCode = await readFile(path.join(root, 'index.html'), 'utf8');
+  assert.ok(withCode.includes('src="./%E4%B8%AD%E6%96%87%20%E7%A9%BA%E6%A0%BC/qrcode.png"'));
+  assert.match(withCode, /alt="测试 \| 展示 的小程序码"/);
+  assert.doesNotMatch(withCode, /测试 \| 展示<\/h2>\n<div class="placeholder">/);
+});
+
+test('新增目录后清单版本号、扫码页与码状态自动跟随', async (t) => {
+  const root = await fixture(t);
+  const before = await generateQrcodes({ root, env: { MADO_WECHAT_ACCESS_TOKEN: '测试token' }, fetchImpl: imageResponse });
+  assert.deepEqual(before.pending, []);
+  const firstCatalog = JSON.parse(await readFile(path.join(root, 'demos.json'), 'utf8'));
+
+  // 手动加一个 demo：只写 page.md 与 style.css，其余不碰。
+  await mkdir(path.join(root, '新增 demo'));
+  await writeFile(path.join(root, '新增 demo/page.md'), '---\nlabel: 新加的一页\n---\n```html mado\n<view class="a">\n<text>正文</text>\n</view>\n```');
+  await writeFile(path.join(root, '新增 demo/style.css'), 'page {}');
+
+  const after = await generateQrcodes({ root, env: { MADO_WECHAT_ACCESS_TOKEN: '测试token' }, fetchImpl: imageResponse });
+  const secondCatalog = JSON.parse(await readFile(path.join(root, 'demos.json'), 'utf8'));
+  assert.notEqual(secondCatalog.revision, firstCatalog.revision);
+  // 版本号是内容 SHA-256，自动带上，不需要手写 revision。
+  const version = secondCatalog.versions[`新增 demo/page.md`];
+  assert.match(version, /^[a-f0-9]{64}$/);
+  assert.equal(version, createHash('sha256').update(await readFile(path.join(root, '新增 demo/page.md'))).digest('hex'));
+  assert.deepEqual(after.pending, []);
+  assert.equal(after.generatedFiles.length, 2);
+  const page = await readFile(path.join(root, 'index.html'), 'utf8');
+  assert.match(page, /<h2>新加的一页<\/h2>/);
+  assert.ok(page.includes('src="./%E6%96%B0%E5%A2%9E%20demo/qrcode.png"'));
+  // 老 demo 的码不会因为别人新增而被重算。
+  assert.ok(!after.changedPaths.includes(path.join(root, '中文 空格', 'qrcode.png')));
 });

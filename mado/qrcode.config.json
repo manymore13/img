@@ -2,5 +2,6 @@
   "appid": "wxf872813f65e641bb",
   "page": "pages/index/index",
   "env_version": "develop",
-  "width": 430
+  "width": 430,
+  "site": "https://manymore13.github.io/img/mado/"
 }
