@@ -273,10 +273,20 @@ export async function generateQrcodes({ root = defaultRoot, env = {}, fetchImpl 
         url.search = new URLSearchParams({ grant_type: 'client_credential', appid: config.appid, secret: env.MADO_WECHAT_SECRET });
         try {
           const response = await request(fetchImpl, url);
-          const data = JSON.parse((await boundedBody(response)).toString('utf8'));
-          if (!response.ok || typeof data.access_token !== 'string' || !data.access_token || data.errcode) throw new Error();
+          let data = {};
+          try { data = JSON.parse((await boundedBody(response)).toString('utf8')); } catch { /* 非 JSON 一律按失败处理，不输出原文。 */ }
+          if (!response.ok || typeof data.access_token !== 'string' || !data.access_token) {
+            // errcode 是数字，不含凭据；40125 密钥不匹配、40013 appid 不对、45009 频率限制。
+            const code = Number.isInteger(data.errcode) ? `（errcode ${data.errcode}）` : '';
+            throw new Error(`获取微信 token 失败${code}，凭据与 access_token 已隐藏`);
+          }
           token = data.access_token;
-        } catch { tokenFailed = true; throw new Error('获取微信 token 失败，凭据及响应已隐藏'); }
+        } catch (error) {
+          tokenFailed = true;
+          throw error.message?.startsWith('获取微信 token 失败')
+            ? error
+            : new Error('获取微信 token 失败，凭据与 access_token 已隐藏');
+        }
       }
       const url = new URL('https://api.weixin.qq.com/wxa/getwxacodeunlimit');
       url.searchParams.set('access_token', token);
@@ -288,6 +298,8 @@ export async function generateQrcodes({ root = defaultRoot, env = {}, fetchImpl 
       if (mime.toLowerCase().includes('json') || /^\s*\{/.test(bytes.subarray(0, 32).toString('utf8'))) {
         let code;
         try { code = JSON.parse(bytes.toString('utf8')).errcode; } catch { /* 不输出原始响应。 */ }
+        // 40001/42001 是 token 本身的问题，40013/40125 是凭据的问题：继续试剩下的 demo 只会刷同样的错。
+        if ([40001, 40013, 40125, 42001].includes(code)) tokenFailed = true;
         throw new Error(`微信生码返回 JSON 错误${Number.isInteger(code) ? `（${code}）` : ''}`);
       }
       const image = validateImage(bytes, mime);

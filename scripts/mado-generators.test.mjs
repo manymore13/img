@@ -283,3 +283,36 @@ test('新增目录后清单版本号、扫码页与码状态自动跟随', async
   // 老 demo 的码不会因为别人新增而被重算。
   assert.ok(!after.changedPaths.includes(path.join(root, '中文 空格', 'qrcode.png')));
 });
+
+test('凭据无效时只试一次，透出 errcode 且不泄露 secret', async (t) => {
+  const root = await fixture(t);
+  await mkdir(path.join(root, 'second'));
+  await writeFile(path.join(root, 'second/page.md'), '---\nlabel: 第二页\n---\n正文');
+  await writeFile(path.join(root, 'second/style.css'), 'page {}');
+  let calls = 0;
+  const fetchImpl = () => { calls++; return Response.json({ errcode: 40125, errmsg: 'invalid appid 测试凭据' }); };
+  const result = await generateQrcodes({ root, env: { MADO_WECHAT_SECRET: '测试凭据' }, fetchImpl });
+  // 拿不到 token 就不该继续逐个 demo 重试，否则一次配置错误会刷出 N 条一样的错。
+  assert.equal(calls, 1);
+  assert.equal(result.errors.length, 1);
+  assert.match(result.errors[0].message, /errcode 40125/);
+  assert.deepEqual([...result.pending].sort(), ['second', '中文 空格'].sort());
+  const text = JSON.stringify(result);
+  assert.doesNotMatch(text, /测试凭据/);
+  assert.doesNotMatch(text, /invalid appid/);
+});
+
+test('token 失效类生码错误不逐个重试', async (t) => {
+  const root = await fixture(t);
+  await mkdir(path.join(root, 'second'));
+  await writeFile(path.join(root, 'second/page.md'), '---\nlabel: 第二页\n---\n正文');
+  await writeFile(path.join(root, 'second/style.css'), 'page {}');
+  let calls = 0;
+  const fetchImpl = () => { calls++; return Response.json({ errcode: 40001, errmsg: 'invalid credential 测试token' }); };
+  const result = await generateQrcodes({ root, env: { MADO_WECHAT_ACCESS_TOKEN: '测试token' }, fetchImpl });
+  assert.equal(calls, 1);
+  assert.equal(result.errors.length, 1);
+  assert.match(result.errors[0].message, /40001/);
+  assert.doesNotMatch(JSON.stringify(result), /测试token/);
+  assert.equal(result.generatedFiles.length, 0);
+});
