@@ -9,7 +9,9 @@ GitHub Pages（扫码页、给人看）  https://manymore13.github.io/img/mado/
 Gitee raw（小程序取数）        https://gitee.com/manymore13/img/raw/main/mado/
 ```
 
-小程序侧默认读 Gitee raw：`gitee.com` 是备案域名，能进服务器域名白名单；GitHub Pages 的 `github.io` 个人无法备案，体验版必被拦。注意 Gitee raw 会 302 跳到 `raw.giteeusercontent.com`（签名地址），小程序跟随跳转时**跳转后的域名也要在白名单**，所以后台要同时加 `https://gitee.com` 与 `https://raw.giteeusercontent.com`（`request` 与 `downloadFile` 各一组）。`v` 版本参数会在跳转里被丢掉，实际靠 Gitee 自己的 60 秒缓存，内容更新最多滞后一分钟。
+小程序侧当前仍读 GitHub Pages（`app.js` 里 `REMOTE = 'github'`）：`github.io` 个人无法备案，体验版真机会被域名校验拦下，**临时办法是进入小程序后点右上角「···」打开调试模式**，校验会被豁免；正式可用的前提是备案域名到位后把 base 换成自己的域名（`REMOTE = 'custom'`），内容不用搬家。
+
+也可以改读 Gitee raw：`gitee.com` 是备案域名，能进服务器域名白名单，但它会 302 跳到 `raw.giteeusercontent.com`（签名地址），小程序跟随跳转时**跳转后的域名也要在白名单**，所以后台要同时加 `https://gitee.com` 与 `https://raw.giteeusercontent.com`（`request` 与 `downloadFile` 各一组）。`v` 版本参数会在跳转里被丢掉，实际靠 Gitee 自己的 60 秒缓存，内容更新最多滞后一分钟；`mp3` 会被响应成 `application/octet-stream`，音频可能播不出来。
 
 ## 加一个 demo：只准备文件，其余自动
 
