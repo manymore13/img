@@ -187,6 +187,9 @@
   justify-content: center;
   overflow: hidden;
   text-align: center;
+  /* 没有照片带，只用一层压暗色块：文字底色不随固定底图的局部明暗变化，
+     也就不会在亮照片旁边显得发白。 */
+  background-color: rgba(8, 22, 15, 0.42);
 }
 
 .band-a {
@@ -198,26 +201,6 @@
 }
 
 .band-c {
-  height: 196px;
-}
-
-.band-img {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 375px;
-  z-index: 0;
-}
-
-.band-a .band-img {
-  height: 82px;
-}
-
-.band-b .band-img {
-  height: 151px;
-}
-
-.band-c .band-img {
   height: 196px;
 }
 
@@ -337,7 +320,7 @@
 /* ---------- 客户服务 ---------- */
 
 .contact {
-  margin: 47px 18px 163px;
+  margin: 47px 18px 30px;
   padding: 22px 17px 19px;
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.10);
@@ -454,19 +437,19 @@
 
 /* ---------- 底部固定操作栏 ---------- */
 
+/* 底栏跟着内容走，放在页面最末尾：滑到底才出现，不再悬浮遮挡正文。
+   仍在固定底图之上，所以要自己建立层叠上下文。 */
 .bar {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  z-index: 9;
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   width: 375px;
-  height: 92px;
-  padding-top: 16px;
+  height: 76px;
+  padding-top: 8px;
   border-top: 1px solid rgba(255, 255, 255, 0.16);
-  background-color: rgba(13, 33, 22, 0.93);
+  background-color: rgba(13, 33, 22, 0.55);
 }
 
 .bar-item {

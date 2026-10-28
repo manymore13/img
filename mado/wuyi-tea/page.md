@@ -80,7 +80,6 @@ stylesheet: ./style.css
     </view>
 
     <view class="band band-a">
-      <image class="band-img" src="./images/band1.jpg" alt="" />
       <text class="band-title">高山生态茶园</text>
       <text class="band-sub">核心原产地 绝对纯正</text>
     </view>
@@ -90,7 +89,6 @@ stylesheet: ./style.css
     </view>
 
     <view class="band band-b">
-      <image class="band-img" src="./images/band2.jpg" alt="" />
       <text class="band-title">甄选原叶</text>
       <text class="band-title">出好茶</text>
       <text class="band-sub">细心甄选 给您最好的体验</text>
@@ -101,7 +99,6 @@ stylesheet: ./style.css
     </view>
 
     <view class="band band-c">
-      <image class="band-img" src="./images/band3.jpg" alt="" />
       <text class="band-title">三大标准</text>
       <text class="band-title">只为做好茶</text>
       <text class="band-sub">优质原料 手工技艺 纯正滋味</text>
