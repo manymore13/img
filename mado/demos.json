@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "revision": "af49a7b68a4d9321ddac4b39aec745e5fdd700f6763df42de644da9e319b4699",
+  "revision": "10287d17ec1094dc00340b32b2d20d0b19ff6566a21c59e1ac7160b0a200cdca",
   "demos": [
     {
       "dir": "basic",
@@ -107,7 +107,7 @@
     "lushan/spot-sandie.md": "d61a96dc5b432df7ae5bcdc0b6756aebd3129978f5d3e45299e6c0b07d56a611",
     "lushan/spot-wulao.md": "d9be7e7914e66ae1da299a867b7014316e2f1516e07567b4185c8d3efda7156d",
     "lushan/spot-xianren.md": "c4c8b9735d06ad4e0cb2e2e5c4f6a3fb42573fd93bbf46fe5a08aad9b5519fb7",
-    "lushan/style.css": "ecbb59cf9f1f75cc3b3bc20909e0504caff45ebf500f66e2821bbe069d6aaec2",
+    "lushan/style.css": "f0483c5c681f66c1605b26d93d0a1aaf42f122a03d8473e64fc83918b3c38a02",
     "showcase/page.md": "4e71b01e4ea1b0c7885e692c109dd750c9a3875787e21b81dc135bfa555b9d9e",
     "showcase/style.css": "4c0a0c61fb68bc700f2f9fee9c9bf3bbb4a17513d19ae616b795347ad6ac694d",
     "山外来信/images/mountain-sunrise.svg": "a348b3c40f6ee637597deb66e19300c7ae405a00c811b2b6f4b2d11277897fe1",

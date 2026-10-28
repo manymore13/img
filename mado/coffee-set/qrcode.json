@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "appid": "wxf872813f65e641bb",
+  "page": "pages/index/index",
+  "scene": "db79b97c5b35142a960ea",
+  "env_version": "develop",
+  "check_path": false,
+  "width": 430,
+  "auto_color": false,
+  "is_hyaline": false,
+  "content_type": "image/jpeg",
+  "image_width": 430,
+  "image_height": 430,
+  "filename": "qrcode.jpg",
+  "sha256": "8fb28ba0898b878748cf98750bd1c4cf6419a4720fc06e61e2f209f3dec93337"
+}
