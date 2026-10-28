@@ -832,7 +832,8 @@
 
 .rm-spot {
   margin: 0;
-  padding: 26px 0 24px;
+  /* 远程读本的容器没有横向内边距，这里补上，否则正文会贴边被裁 */
+  padding: 26px 22px 24px;
   border-bottom: 1px solid var(--line);
 }
 
@@ -956,7 +957,7 @@
 }
 
 .rm-video {
-  margin-top: 26px;
+  margin: 26px 20px 0;
   padding: 22px 18px 20px;
   border: 1px solid var(--line);
   border-radius: 16px;
@@ -993,9 +994,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
   min-height: 44px;
-  margin-top: 12px;
+  margin: 12px 22px 0;
   border: 1px solid var(--line);
   border-radius: 12px;
   background-color: transparent;
