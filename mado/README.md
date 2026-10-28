@@ -86,6 +86,17 @@ git push origin main
 
 每次 `main` push 或在 Actions 手动运行工作流都会重新生成清单；每次更新两份 README 与扫码页；有变化时机器人只提交 `mado/demos.json`、`mado/index.html`、根 README、此 README 和本次成功生成的 `qrcode.png` 或 `qrcode.jpg` 及 `qrcode.json`，正常 push 到 `main`，不会将其他素材顺带提交。无凭据时正常部署并列出待生成项。同一发布组串行执行，每次检出最新 `main`。若运行期间有人继续推送，普通 push 会安全失败，不会强推覆盖；后续 push 触发的运行会再次生成，也可手动重跑。Git 不跟踪空目录，需放入一个非隐藏普通文件才能将该目录同步到远端。
 
+## 同步到 Gitee（国内镜像）
+
+Gitee 上有一份镜像 `https://gitee.com/manymore13/img.git`。工作流在提交生成物之后会把 `main` 推过去：
+
+- 需要仓库 Actions Secrets 配 `GITEE_TOKEN`（Gitee 私人令牌，勾 `projects` 权限）；没配就静默跳过，不影响其它步骤。
+- 目标地址可用 Actions Variables `GITEE_URL` 覆盖，默认 `https://gitee.com/manymore13/img.git`。
+- 推送失败只记 warning，GitHub 侧的提交与 Pages 发布照常完成，不会因为镜像挂了整站发不出去。
+- 令牌只出现在一条 `git push` 命令里，输出统一打码后再进日志。
+
+**镜像不等于托管。** Gitee Pages 已于 2024-07-15 下线，新项目开不了、推代码也不触发构建；`*.gitee.io` 也不是可备案域名，加不进小程序服务器域名白名单。所以镜像只解决「国内能直接读源码」，小程序取数仍必须走已备案域名或微信云开发——见上一节的码有效期说明。
+
 ## 首次 Pages 配置与权限
 
 仓库目前使用 Pages 的 `main` 分支来源时，首次需在 **Settings → Pages → Build and deployment → Source** 选择 **GitHub Actions**，再推送或手动运行本工作流。仓库／组织需允许 Actions 运行及 `GITHUB_TOKEN` 的 `contents: write`、`pages: write`、`id-token: write`；分支保护／规则集需允许机器人直接写入清单，`github-pages` 环境需允许从 `main` 部署。若有审批要求，需完成环境审批。

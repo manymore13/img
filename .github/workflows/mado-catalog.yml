@@ -68,6 +68,31 @@ jobs:
             git commit -m "Update Mado catalog and official codes"
             git push origin HEAD:main
           fi
+      - name: Mirror to Gitee
+        shell: bash
+        env:
+          GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
+          GITEE_URL: ${{ vars.GITEE_URL }}
+        run: |
+          # 镜像只做国内可读与备份：Gitee Pages 已下线，gitee.io 也无法备案，
+          # 小程序取数不能依赖它。推送失败不阻断发布。
+          set -o pipefail
+          url="${GITEE_URL:-https://gitee.com/manymore13/img.git}"
+          case "$url" in
+            https://gitee.com/*)
+              if [ -z "$GITEE_TOKEN" ]; then
+                echo "未配置 GITEE_TOKEN，跳过 Gitee 镜像。"
+                exit 0
+              fi
+              url="https://oauth2:${GITEE_TOKEN}@${url#https://}"
+              ;;
+          esac
+          # token 只出现在这条命令里，输出统一打码，避免进日志。
+          if git push "$url" HEAD:main 2>&1 | sed "s#${GITEE_TOKEN:-__none__}#***#g"; then
+            echo "已同步到 Gitee：$(git rev-parse --short HEAD)"
+          else
+            echo "::warning title=Gitee 镜像失败::推送被拒绝或网络异常；GitHub 侧内容与 Pages 发布不受影响。"
+          fi
       - name: Prepare complete Pages snapshot
         shell: bash
         run: |
