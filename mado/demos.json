@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "revision": "a798ce4a2f9e0b3654e0f74976e90ee3cf7406267f503d5c1cfc6723dac126c4",
+  "revision": "bc10a6a114ef3217d05bea86d5552a5744b74e409cdd8d8a0ae195887e13517b",
   "demos": [
     {
       "dir": "basic",
@@ -118,10 +118,7 @@
     "lushan/style.css": "dce733bff3b180db5e9ea77d3dfee023594f6b9ea4ebce9f1311a9010e0d079c",
     "showcase/page.md": "4e71b01e4ea1b0c7885e692c109dd750c9a3875787e21b81dc135bfa555b9d9e",
     "showcase/style.css": "4c0a0c61fb68bc700f2f9fee9c9bf3bbb4a17513d19ae616b795347ad6ac694d",
-    "wuyi-tea/images/band1.jpg": "1b241dff83af186d1bf3bd98118700044ab608448899ddf4631b8ca2a1bf2b57",
-    "wuyi-tea/images/band2.jpg": "eddd3bd1c588f315c56f95325e01353b5a57445c293a4bc0ca9d265486c27dd6",
-    "wuyi-tea/images/band3.jpg": "be208dbf6738c0eebddb3507feae50d93300f792b6232f05222dcbe3eaf2fa7f",
-    "wuyi-tea/images/bg.jpg": "e8288050f955e3595e4293bfd9fe0be4279b92de0345d0137f4c8753ccb93f5d",
+    "wuyi-tea/images/bg.jpg": "252756f8be0092c47d9634e4908c6c912b15519f4ac0db7497ff2b061cde6eb6",
     "wuyi-tea/images/garden.jpg": "8011c3a32b169e965d996d8e6cb858c13e444c21d426b0e1658edc88db090724",
     "wuyi-tea/images/leaves.jpg": "ff00673da9760eb89794271b16f6e51f8a6339b16affa4278597eef8d3a9e36b",
     "wuyi-tea/images/pick.jpg": "27e9709fc3d270e9cf1f02b9fdb06a1bd9913020d4546db81e6585663090c9b9",
@@ -129,8 +126,8 @@
     "wuyi-tea/images/roast.jpg": "76ff1e43ecd2398d902373b676195e8c800e8128816ff66032b05341538fb699",
     "wuyi-tea/images/store.jpg": "0d2e999fced256a713dc93724626ce95e9a9cbfcbe4b7f87cd2c6aa735aea514",
     "wuyi-tea/images/tea.mp4": "b6f1163b79e54a3b0e47fefbccfecb7256488d0cc022c899e1de0a3381f355f5",
-    "wuyi-tea/page.md": "8f21c4722fd3b2099b09dba068766e47d8a2dcbe248ea06d07a62ad25e841ab9",
-    "wuyi-tea/style.css": "ddc4fd64a4ccd665efaf377fe820a4278c001d6317e1e21a513b210cbc2b9d17",
+    "wuyi-tea/page.md": "7a0e96651244c1b7946183d726bf582d01f75d71d27163da291c21c9a4203430",
+    "wuyi-tea/style.css": "11625b15d8dfb762b3ed6b601934bd2a91a5b793e73ce279a5b8f614ec141209",
     "山外来信/images/mountain-sunrise.svg": "a348b3c40f6ee637597deb66e19300c7ae405a00c811b2b6f4b2d11277897fe1",
     "山外来信/page.md": "368780b7f310055f317d9c0c71dc6f5fb740798abbf205eedafe8c82fa09aabd",
     "山外来信/style.css": "94b19a7f7377c5354df42c9d8d40d05ed9ed5277733b775bf7ce20368f2bca08"
