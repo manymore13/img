@@ -13,18 +13,18 @@ stylesheet: ./style.css
 <view class="page">
   <image class="bg" src="./images/bg.jpg" alt="" />
 
-  <view class="body">
-    <view class="hero" id="sec-top">
-      <text class="title">奔富BIN389红酒</text>
-      <text class="sub">醇香浓郁 | 口感顺滑 | 自饮送礼皆宜</text>
-    </view>
+  <view class="hero" id="sec-top">
+    <text class="title">奔富BIN389红酒</text>
+    <text class="sub">醇香浓郁 | 口感顺滑 | 自饮送礼皆宜</text>
+  </view>
 
-    <view class="tabs sticky-safe">
-      <button class="tab tab-on" text="产品信息" action="scroll-to" to="0" />
-      <button class="tab" text="产品特点" action="scroll-to" to="956" />
-      <button class="tab" text="品牌介绍" action="scroll-to" to="1402" />
-    </view>
+  <view class="tabs sticky-safe">
+    <button class="tab tab-on" text="产品信息" action="scroll-to" target="sec-info" keep="40" />
+    <button class="tab" text="产品特点" action="scroll-to" target="sec-notes" keep="40" />
+    <button class="tab" text="品牌介绍" action="scroll-to" target="sec-brand" keep="40" />
+  </view>
 
+  <view class="sec" id="sec-info">
     <text class="h1">产品信息</text>
     <text class="en">PRODUCT INFORMATION</text>
 
@@ -70,8 +70,10 @@ stylesheet: ./style.css
     <view class="fig">
       <image class="shot shot-product" src="./images/product.jpg" alt="奔富BIN389红酒" />
     </view>
+  </view>
 
-    <text class="h2" id="sec-notes">产品特点</text>
+  <view class="sec" id="sec-notes">
+    <text class="h2">产品特点</text>
     <text class="en">TASTING NOTES</text>
     <text class="para">这款酒香气浓郁复杂</text>
     <text class="para">散发着黑色水果辛香和巧克力的香气</text>
@@ -84,8 +86,10 @@ stylesheet: ./style.css
       <image class="video-poster" src="./images/video.jpg" alt="产品视频" />
       <button class="video-hit" text=" " action="play-video" title="奔富BIN389红酒" url="https://manymore13.github.io/img/mado/wine-bin389/images/video.mp4" />
     </view>
+  </view>
 
-    <text class="h2" id="sec-brand">品牌介绍</text>
+  <view class="sec" id="sec-brand">
+    <text class="h2">品牌介绍</text>
     <text class="en">BRAND INTRODUCTION</text>
     <text class="para">奔富 Penfolds 是澳大利亚一个具有悠久历史和文化传承的酒庄，它记载了澳大利亚从殖民时期发展到如今的光辉历程。</text>
     <text class="para para-gap">奔富 Penfolds 酒庄成立于1844年，在澳大利亚乃至葡萄酒酿制业发展过程中发挥了十分重要的作用。</text>

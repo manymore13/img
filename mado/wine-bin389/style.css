@@ -18,7 +18,9 @@
   z-index: 0;
 }
 
-.body {
+/* 三段正文各自是根节点的直接子节点（宿主按块渲染，块级 id 才能被原生
+   scroll-into-view 找到），所以层叠上下文放在每段自己身上。 */
+.sec {
   position: relative;
   z-index: 2;
 }
